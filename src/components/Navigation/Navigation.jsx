@@ -32,16 +32,14 @@ const Navigation = () => {
               if (category.CatName === "Shop by Product") {
                 category.CategoriesArray.forEach((el) => {
                   subCat.push({
-                    catName: el.CatName.includes("H&M")
-                      ? el.CatName.split("H&M").join("")
-                      : el.CatName,
+                    catName: el.CatName,
                     tagCode: el.tagCodes[0],
                   });
                 });
               }
             });
             temporaryCat.push({
-              catName: category.CatName,
+              catName: category.CatName.replaceAll("H&M", "").toUpperCase(),
               tagCode: category.tagCodes[0],
               subCategories: subCat,
             });
