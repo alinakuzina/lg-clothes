@@ -59,7 +59,7 @@ const Navigation = () => {
         </Link>
         <div className="links-container">
           {categories.map((category) => {
-            return <NavLink category={category} />;
+            return <NavLink category={category} key={category.tagCode} />;
           })}
         </div>
       </div>

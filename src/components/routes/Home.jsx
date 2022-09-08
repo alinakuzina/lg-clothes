@@ -1,34 +1,26 @@
 import CategoryContainer from "../Category/CategoryContainer";
-
+import video from "../../assets/background-video.mp4";
+import "./Home.scss";
+import React from "react";
 const Home = () => {
   const categories = [
     {
-      id: 1,
-      title: "hats",
-      imageUrl: "https://i.ibb.co/cvpntL1/hats.png",
+      id: "ladies_all",
+      title: "Woman",
     },
     {
-      id: 2,
-      title: "jackets",
-      imageUrl: "https://i.ibb.co/px2tCc3/jackets.png",
-    },
-    {
-      id: 3,
-      title: "sneakers",
-      imageUrl: "https://i.ibb.co/0jqHpnp/sneakers.png",
-    },
-    {
-      id: 4,
-      title: "womens",
-      imageUrl: "https://i.ibb.co/GCCdy8t/womens.png",
-    },
-    {
-      id: 5,
-      title: "mens",
-      imageUrl: "https://i.ibb.co/R70vBrQ/men.png",
+      id: "men_all",
+      title: "Men",
     },
   ];
-  return <CategoryContainer categories={categories} />;
+  return (
+    <div className="home-page">
+      <CategoryContainer categories={categories} />
+      <video className="videoTag" autoPlay loop muted>
+        <source src={video} type="video/mp4" />
+      </video>
+    </div>
+  );
 };
 
 export default Home;
