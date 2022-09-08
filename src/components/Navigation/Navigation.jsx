@@ -3,6 +3,7 @@ import { Fragment, useEffect, useState } from "react";
 import { ReactComponent as Logo } from "../../assets/logo.svg";
 import "./Navigation.scss";
 import NavLink from "./NavLink";
+import MobileNav from "./MobileNav";
 
 const Navigation = () => {
   let [categories, setCategories] = useState([]);
@@ -57,12 +58,13 @@ const Navigation = () => {
         <Link className="logo-container" to="/">
           <Logo className="logo" />
         </Link>
-        <div className="links-container">
+        {/* {/* <div className="links-container">
           {categories.map((category) => {
             return <NavLink category={category} key={category.tagCode} />;
           })}
-        </div>
+        </div> */}
       </div>
+      <MobileNav categories={categories} />
       <Outlet />
     </Fragment>
   );
