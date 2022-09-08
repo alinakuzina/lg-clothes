@@ -31,7 +31,9 @@ const Navigation = () => {
               if (category.CatName === "Shop by Product") {
                 category.CategoriesArray.forEach((el) => {
                   subCat.push({
-                    catName: el.CatName,
+                    catName: el.CatName.includes("H&M")
+                      ? el.CatName.split("H&M").join("")
+                      : el.CatName,
                     tagCode: el.tagCodes[0],
                   });
                 });
