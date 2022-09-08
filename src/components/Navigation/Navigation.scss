@@ -4,6 +4,7 @@
   display: flex;
   justify-content: space-between;
   margin-bottom: 25px;
+  z-index: 200;
 
   .logo-container {
     height: 100%;
@@ -12,6 +13,7 @@
     .logo {
       height: 100px;
       width: 100px;
+      z-index: 200;
     }
   }
 
@@ -21,10 +23,5 @@
     display: flex;
     align-items: center;
     justify-content: flex-end;
-
-    .nav-link {
-      padding: 10px 15px;
-      cursor: pointer;
-    }
   }
 }
