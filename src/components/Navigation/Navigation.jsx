@@ -58,13 +58,13 @@ const Navigation = () => {
         <Link className="logo-container" to="/">
           <Logo className="logo" />
         </Link>
-        {/* {/* <div className="links-container">
+        <div className="links-container">
           {categories.map((category) => {
             return <NavLink category={category} key={category.tagCode} />;
           })}
-        </div> */}
+        </div>
       </div>
-      <MobileNav categories={categories} />
+      {/* <MobileNav categories={categories} /> */}
       <Outlet />
     </Fragment>
   );

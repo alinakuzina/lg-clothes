@@ -52,10 +52,9 @@
   color: rgb(45, 45, 45);
   display: block;
   text-align: left;
+  transition: all 0.3s ease-out;
 
   &:hover {
-    // text-decoration: underline;
-    // border-bottom: 1px solid black;
     border-left: 1px solid black;
     color: black;
   }
