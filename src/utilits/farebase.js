@@ -1,9 +1,9 @@
 import { initializeApp } from "firebase/app";
 import {
   getAuth,
-  signInWithRedirect,
   signInWithPopup,
   GoogleAuthProvider,
+  createUserWithEmailAndPassword,
 } from "firebase/auth";
 import {
   getFirestore,
@@ -27,17 +27,24 @@ const firebaseConfig = {
 // Initialize Firebase
 const firebaseApp = initializeApp(firebaseConfig);
 
-const provider = new GoogleAuthProvider();
-provider.setCustomParameters({
+const googleProvider = new GoogleAuthProvider();
+googleProvider.setCustomParameters({
   prompt: "select_account",
 });
 
 export const auth = getAuth();
-export const sightInWithGooglePopup = () => signInWithPopup(auth, provider);
+
+export const sightInWithGooglePopup = () =>
+  signInWithPopup(auth, googleProvider);
 
 //Store user data
 export const database = getFirestore();
-export const createUserDocumentFromAuth = async (userAuth) => {
+
+export const createUserDocumentFromAuth = async (
+  userAuth,
+  additionalInfo = {}
+) => {
+  if (!userAuth) return;
   //recieve response form google with dates
   const userDocRef = doc(database, "users", userAuth.uid);
   //recieve from firebase if this user already exist in base and all info
@@ -55,6 +62,7 @@ export const createUserDocumentFromAuth = async (userAuth) => {
         displayName,
         email,
         createAt,
+        ...additionalInfo,
       });
     } catch (error) {
       console.log(error, "create user");
@@ -62,4 +70,18 @@ export const createUserDocumentFromAuth = async (userAuth) => {
   }
 
   return userDocRef;
+};
+
+export const createUserWithEmail = async (email, password) => {
+  if (!email || !password) return;
+  try {
+    return await createUserWithEmailAndPassword(auth, email, password);
+  } catch (error) {
+    if (error.code === "auth/email-already-in-use") {
+      alert("Cannot create a user, email already in use");
+      return;
+    } else {
+      console.log(error);
+    }
+  }
 };

@@ -65,7 +65,7 @@ const ContextProvider = (props) => {
     const options = {
       method: "GET",
       headers: {
-        "X-RapidAPI-Key": "bf55e94a67mshb9ff325d6bed36cp1524a0jsn2c8815085b6e",
+        "X-RapidAPI-Key": "d4e911b07bmsh22373b0aab03d44p135b46jsnf7e11d0c4ba7",
         "X-RapidAPI-Host": "apidojo-hm-hennes-mauritz-v1.p.rapidapi.com",
       },
     };
