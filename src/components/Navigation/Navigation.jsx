@@ -8,6 +8,7 @@ import { Context } from "../../context/context";
 
 const Navigation = () => {
   const context = useContext(Context);
+
   useEffect(() => {
     context.recieveCategories();
   }, []);
@@ -22,12 +23,12 @@ const Navigation = () => {
           {context.categories.map((category) => {
             return <NavLink category={category} key={category.tagCode} />;
           })}
-          <Link className="nav-link" to="/sign-in">
+          <Link className="nav-link" to="/sign_in">
             Sign In
           </Link>
         </div>
 
-        <MobileNav />
+        {/* <MobileNav /> */}
       </div>
 
       <Outlet />
