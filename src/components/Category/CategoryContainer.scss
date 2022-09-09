@@ -1,6 +1,6 @@
 .categories-container {
   width: 100vw;
-  height: 84vh;
+  height: calc(100vh - 100px);
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;

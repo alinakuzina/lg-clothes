@@ -61,8 +61,9 @@ const Navigation = () => {
             return <NavLink category={category} key={category.tagCode} />;
           })}
         </div>
+        {/* <MobileNav categories={categories} /> */}
       </div>
-      {/* <MobileNav categories={categories} /> */}
+
       <Outlet />
     </Fragment>
   );
