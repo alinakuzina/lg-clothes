@@ -32,6 +32,7 @@ const Navigation = () => {
               if (category.CatName === "Shop by Product") {
                 category.CategoriesArray.forEach((el) => {
                   subCat.push({
+                    id: el.tagCodes[0] + Math.random(),
                     catName: el.CatName,
                     tagCode: el.tagCodes[0],
                   });
@@ -39,6 +40,7 @@ const Navigation = () => {
               }
             });
             temporaryCat.push({
+              id: category.tagCodes[0] + Math.random(),
               catName: category.CatName.replaceAll("H&M", "").toUpperCase(),
               tagCode: category.tagCodes[0],
               subCategories: subCat,
