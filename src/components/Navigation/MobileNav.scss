@@ -1,7 +1,7 @@
 .mobile-icon {
   position: fixed;
-  right: 25px;
-  top: 40px;
+  right: 2rem;
+  top: 2.5rem;
   border: none;
   background-color: transparent;
   z-index: 400;
@@ -11,7 +11,7 @@
 }
 
 .bar {
-  width: 30px;
+  width: 2rem;
   height: 2px;
   background: rgb(25, 25, 25);
   border-radius: 2px;
@@ -19,11 +19,11 @@
 }
 
 .bar1.close-icon {
-  transform: rotate(-135deg) translateY(-10px);
+  transform: rotate(-135deg) translateY(-0.6rem);
 }
 
 .bar3.close-icon {
-  transform: rotate(135deg) translateY(10px);
+  transform: rotate(135deg) translateY(0.6rem);
 }
 
 .bar2.close-icon {
@@ -60,6 +60,7 @@
   cursor: pointer;
   padding: 3px 10px;
   transition: all 0.3s;
+  font-size: 1rem;
 
   &:hover {
     transform: scale(1.2);
