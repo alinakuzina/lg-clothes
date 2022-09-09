@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import "./NavLink.scss";
 
 let NavLink = (props) => {
-  console.log(props.category);
   return (
     <div className="dropdown">
       <Link
@@ -13,20 +12,22 @@ let NavLink = (props) => {
       >
         {props.category.catName}
       </Link>
-      <div className="dropdown-content">
-        {props.category.subCategories.map((el) => {
-          return (
-            <Link
-              className="nav-link-dropdown"
-              to={`/${el.tagCode}`}
-              id={`${el.tagCode}`}
-              key={`${props.tagCode}${Math.random()}`}
-            >
-              {el.catName}
-            </Link>
-          );
-        })}
-      </div>
+      {props.category.subCategories.length > 0 && (
+        <div className="dropdown-content">
+          {props.category.subCategories.map((el) => {
+            return (
+              <Link
+                className="nav-link-dropdown"
+                to={`/${el.tagCode}`}
+                id={`${el.tagCode}`}
+                key={`${props.tagCode}${Math.random()}`}
+              >
+                {el.catName}
+              </Link>
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 };

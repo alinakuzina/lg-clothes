@@ -1,55 +1,15 @@
 import { Outlet, Link } from "react-router-dom";
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useEffect, useState, useContext } from "react";
 import { ReactComponent as Logo } from "../../assets/logo.svg";
 import "./Navigation.scss";
 import NavLink from "./NavLink";
 import MobileNav from "./MobileNav";
+import { Context } from "../../context/context";
 
 const Navigation = () => {
-  let [categories, setCategories] = useState([]);
-
+  const context = useContext(Context);
   useEffect(() => {
-    const options = {
-      method: "GET",
-      headers: {
-        "X-RapidAPI-Key": "bf55e94a67mshb9ff325d6bed36cp1524a0jsn2c8815085b6e",
-        "X-RapidAPI-Host": "apidojo-hm-hennes-mauritz-v1.p.rapidapi.com",
-      },
-    };
-
-    fetch(
-      "https://apidojo-hm-hennes-mauritz-v1.p.rapidapi.com/categories/list?lang=en&country=us",
-      options
-    )
-      .then((response) => response.json())
-      .then((response) => {
-        console.log(response);
-        let temporaryCat = [];
-        response.forEach((category) => {
-          if (category.tagCodes[0]) {
-            let subCat = [];
-            category.CategoriesArray.forEach((category) => {
-              if (category.CatName === "Shop by Product") {
-                category.CategoriesArray.forEach((el) => {
-                  subCat.push({
-                    id: el.tagCodes[0] + Math.random(),
-                    catName: el.CatName,
-                    tagCode: el.tagCodes[0],
-                  });
-                });
-              }
-            });
-            temporaryCat.push({
-              id: category.tagCodes[0] + Math.random(),
-              catName: category.CatName.replaceAll("H&M", "").toUpperCase(),
-              tagCode: category.tagCodes[0],
-              subCategories: subCat,
-            });
-          }
-        });
-        setCategories(temporaryCat);
-      })
-      .catch((err) => console.error(err));
+    context.recieveCategories();
   }, []);
 
   return (
@@ -59,11 +19,15 @@ const Navigation = () => {
           <Logo className="logo" />
         </Link>
         <div className="links-container">
-          {categories.map((category) => {
+          {context.categories.map((category) => {
             return <NavLink category={category} key={category.tagCode} />;
           })}
+          <Link className="nav-link" to="/sign-in">
+            Sign In
+          </Link>
         </div>
-        {/* <MobileNav categories={categories} /> */}
+
+        <MobileNav />
       </div>
 
       <Outlet />

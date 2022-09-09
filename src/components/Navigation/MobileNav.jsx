@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
 import "./MobileNav.scss";
-import { Fragment, useState } from "react";
+import { Fragment, useState, useContext } from "react";
+import { Context } from "../../context/context";
 
 let MobileNav = (props) => {
   let [open, setOpen] = useState(false);
+  let context = useContext(Context);
 
   let openMabileNavHandler = () => {
     console.log("click");
@@ -21,7 +23,7 @@ let MobileNav = (props) => {
         <div class={`bar bar3 ${open && "close-icon"}`}></div>
       </button>
       <div className={`mobile-container ${open && "open-mobile-nav"}`}>
-        {props.categories.map((category) => {
+        {context.categories.map((category) => {
           return (
             <Link
               className="mobile-nav-item "
