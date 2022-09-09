@@ -1,4 +1,4 @@
-import "./Sing-in.scss";
+import "./Authentification.scss";
 import { useEffect } from "react";
 import { getRedirectResult } from "firebase/auth";
 import {
@@ -6,23 +6,24 @@ import {
   createUserDocumentFromAuth,
   sightInWithGooglePopup,
   signInWithGoogleRedirect,
-} from "../../../utilits/farebase";
-import SignUpForm from "../../SightUpForm/SignUp";
+} from "../../../src/utilits/farebase";
+import SignUpForm from "../../components/SightUpForm/SignUp";
+import SignIn from "../../components/SignIn/SignIn";
 
-const SignIn = () => {
+const Authentification = () => {
   const logGoogleUser = async () => {
     const response = await sightInWithGooglePopup();
-    console.log(response);
     const userDocRef = await createUserDocumentFromAuth(response.user);
   };
 
   return (
     <div className="signin-container">
       <h1>SingIn</h1>
-      <button onClick={logGoogleUser}>Sign in with googl</button>
+      <button onClick={logGoogleUser}>Sign in with google</button>
       <SignUpForm />
+      <SignIn />
     </div>
   );
 };
 
-export default SignIn;
+export default Authentification;

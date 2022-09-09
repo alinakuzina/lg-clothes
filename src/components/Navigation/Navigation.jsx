@@ -23,7 +23,7 @@ const Navigation = () => {
           {context.categories.map((category) => {
             return <NavLink category={category} key={category.tagCode} />;
           })}
-          <Link className="nav-link" to="/sign_in">
+          <Link className="nav-link" to="/authentication">
             Sign In
           </Link>
         </div>

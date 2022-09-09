@@ -1,7 +1,8 @@
-import CategoryContainer from "../../Category/CategoryContainer";
-import video from "../../../assets/background-video.mp4";
+import CategoryContainer from "../../components/Category/CategoryContainer";
+import video from "../../../src/assets/background-video.mp4";
 import "./Home.scss";
 import React from "react";
+
 const Home = () => {
   return (
     <div className="home-page">
