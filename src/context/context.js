@@ -1,5 +1,7 @@
 import { useState } from "react";
 import React from "react";
+import { doc, setDoc, collection, getDocs } from "firebase/firestore";
+import { database } from "../utilits/farebase";
 
 export const Context = React.createContext({
   isAuth: false,
@@ -61,48 +63,13 @@ const ContextProvider = (props) => {
     },
   ]);
 
-  const recieveCategoriesHandler = () => {
-    const options = {
-      method: "GET",
-      headers: {
-        "X-RapidAPI-Key": "d4e911b07bmsh22373b0aab03d44p135b46jsnf7e11d0c4ba7",
-        "X-RapidAPI-Host": "apidojo-hm-hennes-mauritz-v1.p.rapidapi.com",
-      },
-    };
-
-    fetch(
-      "https://apidojo-hm-hennes-mauritz-v1.p.rapidapi.com/categories/list?lang=en&country=us",
-      options
-    )
-      .then((response) => response.json())
-      .then((response) => {
-        let temporaryCat = [];
-        response.forEach((category) => {
-          if (category.tagCodes[0]) {
-            let subCat = [];
-            category.CategoriesArray.forEach((category) => {
-              if (category.CatName === "Shop by Product") {
-                category.CategoriesArray.forEach((el) => {
-                  subCat.push({
-                    id: el.tagCodes[0] + Math.random(),
-                    catName: el.CatName,
-                    tagCode: el.tagCodes[0],
-                  });
-                });
-              }
-            });
-            temporaryCat.push({
-              id: category.tagCodes[0] + Math.random(),
-              catName: category.CatName.replaceAll("H&M", "").toUpperCase(),
-              tagCode: category.tagCodes[0],
-              subCategories: subCat,
-            });
-          }
-        });
-        console.log(temporaryCat);
-        setCategories(temporaryCat);
-      })
-      .catch((err) => console.error(err));
+  const recieveCategoriesHandler = async () => {
+    const querySnapshot = await getDocs(collection(database, "categories"));
+    let tempCat = [];
+    querySnapshot.forEach((doc) => {
+      tempCat.push(doc.data());
+    });
+    setCategories(tempCat);
   };
 
   return (

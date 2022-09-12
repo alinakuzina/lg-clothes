@@ -10,7 +10,7 @@ const Navigation = () => {
   const context = useContext(Context);
 
   useEffect(() => {
-    // context.recieveCategories();
+    context.recieveCategories();
   }, []);
 
   return (
