@@ -26,8 +26,7 @@
   width: 100vw;
   background-color: rgb(255, 255, 255);
   z-index: 100;
-  transition-delay: 250ms;
-  transition: all 0.3s ease-out;
+  transition: opacity 0.3s ease-in-out;
 }
 
 .nav-link {

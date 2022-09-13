@@ -9,6 +9,7 @@ import {
 } from "../../../src/utilits/farebase";
 import SignUpForm from "../../components/SightUpForm/SignUp";
 import SignIn from "../../components/SignIn/SignIn";
+import image from "../../assets/auth-img.jpg";
 
 const Authentification = () => {
   const logGoogleUser = async () => {
@@ -21,11 +22,12 @@ const Authentification = () => {
 
   return (
     <div className="signin-container">
-      <h1>SingIn</h1>
-      <button onClick={logGoogleUser}>Sign in with google</button>
-      <button onClick={logFacebookUser}>Sign in with facebook</button>
-      <SignUpForm />
-      <SignIn />
+      <div>
+        <h1>SingIn</h1>
+        {/* <SignUpForm /> */}
+        <SignIn />
+      </div>
+      <img src={image} className="auth-img" />
     </div>
   );
 };
