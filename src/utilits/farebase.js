@@ -5,6 +5,7 @@ import {
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  FacebookAuthProvider,
 } from "firebase/auth";
 import {
   getFirestore,
@@ -33,11 +34,23 @@ googleProvider.setCustomParameters({
   prompt: "select_account",
 });
 
+const facebookProvider = new FacebookAuthProvider();
+facebookProvider.setCustomParameters({
+  display: "popup",
+});
+
 export const auth = getAuth();
 
 export const sightInWithGooglePopup = () =>
-  signInWithPopup(auth, googleProvider);
+  signInWithPopup(auth, googleProvider).then((result) => {
+    createUserDocumentFromAuth(result.user);
+  });
 
+export const signInWIthFacebook = () => {
+  signInWithPopup(auth, facebookProvider).then((result) => {
+    createUserDocumentFromAuth(result.user);
+  });
+};
 //Store user data
 export const database = getFirestore();
 
