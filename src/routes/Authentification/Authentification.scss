@@ -2,11 +2,12 @@
   padding-top: 7rem;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  height: 100vh;
+  height: calc(100vh - 7rem);
   overflow: hidden;
 }
 
 .auth-img {
   width: 100%;
   object-fit: cover;
+  z-index: -1;
 }

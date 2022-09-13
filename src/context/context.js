@@ -14,23 +14,30 @@ const ContextProvider = (props) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   let [categories, setCategories] = useState([
     {
-      id: "kids_newbornbaby_viewall0.4015197247428697",
-      catName: "BABY",
-      tagCode: "kids_newbornbaby_viewall",
-      subCategories: [],
-    },
-    {
-      id: "sportswear0.8572295437328288",
-      catName: "SPORT",
-      tagCode: "sportswear",
-      subCategories: [],
-    },
-    {
       id: "giftguide0.7740156034108596",
       catName: "GIFT GUIDE",
       tagCode: "giftguide",
       subCategories: [],
     },
+    {
+      id: "home_all0.7608759542783605",
+      catName: " HOME",
+      tagCode: "home_all",
+      subCategories: [],
+    },
+    {
+      id: "kids_all0.31378616495335176",
+      catName: "KIDS",
+      tagCode: "kids_all",
+      subCategories: [],
+    },
+    {
+      id: "kids_newbornbaby_viewall0.4015197247428697",
+      catName: "BABY",
+      tagCode: "kids_newbornbaby_viewall",
+      subCategories: [],
+    },
+    ,
     {
       id: "ladies_all0.9304966433773658",
       catName: "WOMEN",
@@ -50,15 +57,9 @@ const ContextProvider = (props) => {
       subCategories: [],
     },
     {
-      id: "kids_all0.31378616495335176",
-      catName: "KIDS",
-      tagCode: "kids_all",
-      subCategories: [],
-    },
-    {
-      id: "home_all0.7608759542783605",
-      catName: " HOME",
-      tagCode: "home_all",
+      id: "sportswear0.8572295437328288",
+      catName: "SPORT",
+      tagCode: "sportswear",
       subCategories: [],
     },
   ]);

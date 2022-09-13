@@ -23,7 +23,6 @@ const Authentification = () => {
   return (
     <div className="signin-container">
       <div>
-        <h1>SingIn</h1>
         {/* <SignUpForm /> */}
         <SignIn />
       </div>

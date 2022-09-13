@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./SignIn.scss";
 import {
   sightInWithGooglePopup,
   signInWIthFacebook,
@@ -44,29 +45,46 @@ const SignIn = () => {
   };
 
   return (
-    <div>
-      <h1>Already have an account? </h1>
-      <h2>Sign in with your email and password</h2>
-      <form onSubmit={submitHandler}>
-        <label>Email</label>
-        <input
-          type="email"
-          required
-          name="email"
-          autoComplete="email"
-          onChange={handleChange}
-          value={email}
-        ></input>
+    <div className="sign-in-container">
+      <h1 className="main-header">Welcome back</h1>
+      <h2 className="aditional-header">Please enter your details</h2>
+      <form onSubmit={submitHandler} className="form-sign-in">
+        <div className="group">
+          <input
+            className="form-input"
+            type="email"
+            required
+            name="email"
+            autoComplete="email"
+            onChange={handleChange}
+            value={email}
+          ></input>
+          <label
+            className={`form-input-label ${email.length > 0 ? "shrink" : ""}`}
+          >
+            Email
+          </label>
+        </div>
 
-        <label>Password</label>
-        <input
-          type="password"
-          required
-          onChange={handleChange}
-          name="password"
-          autoComplete="new-password"
-          value={password}
-        ></input>
+        <div className="group">
+          <input
+            className="form-input "
+            type="password"
+            required
+            onChange={handleChange}
+            name="password"
+            autoComplete="new-password"
+            value={password}
+          ></input>
+          <label
+            className={`form-input-label ${
+              password.length > 0 ? "shrink" : ""
+            }`}
+          >
+            Password
+          </label>
+        </div>
+
         <button type="submit"> Sign In</button>
         <button onClick={signInWithGoogle}>Google sign in</button>
         <button onClick={signInWithFacebook}>Facebook sign in</button>
