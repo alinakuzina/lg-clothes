@@ -93,6 +93,7 @@
   justify-content: center;
   align-items: center;
   gap: 0.5rem;
+  width: 100%;
 }
 
 .redirect-container {
@@ -109,6 +110,12 @@
 
     &:hover {
       transform: scale(1.06);
+    }
+  }
+
+  @media screen and (max-width: 26em) {
+    .form-sign-up {
+      width: 70%;
     }
   }
 }

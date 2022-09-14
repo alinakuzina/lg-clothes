@@ -13,3 +13,25 @@
   object-fit: cover;
   top: 0;
 }
+
+@media screen and (max-height: 40.3em) {
+  .signin-container {
+    overflow-y: scroll;
+  }
+}
+
+@media screen and (max-width: 46em) {
+  .signin-container {
+    grid-template-columns: 2fr 1fr;
+  }
+}
+
+@media screen and (max-width: 39em) {
+  .signin-container {
+    grid-template-columns: 1fr;
+  }
+
+  .auth-img {
+    display: none;
+  }
+}
