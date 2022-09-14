@@ -30,6 +30,10 @@
   padding: 0;
 }
 
+.form-sign-up {
+  width: 55%;
+}
+
 .form-input {
   background: none;
   background-color: white;
@@ -77,6 +81,7 @@
   flex-direction: column;
   gap: 0.5rem;
   margin-top: 2.5rem;
+  width: 110%;
 }
 
 .logo {

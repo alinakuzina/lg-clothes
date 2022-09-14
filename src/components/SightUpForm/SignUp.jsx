@@ -13,7 +13,7 @@ const defaultFormFields = {
   confirmPassword: "",
 };
 
-const SignUpForm = () => {
+const SignUpForm = (props) => {
   const [formFields, setFormFiels] = useState(defaultFormFields);
   const { displayName, email, password, confirmPassword } = formFields;
 
@@ -129,12 +129,14 @@ const SignUpForm = () => {
           <Button type="submit" classes="submit">
             Create account
           </Button>
-          <div className="redirect-container">
-            <p>Already have an account?</p>
-            <button className="redirect-buttom">Sign in here &rarr;</button>
-          </div>
         </div>
       </form>
+      <div className="redirect-container">
+        <p>Already have an account?</p>
+        <button className="redirect-buttom" onClick={props.redirectSingIn}>
+          Sign in here &rarr;
+        </button>
+      </div>
     </div>
   );
 };

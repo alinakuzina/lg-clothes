@@ -16,7 +16,7 @@ const defaultSignInFields = {
   password: "",
 };
 
-const SignIn = () => {
+const SignIn = (props) => {
   const [signInFields, setsignInFiels] = useState(defaultSignInFields);
   const { email, password } = signInFields;
 
@@ -102,12 +102,14 @@ const SignIn = () => {
               <img className="logo" src={facebookLogo} /> Facebook sign in
             </div>
           </Button>
-          <div className="redirect-container">
-            <p>Dont have an account?</p>{" "}
-            <button className="redirect-buttom">Sign up for free &rarr;</button>
-          </div>
         </div>
       </form>
+      <div className="redirect-container">
+        <p>Dont have an account?</p>{" "}
+        <button className="redirect-buttom" onClick={props.redirectSingUp}>
+          Sign up for free &rarr;
+        </button>
+      </div>
     </div>
   );
 };

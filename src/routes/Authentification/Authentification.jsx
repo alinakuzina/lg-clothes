@@ -1,5 +1,5 @@
 import "./Authentification.scss";
-import { useEffect } from "react";
+import { useState } from "react";
 import { getRedirectResult } from "firebase/auth";
 import {
   sightInWithGooglePopup,
@@ -10,11 +10,16 @@ import SignIn from "../../components/SignIn/SignIn";
 import image from "../../assets/auth-img.jpg";
 
 const Authentification = () => {
+  const [showSignIn, setShowSignIn] = useState(true);
+
+  const showSignInHandler = () => {
+    setShowSignIn((prev) => !prev);
+  };
   return (
     <div className="signin-container">
       <div>
-        <SignUpForm />
-        {/* <SignIn /> */}
+        {showSignIn && <SignIn redirectSingUp={showSignInHandler} />}
+        {!showSignIn && <SignUpForm redirectSingIn={showSignInHandler} />}
       </div>
       <img src={image} className="auth-img" />
     </div>
