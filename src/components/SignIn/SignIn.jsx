@@ -101,6 +101,10 @@ const SignIn = () => {
               <img className="logo" src={facebookLogo} /> Facebook sign in
             </div>
           </Button>
+          <div className="redirect-container">
+            <p>Dont have an account?</p>{" "}
+            <button className="redirect-buttom">Sign up for free &rarr;</button>
+          </div>
         </div>
       </form>
     </div>

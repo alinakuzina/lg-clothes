@@ -88,3 +88,21 @@
   align-items: center;
   gap: 0.5rem;
 }
+
+.redirect-container {
+  display: flex;
+  font-size: 0.8rem;
+
+  .redirect-buttom {
+    background-color: transparent;
+    border: none;
+    text-decoration: underline;
+    color: #0b2d2b;
+    cursor: pointer;
+    transition: all 0.3s;
+
+    &:hover {
+      transform: scale(1.06);
+    }
+  }
+}

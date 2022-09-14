@@ -2,8 +2,6 @@ import "./Authentification.scss";
 import { useEffect } from "react";
 import { getRedirectResult } from "firebase/auth";
 import {
-  auth,
-  createUserDocumentFromAuth,
   sightInWithGooglePopup,
   signInWIthFacebook,
 } from "../../../src/utilits/farebase";
@@ -12,14 +10,6 @@ import SignIn from "../../components/SignIn/SignIn";
 import image from "../../assets/auth-img.jpg";
 
 const Authentification = () => {
-  const logGoogleUser = async () => {
-    const userDocRef = await sightInWithGooglePopup();
-  };
-
-  const logFacebookUser = async () => {
-    const userDocRef = await signInWIthFacebook();
-  };
-
   return (
     <div className="signin-container">
       <div>
