@@ -1,5 +1,8 @@
 import { useState } from "react";
 import "./SignIn.scss";
+import Button from "../Button/Button";
+import facebookLogo from "../../assets/facebook-logo.svg";
+import googleLogo from "../../assets/google-logo.svg";
 import {
   sightInWithGooglePopup,
   signInWIthFacebook,
@@ -84,10 +87,21 @@ const SignIn = () => {
             Password
           </label>
         </div>
-
-        <button type="submit"> Sign In</button>
-        <button onClick={signInWithGoogle}>Google sign in</button>
-        <button onClick={signInWithFacebook}>Facebook sign in</button>
+        <div className="buttons-container">
+          <Button type="submit" classes="submit">
+            Sign In
+          </Button>
+          <Button type="button" onClick={signInWithGoogle}>
+            <div className="logo-name-container">
+              <img className="logo" src={googleLogo} /> Google sign in
+            </div>
+          </Button>
+          <Button type="button" onClick={signInWithFacebook}>
+            <div className="logo-name-container">
+              <img className="logo" src={facebookLogo} /> Facebook sign in
+            </div>
+          </Button>
+        </div>
       </form>
     </div>
   );

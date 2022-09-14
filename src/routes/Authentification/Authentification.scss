@@ -7,7 +7,9 @@
 }
 
 .auth-img {
-  width: 100%;
+  min-width: 100%;
+  max-height: 100vh;
+  flex-shrink: 0;
   object-fit: cover;
-  z-index: -1;
+  top: 0;
 }

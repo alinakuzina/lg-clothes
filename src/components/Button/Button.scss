@@ -1,0 +1,25 @@
+.button {
+  padding: 0.5rem 1rem;
+  background-color: transparent;
+  border: 1px solid black;
+  box-shadow: 4px 2px 7px rgba(50, 22, 0, 0.363);
+  cursor: pointer;
+  transition: all 0.3s;
+
+  &.submit {
+    background-color: #212529;
+    color: white;
+
+    &:hover {
+      background-color: #0b2d2b;
+    }
+  }
+  &:hover {
+    transform: scale(1.03);
+  }
+
+  &:active {
+    transform: scale(0.96);
+    box-shadow: 2px 1px 7px rgba(50, 22, 0, 0.363);
+  }
+}
