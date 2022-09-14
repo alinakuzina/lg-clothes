@@ -66,7 +66,7 @@ const SignUpForm = (props) => {
               displayName.length > 0 ? "shrink" : ""
             }`}
           >
-            Display Name
+            Name
           </label>
         </div>
 
