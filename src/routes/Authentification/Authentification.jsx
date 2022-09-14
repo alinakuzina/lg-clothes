@@ -13,8 +13,8 @@ const Authentification = () => {
   return (
     <div className="signin-container">
       <div>
-        {/* <SignUpForm /> */}
-        <SignIn />
+        <SignUpForm />
+        {/* <SignIn /> */}
       </div>
       <img src={image} className="auth-img" />
     </div>

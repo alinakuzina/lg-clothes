@@ -3,6 +3,8 @@ import {
   createUserWithEmail,
   createUserDocumentFromAuth,
 } from "../../utilits/farebase";
+import Button from "../Button/Button";
+import "./SignUp.scss";
 
 const defaultFormFields = {
   displayName: "",
@@ -45,50 +47,93 @@ const SignUpForm = () => {
   };
 
   return (
-    <div>
-      <h1>Don`t have an account?</h1>
-      <h2>Sign up with your email and password</h2>
-      <form onSubmit={submitHandler}>
-        <label>Display Name</label>
-        <input
-          type="text"
-          required
-          onChange={handleChange}
-          name="displayName"
-          autoComplete="name"
-          value={displayName}
-        ></input>
+    <div className="sign-up-container">
+      <h1 className="main-header">Create an account</h1>
+      <h2 className="aditional-header">Please enter your details</h2>
+      <form onSubmit={submitHandler} className="form-sign-up">
+        <div className="group">
+          <input
+            className="form-input "
+            type="text"
+            required
+            onChange={handleChange}
+            name="displayName"
+            autoComplete="name"
+            value={displayName}
+          ></input>
+          <label
+            className={`form-input-label ${
+              displayName.length > 0 ? "shrink" : ""
+            }`}
+          >
+            Display Name
+          </label>
+        </div>
 
-        <label>Email</label>
-        <input
-          type="email"
-          required
-          onChange={handleChange}
-          name="email"
-          autoComplete="email"
-          value={email}
-        ></input>
+        <div className="group">
+          <input
+            className="form-input "
+            type="email"
+            required
+            onChange={handleChange}
+            name="email"
+            autoComplete="email"
+            value={email}
+          ></input>
+          <label
+            className={`form-input-label ${email.length > 0 ? "shrink" : ""}`}
+          >
+            Email
+          </label>
+        </div>
 
-        <label>Password</label>
-        <input
-          type="password"
-          required
-          onChange={handleChange}
-          name="password"
-          autoComplete="new-password"
-          value={password}
-        ></input>
+        <div className="group">
+          {" "}
+          <input
+            className="form-input "
+            type="password"
+            required
+            onChange={handleChange}
+            name="password"
+            autoComplete="new-password"
+            value={password}
+          ></input>
+          <label
+            className={`form-input-label ${
+              password.length > 0 ? "shrink" : ""
+            }`}
+          >
+            Password
+          </label>
+        </div>
 
-        <label>Confirm Password</label>
-        <input
-          type="password"
-          required
-          onChange={handleChange}
-          name="confirmPassword"
-          autoComplete="new-password"
-          value={confirmPassword}
-        ></input>
-        <button type="submit"> Sign Up</button>
+        <div className="group">
+          <input
+            className="form-input "
+            type="password"
+            required
+            onChange={handleChange}
+            name="confirmPassword"
+            autoComplete="new-password"
+            value={confirmPassword}
+          ></input>
+          <label
+            className={`form-input-label ${
+              confirmPassword.length > 0 ? "shrink" : ""
+            }`}
+          >
+            Confirm Password
+          </label>
+        </div>
+        <div className="buttons-container">
+          <Button type="submit" classes="submit">
+            Create account
+          </Button>
+          <div className="redirect-container">
+            <p>Already have an account?</p>
+            <button className="redirect-buttom">Sign in here &rarr;</button>
+          </div>
+        </div>
       </form>
     </div>
   );
