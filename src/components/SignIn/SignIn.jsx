@@ -19,6 +19,9 @@ const defaultSignInFields = {
 const SignIn = (props) => {
   const [signInFields, setsignInFiels] = useState(defaultSignInFields);
   const { email, password } = signInFields;
+  const [emailError, setEmailError] = useState(false);
+  const [passwordError, setPasswordError] = useState(false);
+  const [accessError, setAccessError] = useState(false);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -41,9 +44,22 @@ const SignIn = (props) => {
       const response = await signInWithEmail(email, password);
       console.log(response);
       setsignInFiels(defaultSignInFields);
+      setEmailError(false);
+      setPasswordError(false);
+      setAccessError(false);
     } catch (error) {
+      console.log(error);
+      setEmailError(false);
+      setPasswordError(false);
+      setAccessError(false);
+      if (error.code === "auth/user-not-found") {
+        setEmailError(true);
+      }
       if (error.code === "auth/wrong-password") {
-        alert("Wrong password");
+        setPasswordError(true);
+      }
+      if (error.code === "auth/too-many-requests") {
+        setAccessError(true);
       }
     }
   };
@@ -55,7 +71,7 @@ const SignIn = (props) => {
       <form onSubmit={submitHandler} className="form-sign-in">
         <div className="group">
           <input
-            className="form-input"
+            className={`form-input ${emailError ? "errorLine" : ""}`}
             type="email"
             required
             name="email"
@@ -72,7 +88,7 @@ const SignIn = (props) => {
 
         <div className="group">
           <input
-            className="form-input "
+            className={`form-input ${passwordError ? "errorLine" : ""}`}
             type="password"
             required
             onChange={handleChange}
@@ -88,6 +104,18 @@ const SignIn = (props) => {
             Password
           </label>
         </div>
+        {emailError && (
+          <div className="error-message">Please enter correct email</div>
+        )}
+        {passwordError && (
+          <div className="error-message">Password is incorrect</div>
+        )}
+        {accessError && (
+          <div className="error-message">
+            Access to this account has been temporarily disabled due to many
+            failed login attempts.You can try again later.
+          </div>
+        )}
         <div className="buttons-container">
           <Button type="submit" classes="submit">
             Sign In
@@ -105,7 +133,7 @@ const SignIn = (props) => {
         </div>
       </form>
       <div className="redirect-container">
-        <p>Dont have an account?</p>{" "}
+        <p>Don't have an account?</p>{" "}
         <button className="redirect-buttom" onClick={props.redirectSingUp}>
           Sign up for free &rarr;
         </button>
