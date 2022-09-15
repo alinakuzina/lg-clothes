@@ -91,12 +91,8 @@ export const createUserWithEmail = async (email, password) => {
   try {
     return await createUserWithEmailAndPassword(auth, email, password);
   } catch (error) {
-    if (error.code === "auth/email-already-in-use") {
-      alert("Cannot create a user, email already in use");
-      return;
-    } else {
-      console.log(error);
-    }
+    console.log(error.message);
+    return error.message;
   }
 };
 

@@ -48,7 +48,7 @@
   margin: 1.5rem 0;
   position: relative;
 
-  &.errorLine {
+  &.error-line {
     border-bottom: 2px solid rgb(166, 6, 6);
   }
 
@@ -140,4 +140,8 @@ form-input:-webkit-autofill:active {
   text-align: center;
   color: rgb(142, 5, 5);
   width: 100%;
+
+  & ul {
+    text-align: start;
+  }
 }

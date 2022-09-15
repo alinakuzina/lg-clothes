@@ -16,6 +16,10 @@ const defaultFormFields = {
 const SignUpForm = (props) => {
   const [formFields, setFormFiels] = useState(defaultFormFields);
   const { displayName, email, password, confirmPassword } = formFields;
+  const [confirmPasswordError, setConfirmPasswordError] = useState(false);
+  const [passwordLengthError, setPasswordLengthError] = useState(false);
+  const [emailInvalidError, setEmailInvalidError] = useState(false);
+  const [emailAlreadyInUseError, setEmailAlreadyInUseError] = useState(false);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -29,20 +33,44 @@ const SignUpForm = (props) => {
 
   const submitHandler = async (event) => {
     event.preventDefault();
+    setConfirmPasswordError(false);
+    setEmailInvalidError(false);
+    setPasswordLengthError(false);
+    setEmailAlreadyInUseError(false);
 
-    if (password !== confirmPassword) {
-      alert(
-        "Password and Confirm Password should be the same . Please check your data."
-      );
+    if (confirmPassword !== password) {
+      setConfirmPasswordError(true);
+      return;
+    }
+
+    if (
+      !password.match(/[a-z]/g) ||
+      !password.match(/[A-Z]/g || password.length < 6)
+    ) {
+      setPasswordLengthError(true);
       return;
     }
 
     try {
       const response = await createUserWithEmail(email, password);
+      if (response === "Firebase: Error (auth/email-already-in-use).") {
+        setEmailAlreadyInUseError(true);
+        return;
+      }
       await createUserDocumentFromAuth(response.user, { displayName });
       resetFormFields();
+      setConfirmPasswordError(false);
+      setEmailInvalidError(false);
+      setPasswordLengthError(false);
+      setEmailAlreadyInUseError(false);
     } catch (error) {
       console.log(error);
+      if (error.code === "auth/email-already-in-use") {
+        setEmailAlreadyInUseError(true);
+      }
+      if ((error.message = "auth/invalid-email")) {
+        setEmailInvalidError(true);
+      }
     }
   };
 
@@ -90,7 +118,7 @@ const SignUpForm = (props) => {
         <div className="group">
           {" "}
           <input
-            className="form-input "
+            className={`form-input ${confirmPasswordError ? "error-line" : ""}`}
             type="password"
             required
             onChange={handleChange}
@@ -109,7 +137,7 @@ const SignUpForm = (props) => {
 
         <div className="group">
           <input
-            className="form-input "
+            className={`form-input ${confirmPasswordError ? "error-line" : ""}`}
             type="password"
             required
             onChange={handleChange}
@@ -125,6 +153,30 @@ const SignUpForm = (props) => {
             Confirm Password
           </label>
         </div>
+        {confirmPasswordError && (
+          <div className="error-message">
+            Password and confirm password should be same.{" "}
+          </div>
+        )}
+        {emailInvalidError && (
+          <div className="error-message">Email is invalid.</div>
+        )}
+        {passwordLengthError && (
+          <div className="error-message">
+            Password should contain:
+            <ul>
+              <li>A lowercase letter</li>
+              <li>A capital (uppercase) letter</li>
+              <li>A number</li>
+              <li>Minimum 6 characters</li>
+            </ul>
+          </div>
+        )}
+        {emailAlreadyInUseError && (
+          <div className="error-message">
+            That email address is already in use.
+          </div>
+        )}
         <div className="buttons-container">
           <Button type="submit" classes="submit">
             Create account
