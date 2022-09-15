@@ -29,6 +29,7 @@
 @media screen and (max-width: 39em) {
   .signin-container {
     grid-template-columns: 1fr;
+    overflow-y: scroll;
   }
 
   .auth-img {
