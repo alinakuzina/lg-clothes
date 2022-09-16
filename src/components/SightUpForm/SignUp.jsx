@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import {
   createUserWithEmail,
   createUserDocumentFromAuth,
 } from "../../utilits/farebase";
 import Button from "../Button/Button";
 import "./SignUp.scss";
+import { Context } from "../../context/context";
 
 const defaultFormFields = {
   displayName: "",
@@ -20,6 +21,7 @@ const SignUpForm = (props) => {
   const [passwordLengthError, setPasswordLengthError] = useState(false);
   const [emailInvalidError, setEmailInvalidError] = useState(false);
   const [emailAlreadyInUseError, setEmailAlreadyInUseError] = useState(false);
+  const context = useContext(Context);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -57,6 +59,7 @@ const SignUpForm = (props) => {
         setEmailAlreadyInUseError(true);
         return;
       }
+
       await createUserDocumentFromAuth(response.user, { displayName });
       resetFormFields();
       setConfirmPasswordError(false);
@@ -64,7 +67,6 @@ const SignUpForm = (props) => {
       setPasswordLengthError(false);
       setEmailAlreadyInUseError(false);
     } catch (error) {
-      console.log(error);
       if (error.code === "auth/email-already-in-use") {
         setEmailAlreadyInUseError(true);
       }
@@ -116,7 +118,6 @@ const SignUpForm = (props) => {
         </div>
 
         <div className="group">
-          {" "}
           <input
             className={`form-input ${confirmPasswordError ? "error-line" : ""}`}
             type="password"

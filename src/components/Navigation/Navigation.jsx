@@ -5,6 +5,7 @@ import "./Navigation.scss";
 import NavLink from "./NavLink";
 import MobileNav from "./MobileNav";
 import { Context } from "../../context/context";
+import { signOutUser } from "../../utilits/farebase";
 
 const Navigation = () => {
   const context = useContext(Context);
@@ -12,6 +13,10 @@ const Navigation = () => {
   useEffect(() => {
     context.recieveCategories();
   }, []);
+
+  const signOutHandler = async () => {
+    await signOutUser();
+  };
 
   return (
     <Fragment>
@@ -23,9 +28,16 @@ const Navigation = () => {
           {context.categories.map((category) => {
             return <NavLink category={category} key={category.tagCode} />;
           })}
-          <Link className="nav-link" to="/authentication">
-            Sign In
-          </Link>
+          {!context.currentUser && (
+            <Link className="nav-link" to="/authentication">
+              Sign In
+            </Link>
+          )}
+          {context.currentUser && (
+            <span className="nav-link" onClick={signOutHandler}>
+              Sign Out
+            </span>
+          )}
         </div>
 
         {/* <MobileNav /> */}

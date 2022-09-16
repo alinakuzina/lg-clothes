@@ -1,17 +1,18 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import React from "react";
 import { doc, setDoc, collection, getDocs } from "firebase/firestore";
-import { database } from "../utilits/farebase";
+import { createUserDocumentFromAuth, database } from "../utilits/farebase";
+import { onAuthStateChangeListener } from "../utilits/farebase";
 
 export const Context = React.createContext({
-  isAuth: false,
-  login: () => {},
+  currentUser: null,
+  setCurrentUser: () => {},
   categories: [],
   recieveCategories: () => {},
 });
 
 const ContextProvider = (props) => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [currentUser, setCurrentUser] = useState(null);
   let [categories, setCategories] = useState([
     {
       id: "giftguide0.7740156034108596",
@@ -64,6 +65,18 @@ const ContextProvider = (props) => {
     },
   ]);
 
+  useEffect(() => {
+    const unsubscribe = onAuthStateChangeListener((user) => {
+      if (user) {
+        createUserDocumentFromAuth(user);
+      }
+      setCurrentUser(user);
+      console.log(user);
+    });
+
+    return unsubscribe;
+  });
+
   const recieveCategoriesHandler = async () => {
     const querySnapshot = await getDocs(collection(database, "categories"));
     let tempCat = [];
@@ -76,7 +89,8 @@ const ContextProvider = (props) => {
   return (
     <Context.Provider
       value={{
-        isAuth: isAuthenticated,
+        setCurrentUser: setCurrentUser,
+        currentUser: currentUser,
         categories: categories,
         recieveCategories: recieveCategoriesHandler,
       }}

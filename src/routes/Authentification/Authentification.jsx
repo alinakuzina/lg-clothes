@@ -21,6 +21,7 @@ const Authentification = () => {
         {showSignIn && <SignIn redirectSingUp={showSignInHandler} />}
         {!showSignIn && <SignUpForm redirectSingIn={showSignInHandler} />}
       </div>
+
       <img src={image} className="auth-img" />
     </div>
   );

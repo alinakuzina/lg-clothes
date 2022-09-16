@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import "./SignIn.scss";
 import Button from "../Button/Button";
 import facebookLogo from "../../assets/facebook-logo.svg";
 import googleLogo from "../../assets/google-logo.svg";
+import { Context } from "../../context/context";
 
 import {
   sightInWithGooglePopup,
@@ -22,6 +23,7 @@ const SignIn = (props) => {
   const [emailError, setEmailError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
   const [accessError, setAccessError] = useState(false);
+  const context = useContext(Context);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -42,13 +44,12 @@ const SignIn = (props) => {
 
     try {
       const response = await signInWithEmail(email, password);
-      console.log(response);
+
       setsignInFiels(defaultSignInFields);
       setEmailError(false);
       setPasswordError(false);
       setAccessError(false);
     } catch (error) {
-      console.log(error);
       setEmailError(false);
       setPasswordError(false);
       setAccessError(false);
