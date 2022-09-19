@@ -1,14 +1,22 @@
 import "./ProductCard.scss";
 import Button from "../Button/Button";
 import { ReactComponent as HeartLogo } from "../../assets/heart.svg";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { CartContext } from "../../context/CartContext";
 
 const ProductCard = ({ product }) => {
   const [visibleSizes, setVisibleSizes] = useState(false);
+  const { addItemToCart } = useContext(CartContext);
 
-  const addCardhandler = () => {
+  const openSizesHandler = () => {
     console.log(visibleSizes);
     setVisibleSizes((prev) => !prev);
+  };
+
+  const addCartHandler = (product, size) => {
+    console.log(visibleSizes);
+    setVisibleSizes((prev) => !prev);
+    addItemToCart(product, size);
   };
 
   return (
@@ -21,7 +29,7 @@ const ProductCard = ({ product }) => {
         />
         <HeartLogo className="heart-logo" />
         <Button
-          onClick={addCardhandler}
+          onClick={openSizesHandler}
           classes="button-product"
           type="inverted"
         >
@@ -34,7 +42,7 @@ const ProductCard = ({ product }) => {
             .sort((a, b) => a.orderFilter - b.orderFilter)
             .map((size) => (
               <div
-                onClick={addCardhandler}
+                onClick={() => addCartHandler(product, size.filterCode)}
                 className="size-box"
                 key={size.orderFilter + Math.random()}
               >
