@@ -9,7 +9,7 @@ const CartItem = ({ cartItem }) => {
       <div className="info-cart-container">
         <h2>{name}</h2>
         <div className="cart-item-details">
-          {quantity} items &times; {price.formattedValue}
+          <b>{quantity}</b> items &times; {price.formattedValue}
         </div>
         <div className="cart-item-details">Size: {selectedSize}</div>
       </div>

@@ -37,6 +37,7 @@
   display: block;
   text-align: left;
   transition: all 0.3s ease-out;
+  z-index: 200;
 
   &:hover {
     border-top: 0.5px solid black;
