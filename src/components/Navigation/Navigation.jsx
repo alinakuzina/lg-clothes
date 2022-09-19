@@ -6,9 +6,13 @@ import NavLink from "./NavLink";
 import MobileNav from "./MobileNav";
 import { Context } from "../../context/Context";
 import { signOutUser } from "../../utilits/Farebase";
+import CartIcon from "../CartIcon/CartIcon";
+import CartDropdown from "../CartDropdown/CartDropdown";
+import { CartContext } from "../../context/CartContext";
 
 const Navigation = () => {
   const context = useContext(Context);
+  const { isCartOpen } = useContext(CartContext);
 
   useEffect(() => {
     context.recieveCategories();
@@ -37,9 +41,10 @@ const Navigation = () => {
             <span className="nav-link" onClick={signOutHandler}>
               Sign Out
             </span>
-          )}
+          )}{" "}
+          <CartIcon />
         </div>
-
+        {isCartOpen && <CartDropdown />}
         {/* <MobileNav /> */}
       </div>
 
