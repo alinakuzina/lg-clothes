@@ -2,10 +2,10 @@ import { useState, useContext } from "react";
 import {
   createUserWithEmail,
   createUserDocumentFromAuth,
-} from "../../utilits/farebase";
+} from "../../utilits/Farebase";
 import Button from "../Button/Button";
 import "./SignUp.scss";
-import { Context } from "../../context/context";
+import { Context } from "../../context/Context";
 
 const defaultFormFields = {
   displayName: "",

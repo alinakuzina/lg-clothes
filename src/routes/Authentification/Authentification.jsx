@@ -4,7 +4,7 @@ import { getRedirectResult } from "firebase/auth";
 import {
   sightInWithGooglePopup,
   signInWIthFacebook,
-} from "../../../src/utilits/farebase";
+} from "../../utilits/Farebase";
 import SignUpForm from "../../components/SightUpForm/SignUp";
 import SignIn from "../../components/SignIn/SignIn";
 import image from "../../assets/auth-img.jpg";

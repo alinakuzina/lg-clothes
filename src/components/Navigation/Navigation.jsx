@@ -4,8 +4,8 @@ import { ReactComponent as Logo } from "../../assets/logo.svg";
 import "./Navigation.scss";
 import NavLink from "./NavLink";
 import MobileNav from "./MobileNav";
-import { Context } from "../../context/context";
-import { signOutUser } from "../../utilits/farebase";
+import { Context } from "../../context/Context";
+import { signOutUser } from "../../utilits/Farebase";
 
 const Navigation = () => {
   const context = useContext(Context);

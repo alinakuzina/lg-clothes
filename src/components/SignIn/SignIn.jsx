@@ -3,14 +3,14 @@ import "./SignIn.scss";
 import Button from "../Button/Button";
 import facebookLogo from "../../assets/facebook-logo.svg";
 import googleLogo from "../../assets/google-logo.svg";
-import { Context } from "../../context/context";
+import { Context } from "../../context/Context";
 
 import {
   sightInWithGooglePopup,
   signInWIthFacebook,
   createUserDocumentFromAuth,
   signInWithEmail,
-} from "../../utilits/farebase";
+} from "../../utilits/Farebase";
 
 const defaultSignInFields = {
   email: "",

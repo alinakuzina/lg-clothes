@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import React from "react";
 import { doc, setDoc, collection, getDocs } from "firebase/firestore";
-import { createUserDocumentFromAuth, database } from "../utilits/farebase";
-import { onAuthStateChangeListener } from "../utilits/farebase";
+import { createUserDocumentFromAuth, database } from "../utilits/Farebase";
+import { onAuthStateChangeListener } from "../utilits/Farebase";
 
 export const Context = React.createContext({
   currentUser: null,
