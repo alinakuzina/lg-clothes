@@ -18,7 +18,7 @@ export const CartProvider = ({ children }) => {
 
     let findElement = cartItems.find((el) => {
       return (
-        el.articles.code === productToAdd.articles.code &&
+        el.articles[0].code === productToAdd.articles[0].code &&
         el.selectedSize === size
       );
     });
@@ -30,7 +30,7 @@ export const CartProvider = ({ children }) => {
       ]);
     } else {
       let newArr = cartItems.map((cartItem) =>
-        cartItem.articles.code === productToAdd.articles.code &&
+        cartItem.articles[0].code === productToAdd.articles[0].code &&
         cartItem.selectedSize === size
           ? {
               ...cartItem,
