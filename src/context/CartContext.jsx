@@ -52,17 +52,14 @@ export const CartProvider = ({ children }) => {
 
   const removeItem = (item) => {
     setItemsCount((prev) => prev - item.quantity);
-    let newArr = cartItems.filter((el) => {
-      return (
-        el.articles[0].code !== item.articles[0].code &&
-        el.selectedSize !== item.selectedSize
-      );
-    });
+    let index = cartItems.indexOf(item);
+    let newArr = cartItems.filter((el, indexEl) => indexEl !== index);
+    console.log(newArr);
     setCartItems(newArr);
   };
 
   const reduceItemQuantity = (item) => {
-    if (item.quantity <= 1) {
+    if ((item.quantity = 1)) {
       removeItem(item);
       return;
     }
@@ -76,11 +73,13 @@ export const CartProvider = ({ children }) => {
         return {
           ...cartItem,
           quantity: cartItem.quantity - 1,
+          selectedSize: cartItem.selectedSize,
         };
       } else {
         return cartItem;
       }
     });
+
     setCartItems(newArr);
   };
 
