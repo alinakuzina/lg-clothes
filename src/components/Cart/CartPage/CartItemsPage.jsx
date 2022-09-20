@@ -8,15 +8,20 @@ const CartItemsPage = () => {
     useContext(CartContext);
   return (
     <div className="cart-page-container">
-      {cartItems.map((item) => (
-        <CartItemInPage
-          key={item.articles[0].code + Math.random()}
-          item={item}
-          addItemToCart={addItemToCart}
-          removeItem={removeItem}
-          reduceItemQuantity={reduceItemQuantity}
-        />
-      ))}
+      <div className="cart-items-container">
+        {cartItems.map((item) => (
+          <CartItemInPage
+            key={item.articles[0].code + Math.random()}
+            item={item}
+            addItemToCart={addItemToCart}
+            removeItem={removeItem}
+            reduceItemQuantity={reduceItemQuantity}
+          />
+        ))}
+      </div>
+      <div className="cart-total-container">
+        <div>TotalPrice:11$</div>
+      </div>
     </div>
   );
 };

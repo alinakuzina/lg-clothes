@@ -59,7 +59,7 @@ export const CartProvider = ({ children }) => {
   };
 
   const reduceItemQuantity = (item) => {
-    if ((item.quantity = 1)) {
+    if (item.quantity === 1) {
       removeItem(item);
       return;
     }
