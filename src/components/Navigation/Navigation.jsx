@@ -6,8 +6,8 @@ import NavLink from "./NavLink";
 import MobileNav from "./MobileNav";
 import { Context } from "../../context/Context";
 import { signOutUser } from "../../utilits/Farebase";
-import CartIcon from "../CartIcon/CartIcon";
-import CartDropdown from "../CartDropdown/CartDropdown";
+import CartIcon from "../Cart/CartPreview/CartIcon/CartIcon";
+import CartDropdown from "../Cart/CartPreview/CartDropdown/CartDropdown";
 import { CartContext } from "../../context/CartContext";
 
 const Navigation = () => {

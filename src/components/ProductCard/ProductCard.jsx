@@ -9,12 +9,10 @@ const ProductCard = ({ product }) => {
   const { addItemToCart } = useContext(CartContext);
 
   const openSizesHandler = () => {
-    console.log(visibleSizes);
     setVisibleSizes((prev) => !prev);
   };
 
   const addCartHandler = (product, size) => {
-    console.log(visibleSizes);
     setVisibleSizes((prev) => !prev);
     addItemToCart(product, size);
   };

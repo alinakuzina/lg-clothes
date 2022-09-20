@@ -71,7 +71,6 @@ const ContextProvider = (props) => {
         createUserDocumentFromAuth(user);
       }
       setCurrentUser(user);
-      console.log(user);
     });
 
     return unsubscribe;
