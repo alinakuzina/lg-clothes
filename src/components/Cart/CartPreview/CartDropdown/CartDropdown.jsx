@@ -24,7 +24,9 @@ const CartDropdown = () => {
           );
         })}
       </div>
-      <Button onClick={goToCheckoutHandler}>BUY NOW</Button>
+      <Button classes="buy-now" onClick={goToCheckoutHandler}>
+        BUY NOW
+      </Button>
     </div>
   );
 };

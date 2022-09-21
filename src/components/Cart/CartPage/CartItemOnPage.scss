@@ -47,3 +47,21 @@
     }
   }
 }
+
+@media screen and (max-width: 52em) {
+  .cart-item-container {
+    .cart-img {
+      height: 25vh;
+    }
+
+    .cart-item-info {
+      font-size: 0.6rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+      & h2 {
+        font-size: 0.8rem;
+      }
+    }
+  }
+}
