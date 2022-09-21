@@ -30,7 +30,7 @@ const CartItemInPage = ({
 
         <div>Size: {item.selectedSize}</div>
         <div>Price: {item.price.formattedValue}</div>
-        <div>Total: {(item.price.value * item.quantity).toFixed(2)}</div>
+        <div>Total: $ {(item.price.value * item.quantity).toFixed(2)}</div>
         <IconDelete className="icon-trash" onClick={() => removeItem(item)}>
           Delete
         </IconDelete>

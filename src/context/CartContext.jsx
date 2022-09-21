@@ -9,15 +9,21 @@ export const CartContext = createContext({
   itemsCount: 0,
   removeItem: () => {},
   reduceItemQuantity: () => {},
+  totalPrice: 0,
 });
 
 export const CartProvider = ({ children }) => {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [cartItems, setCartItems] = useState([]);
   const [itemsCount, setItemsCount] = useState(0);
+  const [totalPrice, setTotalPrice] = useState(0);
 
   const addItemToCart = (productToAdd, size) => {
     setItemsCount((prev) => prev + 1);
+    setTotalPrice((prev) => {
+      let newPrice = Number(prev) + Number(productToAdd.price.value);
+      return newPrice.toFixed(2);
+    });
 
     if (cartItems.length === 0) {
       setCartItems([{ ...productToAdd, quantity: 1, selectedSize: size }]);
@@ -52,6 +58,11 @@ export const CartProvider = ({ children }) => {
 
   const removeItem = (item) => {
     setItemsCount((prev) => prev - item.quantity);
+    let priceOfSelectedItems = item.quantity * item.price.value;
+    setTotalPrice((prev) => {
+      let newPrice = Number(prev) - Number(priceOfSelectedItems);
+      return newPrice.toFixed(2);
+    });
     let index = cartItems.indexOf(item);
     let newArr = cartItems.filter((el, indexEl) => indexEl !== index);
     console.log(newArr);
@@ -63,7 +74,13 @@ export const CartProvider = ({ children }) => {
       removeItem(item);
       return;
     }
+
     setItemsCount((prev) => prev - 1);
+
+    setTotalPrice((prev) => {
+      let newTotal = Number(prev) - Number(item.price.value);
+      return newTotal.toFixed(2);
+    });
 
     let newArr = cartItems.map((cartItem) => {
       if (
@@ -91,6 +108,7 @@ export const CartProvider = ({ children }) => {
     itemsCount,
     removeItem,
     reduceItemQuantity,
+    totalPrice,
   };
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;

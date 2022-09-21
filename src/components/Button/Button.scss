@@ -30,4 +30,13 @@
     left: 0px;
     border: 1px solid rgba(0, 0, 0, 0.322);
   }
+
+  &.buy-now {
+    background-color: #175d57;
+    color: white;
+
+    &:hover {
+      background-color: #0b2d2b;
+    }
+  }
 }

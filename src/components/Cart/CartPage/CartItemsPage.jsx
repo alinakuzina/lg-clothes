@@ -2,10 +2,16 @@ import CartItemInPage from "./CartItemOnPage";
 import { useContext } from "react";
 import { CartContext } from "../../../context/CartContext";
 import "./CartItemsPage.scss";
+import CartTotal from "./CartTotal";
 
 const CartItemsPage = () => {
-  const { cartItems, addItemToCart, removeItem, reduceItemQuantity } =
-    useContext(CartContext);
+  const {
+    cartItems,
+    addItemToCart,
+    removeItem,
+    reduceItemQuantity,
+    totalPrice,
+  } = useContext(CartContext);
   return (
     <div className="cart-page-container">
       <div className="cart-items-container">
@@ -19,9 +25,7 @@ const CartItemsPage = () => {
           />
         ))}
       </div>
-      <div className="cart-total-container">
-        <div>TotalPrice:11$</div>
-      </div>
+      <CartTotal total={totalPrice} />
     </div>
   );
 };

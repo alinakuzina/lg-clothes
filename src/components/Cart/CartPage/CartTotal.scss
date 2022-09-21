@@ -1,0 +1,23 @@
+.cart-total-container {
+  position: fixed;
+  right: 0rem;
+  top: 7rem;
+  border: 1px solid rgba(0, 0, 0, 0.52);
+  padding: 3rem 2rem;
+  margin: 2rem;
+
+  & .cart-line {
+    display: block;
+    width: 100%;
+    border-top: 1px solid rgba(0, 0, 0, 0.52);
+    margin-top: 1.5rem;
+  }
+
+  & .cart-total-info {
+    font-size: 0.8rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    margin-bottom: 1.5rem;
+  }
+}

@@ -24,6 +24,12 @@
       .icon-change-quantity {
         height: 1rem;
         cursor: pointer;
+        transition: all 0.3s;
+
+        &:hover {
+          transform: scale(1.2);
+          color: #0b2d2b;
+        }
       }
     }
   }
@@ -33,5 +39,11 @@
     width: 1rem;
     justify-self: flex-start;
     cursor: pointer;
+    transition: all 0.3s;
+
+    &:hover {
+      transform: scale(1.2);
+      color: rgb(166, 6, 6);
+    }
   }
 }
