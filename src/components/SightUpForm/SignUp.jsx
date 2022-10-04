@@ -5,7 +5,7 @@ import {
 } from "../../utilits/Farebase";
 import Button from "../Button/Button";
 import "./SignUp.scss";
-import { Context } from "../../context/Context";
+import { UserContext } from "../../context/UserContext";
 
 const defaultFormFields = {
   displayName: "",
@@ -21,7 +21,7 @@ const SignUpForm = (props) => {
   const [passwordLengthError, setPasswordLengthError] = useState(false);
   const [emailInvalidError, setEmailInvalidError] = useState(false);
   const [emailAlreadyInUseError, setEmailAlreadyInUseError] = useState(false);
-  const context = useContext(Context);
+  const context = useContext(UserContext);
 
   const handleChange = (event) => {
     const { name, value } = event.target;

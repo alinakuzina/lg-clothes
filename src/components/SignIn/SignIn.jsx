@@ -3,7 +3,7 @@ import "./SignIn.scss";
 import Button from "../Button/Button";
 import facebookLogo from "../../assets/facebook-logo.svg";
 import googleLogo from "../../assets/google-logo.svg";
-import { Context } from "../../context/Context";
+import { UserContext } from "../../context/UserContext";
 
 import {
   sightInWithGooglePopup,
@@ -23,7 +23,7 @@ const SignIn = (props) => {
   const [emailError, setEmailError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
   const [accessError, setAccessError] = useState(false);
-  const context = useContext(Context);
+  const context = useContext(UserContext);
 
   const handleChange = (event) => {
     const { name, value } = event.target;

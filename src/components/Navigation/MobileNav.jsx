@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
 import "./MobileNav.scss";
 import { Fragment, useState, useContext } from "react";
-import { Context } from "../../context/Context";
+import { UserContext } from "../../context/UserContext";
 
 let MobileNav = (props) => {
   let [open, setOpen] = useState(false);
-  let context = useContext(Context);
+  let context = useContext(UserContext);
 
   let openMabileNavHandler = () => {
     console.log("click");

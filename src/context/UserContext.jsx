@@ -4,7 +4,7 @@ import { doc, setDoc, collection, getDocs } from "firebase/firestore";
 import { createUserDocumentFromAuth, database } from "../utilits/Farebase";
 import { onAuthStateChangeListener } from "../utilits/Farebase";
 
-export const Context = React.createContext({
+export const UserContext = React.createContext({
   currentUser: null,
   setCurrentUser: () => {},
   categories: [],
@@ -62,7 +62,7 @@ const ContextProvider = (props) => {
   };
 
   return (
-    <Context.Provider
+    <UserContext.Provider
       value={{
         setCurrentUser: setCurrentUser,
         currentUser: currentUser,
@@ -71,7 +71,7 @@ const ContextProvider = (props) => {
       }}
     >
       {props.children}
-    </Context.Provider>
+    </UserContext.Provider>
   );
 };
 

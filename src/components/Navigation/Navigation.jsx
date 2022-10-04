@@ -4,14 +4,14 @@ import { ReactComponent as Logo } from "../../assets/logo.svg";
 import "./Navigation.scss";
 import NavLink from "./NavLink";
 import MobileNav from "./MobileNav";
-import { Context } from "../../context/Context";
+import { UserContext } from "../../context/UserContext";
 import { signOutUser } from "../../utilits/Farebase";
 import CartIcon from "../Cart/CartPreview/CartIcon/CartIcon";
 import CartDropdown from "../Cart/CartPreview/CartDropdown/CartDropdown";
 import { CartContext } from "../../context/CartContext";
 
 const Navigation = () => {
-  const context = useContext(Context);
+  const context = useContext(UserContext);
   const { isCartOpen } = useContext(CartContext);
 
   useEffect(() => {

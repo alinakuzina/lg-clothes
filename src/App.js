@@ -5,10 +5,10 @@ import Authentification from "./routes/Authentification/Authentification";
 import Shop from "./routes/Shop/Shop.jsx";
 import Checkout from "./routes/Checkout/Checkout.jsx";
 import { useContext } from "react";
-import { Context } from "./context/Context.jsx";
+import { UserContext } from "./context/UserContext.jsx";
 
 const App = () => {
-  let { categories } = useContext(Context);
+  let { categories } = useContext(UserContext);
   let subCategoriesArray = categories.map((category) =>
     category.subCategories.map((subCat) => (
       <Route

@@ -3,11 +3,11 @@ import { useNavigate } from "react-router-dom";
 import { ProductContext } from "../../context/ProductsContext";
 import ProductCard from "../../components/ProductCard/ProductCard";
 import "./Shop.scss";
-import { Context } from "../../context/Context";
+import { UserContext } from "../../context/UserContext";
 
 const Shop = ({ url }) => {
   const { products } = useContext(ProductContext);
-  const { categories } = useContext(Context);
+  const { categories } = useContext(UserContext);
   let navigate = useNavigate();
   let redirectToPage = (e) => {
     let link = e.target.id;
