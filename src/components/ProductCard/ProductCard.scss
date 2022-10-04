@@ -6,8 +6,8 @@
 
 .card-details-container {
   width: 100%;
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 3fr 1fr;
   font-size: 0.8rem;
 
   .price {
