@@ -17,26 +17,26 @@ const ContextProvider = (props) => {
     {
       id: "home_all0.7608759542783605",
       catName: " HOME",
-      tagCode: "home_all",
+      tagCode: "home_new",
       subCategories: [],
     },
     {
       id: "kids_all0.31378616495335176",
       catName: "KIDS",
-      tagCode: "kids_all",
+      tagCode: "kids_new",
       subCategories: [],
     },
 
     {
       id: "ladies_all0.9304966433773658",
       catName: "WOMEN",
-      tagCode: "ladies_all",
+      tagCode: "ladies_new",
       subCategories: [],
     },
     {
       id: "men_all0.2094884098512222",
       catName: "MEN",
-      tagCode: "men_all",
+      tagCode: "men_new",
       subCategories: [],
     },
   ]);

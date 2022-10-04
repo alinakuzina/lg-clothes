@@ -24,6 +24,10 @@
       transform: scale(1.01);
       text-decoration: underline;
     }
+
+    &.category-selected {
+      font-weight: 600;
+    }
   }
 }
 

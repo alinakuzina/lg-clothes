@@ -4,9 +4,10 @@ import { ProductContext } from "../../context/ProductsContext";
 import ProductCard from "../../components/ProductCard/ProductCard";
 import "./ShopPage.scss";
 import { UserContext } from "../../context/UserContext";
+import { useEffect } from "react";
 
 const ShopPage = ({ url }) => {
-  const { products } = useContext(ProductContext);
+  const { products, recieveProductsHandler } = useContext(ProductContext);
   const { categories } = useContext(UserContext);
   let navigate = useNavigate();
   let redirectToPage = (e) => {
@@ -14,7 +15,11 @@ const ShopPage = ({ url }) => {
     navigate(`/${link}`);
   };
 
-  let currentCategory = `${url.split("_")[0]}_all`;
+  useEffect(() => {
+    recieveProductsHandler(url);
+  }, [url]);
+
+  let currentCategory = `${url.split("_")[0]}_new`;
   return (
     <div className="products-page-container">
       <div className="subcategories">
@@ -22,7 +27,7 @@ const ShopPage = ({ url }) => {
           .filter((el) => el.tagCode === currentCategory)[0]
           ?.subCategories.map((category) => (
             <div
-              className="link-sub-category"
+              className={`link-sub-category ${category.tagCode===url?'category-selected':''}`}
               id={category.tagCode}
               onClick={redirectToPage}
               key={category.tagCode + Math.random()}
@@ -34,7 +39,10 @@ const ShopPage = ({ url }) => {
 
       <div className="products-container">
         {products.map((product) => (
-          <ProductCard key={product.code} product={product}></ProductCard>
+          <ProductCard
+            key={product.code + Math.random()}
+            product={product}
+          ></ProductCard>
         ))}
       </div>
     </div>
