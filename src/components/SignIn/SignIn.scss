@@ -1,7 +1,7 @@
 @mixin shrinkLabel {
   top: -14px;
   font-size: 12px;
-  color: black;
+  color: var(--black);
 }
 
 .sign-in-container {
@@ -23,7 +23,7 @@
 
 .aditional-header {
   font-size: 1rem;
-  color: rgb(43, 43, 43);
+  color: var(--brown);
   font-weight: 400;
   margin-top: -1rem;
 
@@ -37,19 +37,19 @@
 .form-input {
   background: none;
   background-color: white;
-  color: BLACK;
+  color: var(--black);
   font-size: 1.2rem;
   padding: 10px 10px 10px 5px;
   display: block;
   width: 100%;
   border: none;
   border-radius: 0;
-  border-bottom: 1px solid BLACK;
+  border-bottom: 1px solid var(--black);
   margin: 1.5rem 0;
   position: relative;
 
   &.errorLine {
-    border-bottom: 2px solid rgb(166, 6, 6);
+    border-bottom: 2px solid var(--red);
   }
 
   &:focus {
@@ -114,7 +114,7 @@ form-input:-webkit-autofill:active {
     background-color: transparent;
     border: none;
     text-decoration: underline;
-    color: #0b2d2b;
+    color: var(--green-dark);
     cursor: pointer;
     transition: all 0.3s;
 
@@ -137,6 +137,6 @@ form-input:-webkit-autofill:active {
   font-size: 0.8rem;
   margin-bottom: -1rem;
   text-align: center;
-  color: rgb(142, 5, 5);
+  color: var(--red);
   width: 100%;
 }

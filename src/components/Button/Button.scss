@@ -8,11 +8,11 @@
   width: 100%;
 
   &.submit {
-    background-color: #212529;
+    background-color: var(--black);
     color: white;
 
     &:hover {
-      background-color: #0b2d2b;
+      background-color: var(--green-dark);
     }
   }
   &:hover {
@@ -32,11 +32,11 @@
   }
 
   &.buy-now {
-    background-color: #175d57;
+    background-color: var(--green-light);
     color: white;
 
     &:hover {
-      background-color: #0b2d2b;
+      background-color: var(--green-dark);
     }
   }
 }
