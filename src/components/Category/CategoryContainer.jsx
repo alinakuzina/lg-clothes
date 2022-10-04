@@ -6,12 +6,12 @@ let CategoryContainer = () => {
     {
       id: "ladies_all",
       title: "Woman",
-      tagCode: "ladies_all",
+      tagCode: "ladies_new",
     },
     {
       id: "men_all",
       title: "Men",
-      tagCode: "men_all",
+      tagCode: "men_new",
     },
   ];
   return (

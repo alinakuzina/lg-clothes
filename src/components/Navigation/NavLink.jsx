@@ -6,7 +6,7 @@ let NavLink = (props) => {
     <div className="dropdown">
       <Link
         className="nav-link"
-        to={`/${props.category.tagCode}`}
+        to={`${props.category.tagCode}`}
         id={`${props.category.tagCode}`}
         key={`${props.tagCode}${Math.random()}`}
       >
@@ -18,7 +18,7 @@ let NavLink = (props) => {
             return (
               <Link
                 className="nav-link-dropdown"
-                to={`/${el.tagCode}`}
+                to={`${el.tagCode}`}
                 id={`${el.tagCode}`}
                 key={`${props.tagCode}${Math.random()}`}
               >

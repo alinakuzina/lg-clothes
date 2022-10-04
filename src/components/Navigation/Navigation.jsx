@@ -14,10 +14,6 @@ const Navigation = () => {
   const context = useContext(UserContext);
   const { isCartOpen } = useContext(CartContext);
 
-  useEffect(() => {
-    context.recieveCategories();
-  }, []);
-
   const signOutHandler = async () => {
     await signOutUser();
   };
