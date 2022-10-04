@@ -1,0 +1,35 @@
+.products-page-container {
+  margin-top: 6rem;
+  margin-bottom: 3rem;
+}
+
+.subcategories {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 9rem);
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.522);
+  border-top: 1px solid rgba(0, 0, 0, 0.522);
+  padding: 1rem 1rem;
+  margin: 1rem 1rem;
+  max-height: 10vh;
+  overflow-y: scroll;
+
+  .link-sub-category {
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 0.7rem;
+    &:hover {
+      transform: scale(1.01);
+      text-decoration: underline;
+    }
+  }
+}
+
+.products-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 15rem);
+  gap: 2rem;
+  justify-content: center;
+}
