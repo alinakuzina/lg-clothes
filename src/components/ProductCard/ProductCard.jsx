@@ -1,4 +1,4 @@
-import "./ProductCard.scss";
+import style from "./ProductCard.module.scss";
 import Button from "../Button/Button";
 import btnStyle from "../Button/Button.module.scss";
 import { ReactComponent as HeartLogo } from "../../assets/heart.svg";
@@ -19,14 +19,14 @@ const ProductCard = ({ product }) => {
   };
 
   return (
-    <div className="product-card-container">
-      <div className="img-btn-product-container">
+    <div className={style.product_card_container}>
+      <div className={style.img_btn_product_container}>
         <img
-          className="product-img"
+          className={style.product_img}
           src={product.images[0].url}
           alt={`${product.name}`}
         />
-        <HeartLogo className="heart-logo" />
+        <HeartLogo className={style.heart_logo} />
         <Button
           onClick={openSizesHandler}
           classes={btnStyle.buttonProduct}
@@ -35,14 +35,16 @@ const ProductCard = ({ product }) => {
           Add to card
         </Button>
         <div
-          className={`size-container ${visibleSizes ? "visible-sizes" : ""}`}
+          className={`${style.size_container} ${
+            visibleSizes ? style.visible_sizes : ""
+          }`}
         >
           {product.variantSizes
             .sort((a, b) => a.orderFilter - b.orderFilter)
             .map((size) => (
               <div
                 onClick={() => addCartHandler(product, size.filterCode)}
-                className="size-box"
+                className={style.size_box}
                 key={size.orderFilter + Math.random()}
               >
                 {size.filterCode}
@@ -50,9 +52,9 @@ const ProductCard = ({ product }) => {
             ))}
         </div>
       </div>
-      <div className="card-details-container">
-        <span className="name">{product.name}</span>
-        <span className="price">{product.price.formattedValue}</span>
+      <div className={style.card_details_container}>
+        <span className={style.name}>{product.name}</span>
+        <span className={style.price}>{product.price.formattedValue}</span>
       </div>
     </div>
   );

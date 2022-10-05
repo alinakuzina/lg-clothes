@@ -1,7 +1,7 @@
 import { Outlet, Link } from "react-router-dom";
 import { Fragment, useEffect, useState, useContext } from "react";
 import { ReactComponent as Logo } from "../../assets/logo.svg";
-import "./Navigation.scss";
+import style from "./Navigation.module.scss";
 import NavLink from "./NavLink";
 import MobileNav from "./MobileNav";
 import { UserContext } from "../../context/UserContext";
@@ -20,24 +20,24 @@ const Navigation = () => {
 
   return (
     <Fragment>
-      <div className="navigation">
-        <Link className="logo-container" to="/">
-          <Logo className="logo" />
+      <div className={style.navigation}>
+        <Link className={style.logo_container} to="/">
+          <Logo className={style.logo} />
         </Link>
-        <div className="links-container">
+        <div className={style.links_container}>
           {context.categories.map((category) => {
             return <NavLink category={category} key={category.tagCode} />;
           })}
           {!context.currentUser && (
-            <Link className="nav-link" to="/authentication">
+            <Link className={style.nav_link} to="/authentication">
               Sign In
             </Link>
           )}
           {context.currentUser && (
-            <span className="nav-link" onClick={signOutHandler}>
+            <span className={style.nav_link} onClick={signOutHandler}>
               Sign Out
             </span>
-          )}{" "}
+          )}
           <CartIcon />
         </div>
         {isCartOpen && <CartDropdown />}

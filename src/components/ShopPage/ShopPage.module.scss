@@ -1,4 +1,4 @@
-.products-page-container {
+.products_page_container {
   margin-top: 6rem;
   margin-bottom: 3rem;
 }
@@ -16,7 +16,7 @@
   max-height: 10vh;
   overflow-y: scroll;
 
-  .link-sub-category {
+  .link_sub_category {
     cursor: pointer;
     transition: all 0.3s;
     font-size: 0.7rem;
@@ -25,13 +25,13 @@
       text-decoration: underline;
     }
 
-    &.category-selected {
+    &.category_selected {
       font-weight: 600;
     }
   }
 }
 
-.products-container {
+.products_container {
   display: grid;
   grid-template-columns: repeat(auto-fill, 15rem);
   gap: 2rem;

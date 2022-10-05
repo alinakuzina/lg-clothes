@@ -1,4 +1,4 @@
-import "./CategoryContainer.scss";
+import style from "./CategoryContainer.module.scss";
 import CategoryItem from "./CategoryItem.jsx";
 
 let CategoryContainer = () => {
@@ -15,7 +15,7 @@ let CategoryContainer = () => {
     },
   ];
   return (
-    <div className="categories-container">
+    <div className={style.categories_container}>
       {categories.map((category) => {
         return <CategoryItem category={category} key={category.id} />;
       })}

@@ -5,7 +5,7 @@ import {
 } from "../../utilits/Farebase";
 import Button from "../Button/Button";
 import btnStyle from "../Button/Button.module.scss";
-import "./SignUp.scss";
+import style from "./SignUp.module.scss";
 import { UserContext } from "../../context/UserContext";
 
 const defaultFormFields = {
@@ -78,13 +78,13 @@ const SignUpForm = (props) => {
   };
 
   return (
-    <div className="sign-up-container">
-      <h1 className="main-header">Create an account</h1>
-      <h2 className="aditional-header">Please enter your details</h2>
-      <form onSubmit={submitHandler} className="form-sign-up">
-        <div className="group">
+    <div className={style.sign_up_container}>
+      <h1 className={style.main_header}>Create an account</h1>
+      <h2 className={style.aditional_header}>Please enter your details</h2>
+      <form onSubmit={submitHandler} className={style.form_sign_up}>
+        <div className={style.group}>
           <input
-            className="form-input "
+            className={style.form_input}
             type="text"
             required
             onChange={handleChange}
@@ -93,17 +93,17 @@ const SignUpForm = (props) => {
             value={displayName}
           ></input>
           <label
-            className={`form-input-label ${
-              displayName.length > 0 ? "shrink" : ""
+            className={`${style.form_input_label} ${
+              displayName.length > 0 ? style.shrink : ""
             }`}
           >
             Name
           </label>
         </div>
 
-        <div className="group">
+        <div className={style.group}>
           <input
-            className="form-input "
+            className={style.form_input}
             type="email"
             required
             onChange={handleChange}
@@ -112,15 +112,19 @@ const SignUpForm = (props) => {
             value={email}
           ></input>
           <label
-            className={`form-input-label ${email.length > 0 ? "shrink" : ""}`}
+            className={`${style.form_input_label} ${
+              email.length > 0 ? style.shrink : ""
+            }`}
           >
             Email
           </label>
         </div>
 
-        <div className="group">
+        <div className={style.group}>
           <input
-            className={`form-input ${confirmPasswordError ? "error-line" : ""}`}
+            className={`${style.form_input} ${
+              confirmPasswordError ? style.error_line : ""
+            }`}
             type="password"
             required
             onChange={handleChange}
@@ -129,17 +133,19 @@ const SignUpForm = (props) => {
             value={password}
           ></input>
           <label
-            className={`form-input-label ${
-              password.length > 0 ? "shrink" : ""
+            className={`${style.form_input_label} ${
+              password.length > 0 ? style.shrink : ""
             }`}
           >
             Password
           </label>
         </div>
 
-        <div className="group">
+        <div className={style.group}>
           <input
-            className={`form-input ${confirmPasswordError ? "error-line" : ""}`}
+            className={`${style.form_input} ${
+              confirmPasswordError ? style.error_line : ""
+            }`}
             type="password"
             required
             onChange={handleChange}
@@ -148,23 +154,23 @@ const SignUpForm = (props) => {
             value={confirmPassword}
           ></input>
           <label
-            className={`form-input-label ${
-              confirmPassword.length > 0 ? "shrink" : ""
+            className={`${style.form_input_label} ${
+              confirmPassword.length > 0 ? style.shrink : ""
             }`}
           >
             Confirm Password
           </label>
         </div>
         {confirmPasswordError && (
-          <div className="error-message">
+          <div className={style.error_message}>
             Password and confirm password should be same.{" "}
           </div>
         )}
         {emailInvalidError && (
-          <div className="error-message">Email is invalid.</div>
+          <div className={style.error_message}>Email is invalid.</div>
         )}
         {passwordLengthError && (
-          <div className="error-message">
+          <div className={style.error_message}>
             Password should contain:
             <ul>
               <li>A lowercase letter</li>
@@ -175,19 +181,22 @@ const SignUpForm = (props) => {
           </div>
         )}
         {emailAlreadyInUseError && (
-          <div className="error-message">
+          <div className={style.error_message}>
             That email address is already in use.
           </div>
         )}
-        <div className="buttons-container">
+        <div className={style.buttons_container}>
           <Button type="submit" classes={btnStyle.submit}>
             Create account
           </Button>
         </div>
       </form>
-      <div className="redirect-container">
+      <div className={style.redirect_container}>
         <p>Already have an account?</p>
-        <button className="redirect-buttom" onClick={props.redirectSingIn}>
+        <button
+          className={style.redirect_buttom}
+          onClick={props.redirectSingIn}
+        >
           Sign in here &rarr;
         </button>
       </div>

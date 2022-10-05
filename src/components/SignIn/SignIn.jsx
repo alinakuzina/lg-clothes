@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import "./SignIn.scss";
+import style from "./SignIn.module.scss";
 import Button from "../Button/Button";
 import btnStyle from "../Button/Button.module.scss";
 import facebookLogo from "../../assets/facebook-logo.svg";
@@ -67,13 +67,15 @@ const SignIn = (props) => {
   };
 
   return (
-    <div className="sign-in-container">
-      <h1 className="main-header">Welcome back</h1>
-      <h2 className="aditional-header">Please enter your details</h2>
-      <form onSubmit={submitHandler} className="form-sign-in">
-        <div className="group">
+    <div className={style.sign_in_container}>
+      <h1 className={style.main_header}>Welcome back</h1>
+      <h2 className={style.aditional_header}>Please enter your details</h2>
+      <form onSubmit={submitHandler} className={style.form_sign_in}>
+        <div className={style.group}>
           <input
-            className={`form-input ${emailError ? "errorLine" : ""}`}
+            className={`${style.form_input} ${
+              emailError ? style.error_line : ""
+            }`}
             type="email"
             required
             name="email"
@@ -82,15 +84,19 @@ const SignIn = (props) => {
             value={email}
           ></input>
           <label
-            className={`form-input-label ${email.length > 0 ? "shrink" : ""}`}
+            className={`${style.form_input_label} ${
+              email.length > 0 ? style.shrink : ""
+            }`}
           >
             Email
           </label>
         </div>
 
-        <div className="group">
+        <div className={style.group}>
           <input
-            className={`form-input ${passwordError ? "errorLine" : ""}`}
+            className={`${style.form_input} ${
+              passwordError ? style.error_line : ""
+            }`}
             type="password"
             required
             onChange={handleChange}
@@ -99,44 +105,47 @@ const SignIn = (props) => {
             value={password}
           ></input>
           <label
-            className={`form-input-label ${
-              password.length > 0 ? "shrink" : ""
+            className={`${style.form_input_label} ${
+              password.length > 0 ? style.shrink : ""
             }`}
           >
             Password
           </label>
         </div>
         {emailError && (
-          <div className="error-message">Please enter correct email</div>
+          <div className={style.error_message}>Please enter correct email</div>
         )}
         {passwordError && (
-          <div className="error-message">Password is incorrect</div>
+          <div className={style.error_message}>Password is incorrect</div>
         )}
         {accessError && (
-          <div className="error-message">
+          <div className={style.error_message}>
             Access to this account has been temporarily disabled due to many
             failed login attempts.You can try again later.
           </div>
         )}
-        <div className="buttons-container">
+        <div className={style.buttons_container}>
           <Button type="submit" classes={btnStyle.submit}>
             Sign In
           </Button>
           <Button type="button" onClick={signInWithGoogle}>
-            <div className="logo-name-container">
-              <img className="logo" src={googleLogo} /> Google sign in
+            <div className={style.logo_name_container}>
+              <img className={style.logo} src={googleLogo} /> Google sign in
             </div>
           </Button>
           <Button type="button" onClick={signInWithFacebook}>
-            <div className="logo-name-container">
-              <img className="logo" src={facebookLogo} /> Facebook sign in
+            <div className={style.logo_name_container}>
+              <img className={style.logo} src={facebookLogo} /> Facebook sign in
             </div>
           </Button>
         </div>
       </form>
-      <div className="redirect-container">
+      <div className={style.redirect_container}>
         <p>Don't have an account?</p>{" "}
-        <button className="redirect-buttom" onClick={props.redirectSingUp}>
+        <button
+          className={style.redirect_buttom}
+          onClick={props.redirectSingUp}
+        >
           Sign up for free &rarr;
         </button>
       </div>

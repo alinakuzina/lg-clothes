@@ -1,4 +1,4 @@
-.cart-total-container {
+.cart_total_container {
   position: fixed;
   right: 0rem;
   top: 7rem;
@@ -6,14 +6,14 @@
   padding: 3rem 2rem;
   margin: 2rem;
 
-  & .cart-line {
+  & .cart_line {
     display: block;
     width: 100%;
     border-top: 1px solid rgba(0, 0, 0, 0.52);
     margin-top: 1.5rem;
   }
 
-  & .cart-total-info {
+  & .cart_total_info {
     font-size: 0.8rem;
     display: flex;
     flex-direction: column;
@@ -23,7 +23,7 @@
 }
 
 @media screen and (max-width: 41em) {
-  .cart-total-container {
+  .cart_total_container {
     position: static;
     border: 1px solid rgba(0, 0, 0, 0.52);
     padding: 2rem 1rem;

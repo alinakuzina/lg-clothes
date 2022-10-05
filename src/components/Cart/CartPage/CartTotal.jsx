@@ -1,4 +1,4 @@
-import "./CartTotal.scss";
+import style from "./CartTotal.module.scss";
 import Button from "../../Button/Button";
 import btnStyle from "../../Button/Button.module.scss";
 
@@ -7,9 +7,9 @@ const CartTotal = ({ total }) => {
   dateNow.setDate(dateNow.getDate() + 5);
 
   return (
-    <div className="cart-total-container">
+    <div className={style.cart_total_container}>
       <div>
-        <div className="cart-total-info">
+        <div className={style.cart_total_info}>
           <div>
             <b>Delivery:</b> $ 3.50
           </div>
@@ -17,7 +17,7 @@ const CartTotal = ({ total }) => {
           <div>
             <b>Indicative delivery date :</b> {dateNow.toLocaleDateString()}{" "}
           </div>
-          <div className="cart-line"></div>
+          <div className={style.cart_line}></div>
           <div>
             <b>Total Price:</b> ${total}
           </div>

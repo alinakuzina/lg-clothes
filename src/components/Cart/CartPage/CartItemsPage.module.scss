@@ -1,8 +1,8 @@
-.cart-page-container {
+.cart_page_container {
   margin-top: 7rem;
 }
 
-.cart-items-container {
+.cart_items_container {
   width: 60vw;
   padding: 3rem 2rem;
   display: flex;
@@ -11,7 +11,7 @@
 }
 
 @media screen and (max-width: 41em) {
-  .cart-items-container {
+  .cart_items_container {
     width: 90vw;
   }
 }

@@ -1,7 +1,7 @@
 import CartItemInPage from "./CartItemOnPage";
 import { useContext } from "react";
 import { CartContext } from "../../../context/CartContext";
-import "./CartItemsPage.scss";
+import style from "./CartItemsPage.module.scss";
 import CartTotal from "./CartTotal";
 
 const CartItemsPage = () => {
@@ -13,8 +13,8 @@ const CartItemsPage = () => {
     totalPrice,
   } = useContext(CartContext);
   return (
-    <div className="cart-page-container">
-      <div className="cart-items-container">
+    <div className={style.cart_page_container}>
+      <div className={style.cart_items_container}>
         {cartItems.map((item) => (
           <CartItemInPage
             key={item.articles[0].code + Math.random()}

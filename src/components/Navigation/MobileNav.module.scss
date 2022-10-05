@@ -1,4 +1,4 @@
-.mobile-icon {
+.mobile_icon {
   position: fixed;
   right: 2rem;
   top: 2.5rem;
@@ -19,19 +19,19 @@
   transition: 0.4s ease;
 }
 
-.bar1.close-icon {
+.bar1.close_icon {
   transform: rotate(-135deg) translateY(-0.6rem);
 }
 
-.bar3.close-icon {
+.bar3.close_icon {
   transform: rotate(135deg) translateY(0.6rem);
 }
 
-.bar2.close-icon {
+.bar2.close_icon {
   opacity: 0;
 }
 
-.mobile-container {
+.mobile_container {
   position: fixed;
   right: -200%;
   top: 0;
@@ -48,14 +48,14 @@
   transition: all 1s;
 }
 
-.open-mobile-nav {
+.open_mobile_nav {
   top: 0;
   right: 0;
   width: 100vw;
   height: 100vh;
   visibility: visible;
 }
-.mobile-nav-item {
+.mobile_nav_item {
   color: black;
   text-decoration: none;
   cursor: pointer;
