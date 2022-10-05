@@ -1,5 +1,6 @@
 import "./CartTotal.scss";
 import Button from "../../Button/Button";
+import btnStyle from "../../Button/Button.module.scss";
 
 const CartTotal = ({ total }) => {
   let dateNow = new Date();
@@ -22,7 +23,7 @@ const CartTotal = ({ total }) => {
           </div>
         </div>
       </div>
-      <Button classes="buy-now">Pay now </Button>
+      <Button classes={btnStyle.buyNow}>Pay now </Button>
     </div>
   );
 };

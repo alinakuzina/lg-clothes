@@ -1,5 +1,6 @@
 import "./CartDropdown.scss";
 import Button from "../../../Button/Button";
+import btnStyle from "../../../Button/Button.module.scss";
 import CartItem from "../CartItem/CartItem";
 import { useContext } from "react";
 import { CartContext } from "../../../../context/CartContext";
@@ -25,7 +26,7 @@ const CartDropdown = () => {
           );
         })}
       </div>
-      <Button classes="buy-now" onClick={goToCheckoutHandler}>
+      <Button classes={btnStyle.buyNow} onClick={goToCheckoutHandler}>
         BUY NOW
       </Button>
     </div>

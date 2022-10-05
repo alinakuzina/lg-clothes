@@ -1,5 +1,6 @@
 import "./ProductCard.scss";
 import Button from "../Button/Button";
+import btnStyle from "../Button/Button.module.scss";
 import { ReactComponent as HeartLogo } from "../../assets/heart.svg";
 import { useState, useContext } from "react";
 import { CartContext } from "../../context/CartContext";
@@ -28,7 +29,7 @@ const ProductCard = ({ product }) => {
         <HeartLogo className="heart-logo" />
         <Button
           onClick={openSizesHandler}
-          classes="button-product"
+          classes={btnStyle.buttonProduct}
           type="inverted"
         >
           Add to card

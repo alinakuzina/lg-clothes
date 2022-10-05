@@ -1,6 +1,7 @@
 import { useState, useContext } from "react";
 import "./SignIn.scss";
 import Button from "../Button/Button";
+import btnStyle from "../Button/Button.module.scss";
 import facebookLogo from "../../assets/facebook-logo.svg";
 import googleLogo from "../../assets/google-logo.svg";
 import { UserContext } from "../../context/UserContext";
@@ -118,7 +119,7 @@ const SignIn = (props) => {
           </div>
         )}
         <div className="buttons-container">
-          <Button type="submit" classes="submit">
+          <Button type="submit" classes={btnStyle.submit}>
             Sign In
           </Button>
           <Button type="button" onClick={signInWithGoogle}>

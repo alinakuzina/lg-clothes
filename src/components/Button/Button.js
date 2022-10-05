@@ -1,10 +1,11 @@
-import "../Button/Button.scss";
+import style from "../Button/Button.module.scss";
 
 const Button = (props) => {
   const { children, type, classes, onClick, additionalProps } = props;
+
   return (
     <button
-      className={`button ${classes}`}
+      className={`${style.button} ${classes}`}
       onClick={onClick}
       type={type}
       {...additionalProps}

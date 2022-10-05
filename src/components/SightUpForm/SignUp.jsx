@@ -4,6 +4,7 @@ import {
   createUserDocumentFromAuth,
 } from "../../utilits/Farebase";
 import Button from "../Button/Button";
+import btnStyle from "../Button/Button.module.scss";
 import "./SignUp.scss";
 import { UserContext } from "../../context/UserContext";
 
@@ -179,7 +180,7 @@ const SignUpForm = (props) => {
           </div>
         )}
         <div className="buttons-container">
-          <Button type="submit" classes="submit">
+          <Button type="submit" classes={btnStyle.submit}>
             Create account
           </Button>
         </div>
