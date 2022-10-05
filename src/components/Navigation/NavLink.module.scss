@@ -66,6 +66,12 @@
   }
 }
 
+@media only screen and (max-height: 50em) and (max-width: 53em) {
+  .dropdown {
+    display: none;
+  }
+}
+
 @media only screen and (max-width: 39em) {
   .dropdown {
     display: none;

@@ -71,6 +71,12 @@
   }
 }
 
+@media only screen and (max-height: 50em) and (max-width: 53em) {
+  .mobile_icon {
+    visibility: visible;
+  }
+}
+
 @media only screen and (max-width: 39em) {
   .mobile_icon {
     visibility: visible;
