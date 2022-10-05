@@ -28,6 +28,14 @@ export const ProductsProvider = ({ children }) => {
     }
   };
 
+  //if there are no sizes we cannot choose this product. So we add 'one size' to this size to fix it.
+  products.forEach((el) => {
+    console.log(el.variantSizes);
+    if (el.variantSizes.length === 0) {
+      el.variantSizes.push({ filterCode: "one size", orderFilter: 1 });
+    }
+  });
+
   return (
     <ProductContext.Provider
       value={{
