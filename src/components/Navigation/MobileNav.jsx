@@ -37,6 +37,7 @@ let MobileNav = (props) => {
               className={style.mobile_nav_item}
               to={`/${category.tagCode}`}
               key={`/${category.tagCode}${Math.random()}`}
+              onClick={openMabileNavHandler}
             >
               {category.catName}
             </Link>

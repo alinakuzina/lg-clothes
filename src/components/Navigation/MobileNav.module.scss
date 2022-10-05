@@ -1,4 +1,5 @@
 .mobile_icon {
+  visibility: hidden;
   position: fixed;
   right: 2rem;
   top: 2.5rem;
@@ -67,5 +68,11 @@
     transform: scale(1.2);
     border-left: 1px solid black;
     border-right: 1px solid black;
+  }
+}
+
+@media only screen and (max-width: 39em) {
+  .mobile_icon {
+    visibility: visible;
   }
 }

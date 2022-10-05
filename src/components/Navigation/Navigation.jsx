@@ -33,15 +33,17 @@ const Navigation = () => {
               Sign In
             </Link>
           )}
-          {context.currentUser && (
-            <span className={style.nav_link} onClick={signOutHandler}>
-              Sign Out
-            </span>
-          )}
-          <CartIcon />
+          <div className={style.permanent_items}>
+            {context.currentUser && (
+              <span className={style.nav_link} onClick={signOutHandler}>
+                Sign Out
+              </span>
+            )}
+            <CartIcon />
+          </div>
+          {isCartOpen && <CartDropdown />}
         </div>
-        {isCartOpen && <CartDropdown />}
-        {/* <MobileNav /> */}
+        <MobileNav />
       </div>
 
       <Outlet />

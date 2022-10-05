@@ -33,3 +33,9 @@
     padding-right: 1rem;
   }
 }
+
+@media only screen and (max-width: 39em) {
+  .permanent_items {
+    margin-right: 3rem;
+  }
+}
