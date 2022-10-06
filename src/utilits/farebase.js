@@ -108,3 +108,17 @@ export const signOutUser = async () => await signOut(auth);
 
 export const onAuthStateChangeListener = (callback) =>
   onAuthStateChanged(auth, callback);
+
+//// Recieve products
+
+export const recieveProducts = async (url) => {
+  const docRef = doc(database, "products", url);
+  const docSnap = await getDoc(docRef);
+  let newProducts = [];
+  if (docSnap.exists()) {
+    for (let key in docSnap.data()) {
+      newProducts.push(docSnap.data()[key]);
+    }
+  }
+  return newProducts;
+};

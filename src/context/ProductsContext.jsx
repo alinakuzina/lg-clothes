@@ -1,6 +1,5 @@
 import { createContext, useState } from "react";
-import { doc, setDoc, collection, getDocs, getDoc } from "firebase/firestore";
-import { database } from "../utilits/Farebase";
+import { recieveProducts } from "../utilits/Farebase";
 
 export const ProductContext = createContext({
   products: [],
@@ -13,15 +12,9 @@ export const ProductsProvider = ({ children }) => {
   const recieveProductsHandler = async (url) => {
     setProducts([]);
 
-    const docRef = doc(database, "products", url);
-    const docSnap = await getDoc(docRef);
+    let newProducts = await recieveProducts(url);
 
-    if (docSnap.exists()) {
-      let newProducts = [];
-      for (let key in docSnap.data()) {
-        newProducts.push(docSnap.data()[key]);
-      }
-
+    if (newProducts.length > 0) {
       setProducts(newProducts);
     } else {
       console.log("No such document!");
@@ -30,7 +23,6 @@ export const ProductsProvider = ({ children }) => {
 
   //if there are no sizes we cannot choose this product. So we add 'one size' to this size to fix it.
   products.forEach((el) => {
-    console.log(el.variantSizes);
     if (el.variantSizes.length === 0) {
       el.variantSizes.push({ filterCode: "one size", orderFilter: 1 });
     }
