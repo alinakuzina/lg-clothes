@@ -6,7 +6,7 @@ import { useContext } from "react";
 const CartIcon = () => {
   const { isCartOpen, setIsCartOpen, itemsCount } = useContext(CartContext);
   const toggleCartIconHandler = () => {
-    setIsCartOpen((prev) => !prev);
+    setIsCartOpen();
   };
   return (
     <div className="cart-icon-container" onClick={toggleCartIconHandler}>

@@ -24,18 +24,16 @@ const cartReducer = (state, action) => {
   switch (type) {
     case "SET_CART_ITEMS":
       return { ...state, ...payload };
+    case "SET_IS_CART_OPEN":
+      return { ...state, ...payload };
     default:
       throw new Error(`unhandaled type in cart reducer ${type}`);
   }
 };
 
 export const CartProvider = ({ children }) => {
-  const [isCartOpen, setIsCartOpen] = useState(false);
-
-  const [{ cartItems, itemsCount, totalPrice }, dispatch] = useReducer(
-    cartReducer,
-    INITIAL_STATE
-  );
+  const [{ cartItems, isCartOpen, itemsCount, totalPrice }, dispatch] =
+    useReducer(cartReducer, INITIAL_STATE);
 
   const updateCartItems = (newCartItems, newItemsCount, newTotalPrice) => {
     dispatch({
@@ -46,6 +44,11 @@ export const CartProvider = ({ children }) => {
         totalPrice: newTotalPrice,
       },
     });
+  };
+
+  const setIsCartOpen = () => {
+    let isOpen = !isCartOpen;
+    dispatch({ type: "SET_IS_CART_OPEN", payload: { isCartOpen: isOpen } });
   };
 
   const addItemToCart = (productToAdd, size) => {
