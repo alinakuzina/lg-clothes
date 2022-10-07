@@ -28,14 +28,16 @@ const Navigation = () => {
           {context.categories.map((category) => {
             return <NavLink category={category} key={category.tagCode} />;
           })}
-          {!context.currentUser && (
-            <Link className={style.nav_link} to="/authentication">
-              Sign In
-            </Link>
-          )}
+
           <div className={style.permanent_items}>
+            {!context.currentUser && (
+              <Link className={style.nav_link_sign} to="/authentication">
+                Sign In
+              </Link>
+            )}
+
             {context.currentUser && (
-              <span className={style.nav_link} onClick={signOutHandler}>
+              <span className={style.nav_link_sign} onClick={signOutHandler}>
                 Sign Out
               </span>
             )}

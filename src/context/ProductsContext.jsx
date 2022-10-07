@@ -1,3 +1,4 @@
+import { useReducer } from "react";
 import { createContext, useState } from "react";
 import { recieveProducts } from "../utilits/Farebase";
 
@@ -6,14 +7,40 @@ export const ProductContext = createContext({
   recieveProductsHandler: () => {},
 });
 
+const PRODUCTS_INITIAL_STATE = {
+  products: [],
+};
+
+export const PRODUCTS_ACTION_TYPES = {
+  RECIEVE_PRODUCTS: "RECIEVE_PRODUCTS",
+};
+
+const productsReducer = (state, action) => {
+  const { type, payload } = action;
+
+  switch (type) {
+    case PRODUCTS_ACTION_TYPES.RECIEVE_PRODUCTS:
+      return {
+        ...state,
+        products: payload,
+      };
+    default:
+      throw new Error(`Not correct action in Product context ${type}`);
+  }
+};
+
 export const ProductsProvider = ({ children }) => {
-  const [products, setProducts] = useState([]);
+  const [{ products }, dispatch] = useReducer(
+    productsReducer,
+    PRODUCTS_INITIAL_STATE
+  );
+
+  const setProducts = (products) => {
+    dispatch({ type: "RECIEVE_PRODUCTS", payload: products });
+  };
 
   const recieveProductsHandler = async (url) => {
-    setProducts([]);
-
     let newProducts = await recieveProducts(url);
-
     if (newProducts.length > 0) {
       setProducts(newProducts);
     } else {

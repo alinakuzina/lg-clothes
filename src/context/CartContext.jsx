@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { createContext, useState } from "react";
+import { createContext, useState, useReducer } from "react";
 
 export const CartContext = createContext({
   isCartOpen: false,
@@ -12,21 +12,53 @@ export const CartContext = createContext({
   totalPrice: 0,
 });
 
+const INITIAL_STATE = {
+  cartItems: [],
+  itemsCount: 0,
+  totalPrice: 0,
+};
+
+const cartReducer = (state, action) => {
+  const { type, payload } = action;
+
+  switch (type) {
+    case "SET_CART_ITEMS":
+      return { ...state, ...payload };
+    default:
+      throw new Error(`unhandaled type in cart reducer ${type}`);
+  }
+};
+
 export const CartProvider = ({ children }) => {
   const [isCartOpen, setIsCartOpen] = useState(false);
-  const [cartItems, setCartItems] = useState([]);
-  const [itemsCount, setItemsCount] = useState(0);
-  const [totalPrice, setTotalPrice] = useState(0);
+
+  const [{ cartItems, itemsCount, totalPrice }, dispatch] = useReducer(
+    cartReducer,
+    INITIAL_STATE
+  );
+
+  const updateCartItems = (newCartItems, newItemsCount, newTotalPrice) => {
+    dispatch({
+      type: "SET_CART_ITEMS",
+      payload: {
+        cartItems: newCartItems,
+        itemsCount: newItemsCount,
+        totalPrice: newTotalPrice,
+      },
+    });
+  };
 
   const addItemToCart = (productToAdd, size) => {
-    setItemsCount((prev) => prev + 1);
-    setTotalPrice((prev) => {
-      let newPrice = Number(prev) + Number(productToAdd.price.value);
-      return newPrice.toFixed(2);
-    });
+    let newItemsCount = itemsCount + 1;
+
+    let newPrice = Number(totalPrice) + Number(productToAdd.price.value);
+    let newTotalPrice = newPrice.toFixed(2);
+
+    let newCartItems;
 
     if (cartItems.length === 0) {
-      setCartItems([{ ...productToAdd, quantity: 1, selectedSize: size }]);
+      newItemsCount = 1;
+      newCartItems = [{ ...productToAdd, ectedSize: size }];
     }
 
     let findElement = cartItems.find((el) => {
@@ -37,10 +69,10 @@ export const CartProvider = ({ children }) => {
     });
 
     if (!findElement) {
-      setCartItems([
+      newCartItems = [
         ...cartItems,
         { ...productToAdd, quantity: 1, selectedSize: size },
-      ]);
+      ];
     } else {
       let newArr = cartItems.map((cartItem) =>
         cartItem.articles[0].code === productToAdd.articles[0].code &&
@@ -52,21 +84,20 @@ export const CartProvider = ({ children }) => {
             }
           : cartItem
       );
-      setCartItems(newArr);
+      newCartItems = newArr;
     }
+    updateCartItems(newCartItems, newItemsCount, newTotalPrice);
   };
 
   const removeItem = (item) => {
-    setItemsCount((prev) => prev - item.quantity);
+    let newItemsCount = itemsCount - item.quantity;
     let priceOfSelectedItems = item.quantity * item.price.value;
-    setTotalPrice((prev) => {
-      let newPrice = Number(prev) - Number(priceOfSelectedItems);
-      return newPrice.toFixed(2);
-    });
+    let newPrice = Number(totalPrice) - Number(priceOfSelectedItems);
+    let newTotalPrice = newPrice.toFixed(2);
     let index = cartItems.indexOf(item);
     let newArr = cartItems.filter((el, indexEl) => indexEl !== index);
-    console.log(newArr);
-    setCartItems(newArr);
+    let newCartItems = newArr;
+    updateCartItems(newCartItems, newItemsCount, newTotalPrice);
   };
 
   const reduceItemQuantity = (item) => {
@@ -75,12 +106,9 @@ export const CartProvider = ({ children }) => {
       return;
     }
 
-    setItemsCount((prev) => prev - 1);
-
-    setTotalPrice((prev) => {
-      let newTotal = Number(prev) - Number(item.price.value);
-      return newTotal.toFixed(2);
-    });
+    let newItemsCount = itemsCount - 1;
+    let newTotal = Number(totalPrice) - Number(item.price.value);
+    let newTotalPrice = newTotal.toFixed(2);
 
     let newArr = cartItems.map((cartItem) => {
       if (
@@ -97,7 +125,8 @@ export const CartProvider = ({ children }) => {
       }
     });
 
-    setCartItems(newArr);
+    let newCartItems = newArr;
+    updateCartItems(newCartItems, newItemsCount, newTotalPrice);
   };
 
   const value = {

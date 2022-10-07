@@ -11,6 +11,24 @@
   background-color: rgb(253, 253, 253);
   font-size: 0.9rem;
 
+  .nav_link_sign {
+    padding: 1rem;
+    cursor: pointer;
+    text-decoration: none;
+    color: white;
+    background-color: var(--green-dark);
+    border-right: 0.5px solid var(--green-dark);
+    display: block;
+    text-align: left;
+    transition: all 0.3s;
+    z-index: 200;
+
+    &:hover {
+      transform: scale(1.02);
+      filter: brightness(1.4);
+    }
+  }
+
   .logo_container {
     height: 100%;
     width: 70px;
@@ -31,6 +49,12 @@
     align-items: center;
     justify-content: flex-end;
     padding-right: 1rem;
+  }
+
+  .permanent_items {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }
 

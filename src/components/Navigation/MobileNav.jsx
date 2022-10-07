@@ -8,12 +8,10 @@ let MobileNav = (props) => {
   let context = useContext(UserContext);
 
   let openMabileNavHandler = () => {
-    console.log("click");
     setOpen((prevState) => {
       return !prevState;
     });
   };
-  console.log(open);
 
   return (
     <Fragment>
