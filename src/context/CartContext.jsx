@@ -1,5 +1,5 @@
-import { useContext } from "react";
-import { createContext, useState, useReducer } from "react";
+import { createContext, useReducer } from "react";
+import { createAction } from "../utilits/Reducer";
 
 export const CartContext = createContext({
   isCartOpen: false,
@@ -12,6 +12,11 @@ export const CartContext = createContext({
   totalPrice: 0,
 });
 
+const CART_ACTION_TYPES = {
+  SET_CART_ITEMS: "SET_CART_ITEMS",
+  SET_IS_CART_OPEN: "SET_IS_CART_OPEN",
+};
+
 const INITIAL_STATE = {
   cartItems: [],
   itemsCount: 0,
@@ -22,9 +27,9 @@ const cartReducer = (state, action) => {
   const { type, payload } = action;
 
   switch (type) {
-    case "SET_CART_ITEMS":
+    case CART_ACTION_TYPES.SET_CART_ITEMS:
       return { ...state, ...payload };
-    case "SET_IS_CART_OPEN":
+    case CART_ACTION_TYPES.SET_IS_CART_OPEN:
       return { ...state, ...payload };
     default:
       throw new Error(`unhandaled type in cart reducer ${type}`);
@@ -36,19 +41,20 @@ export const CartProvider = ({ children }) => {
     useReducer(cartReducer, INITIAL_STATE);
 
   const updateCartItems = (newCartItems, newItemsCount, newTotalPrice) => {
-    dispatch({
-      type: "SET_CART_ITEMS",
-      payload: {
+    dispatch(
+      createAction(CART_ACTION_TYPES.SET_CART_ITEMS, {
         cartItems: newCartItems,
         itemsCount: newItemsCount,
         totalPrice: newTotalPrice,
-      },
-    });
+      })
+    );
   };
 
   const setIsCartOpen = () => {
     let isOpen = !isCartOpen;
-    dispatch({ type: "SET_IS_CART_OPEN", payload: { isCartOpen: isOpen } });
+    dispatch(
+      createAction(CART_ACTION_TYPES.SET_IS_CART_OPEN, { isCartOpen: isOpen })
+    );
   };
 
   const addItemToCart = (productToAdd, size) => {

@@ -1,5 +1,6 @@
 import { useEffect, useReducer } from "react";
 import React from "react";
+import { createAction } from "../utilits/Reducer";
 
 import { createUserDocumentFromAuth, database } from "../utilits/Farebase";
 import { onAuthStateChangeListener } from "../utilits/Farebase";
@@ -36,7 +37,7 @@ const userReducer = (state, action) => {
 const ContextProvider = (props) => {
   const [{ currentUser }, dispatch] = useReducer(userReducer, INITIAL_STATE);
   const setCurrentUser = (user) => {
-    dispatch({ type: USER_ACTION_TYPES.SET_CURRENT_USER, payload: user });
+    dispatch(createAction(USER_ACTION_TYPES.SET_CURRENT_USER, user));
   };
   const value = { currentUser, setCurrentUser };
 

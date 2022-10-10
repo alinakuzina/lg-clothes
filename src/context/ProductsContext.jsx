@@ -1,6 +1,7 @@
 import { useReducer } from "react";
-import { createContext, useState } from "react";
+import { createContext } from "react";
 import { recieveProducts } from "../utilits/Farebase";
+import { createAction } from "../utilits/Reducer";
 
 export const ProductContext = createContext({
   products: [],
@@ -36,7 +37,7 @@ export const ProductsProvider = ({ children }) => {
   );
 
   const setProducts = (products) => {
-    dispatch({ type: "RECIEVE_PRODUCTS", payload: products });
+    dispatch(createAction(PRODUCTS_ACTION_TYPES.RECIEVE_PRODUCTS, products));
   };
 
   const recieveProductsHandler = async (url) => {
