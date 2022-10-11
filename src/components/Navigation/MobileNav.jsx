@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
 import style from "./MobileNav.module.scss";
 import { Fragment, useState, useContext } from "react";
-import { UserContext } from "../../context/UserContext";
+import { useSelector } from "react-redux";
+import { selectCategories } from "../../store/Categories/CategoriesSelection";
 
 let MobileNav = (props) => {
   let [open, setOpen] = useState(false);
-  let context = useContext(UserContext);
+  let categories = useSelector(selectCategories);
 
   let openMabileNavHandler = () => {
     setOpen((prevState) => {
@@ -29,7 +30,7 @@ let MobileNav = (props) => {
       <div
         className={`${style.mobile_container} ${open && style.open_mobile_nav}`}
       >
-        {context.categories.map((category) => {
+        {categories.map((category) => {
           return (
             <Link
               className={style.mobile_nav_item}

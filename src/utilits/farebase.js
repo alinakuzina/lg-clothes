@@ -15,6 +15,8 @@ import {
   getDoc,
   setDoc,
   refEqual,
+  collection,
+  getDocs,
 } from "firebase/firestore";
 
 //Authentication
@@ -121,4 +123,16 @@ export const recieveProducts = async (url) => {
     }
   }
   return newProducts;
+};
+
+///Recieve categories array
+export const recieveCategories = async () => {
+  const docRef = await getDocs(collection(database, "categories"));
+  let newCategories = [];
+  docRef.forEach((doc) => {
+    let arr = doc.data();
+    newCategories.push(arr);
+  });
+  console.log(newCategories);
+  return newCategories;
 };

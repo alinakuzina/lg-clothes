@@ -3,12 +3,14 @@ import { useNavigate } from "react-router-dom";
 import { ProductContext } from "../../context/ProductsContext";
 import ProductCard from "../../components/ProductCard/ProductCard";
 import style from "./ShopPage.module.scss";
-import { UserContext } from "../../context/UserContext";
 import { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { selectCategories } from "../../store/Categories/CategoriesSelection";
 
 const ShopPage = ({ url }) => {
   const { products, recieveProductsHandler } = useContext(ProductContext);
-  const { categories } = useContext(UserContext);
+  const categories = useSelector(selectCategories);
+
   let navigate = useNavigate();
   let redirectToPage = (e) => {
     let link = e.target.id;

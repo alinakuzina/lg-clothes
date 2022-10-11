@@ -11,12 +11,12 @@ import {
   createUserDocumentFromAuth,
 } from "./utilits/Farebase";
 import { setCurrentUser } from "./store/User/UserAction.js";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { selectCategories } from "./store/Categories/CategoriesSelection.js";
 
 const App = () => {
   const dispatch = useDispatch();
-
-  let { categories } = useContext(UserContext);
+  const categories = useSelector(selectCategories);
   let subCategoriesArray = categories.map((category) =>
     category.subCategories.map((subCat) => (
       <Route

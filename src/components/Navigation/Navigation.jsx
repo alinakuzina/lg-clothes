@@ -1,25 +1,40 @@
 import { Outlet, Link } from "react-router-dom";
-import { Fragment, useContext } from "react";
+import { Fragment, useContext, useEffect } from "react";
 import { ReactComponent as Logo } from "../../assets/logo.svg";
 import style from "./Navigation.module.scss";
 import NavLink from "./NavLink";
 import MobileNav from "./MobileNav";
-import { UserContext } from "../../context/UserContext";
 import { signOutUser } from "../../utilits/Farebase";
 import CartIcon from "../Cart/CartPreview/CartIcon/CartIcon";
 import CartDropdown from "../Cart/CartPreview/CartDropdown/CartDropdown";
 import { CartContext } from "../../context/CartContext";
 import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../../store/User/UserSelector";
+import { selectCategories } from "../../store/Categories/CategoriesSelection";
+import { recieveCategories } from "../../utilits/Farebase";
+import { useDispatch } from "react-redux";
+import { recieveCategoriesHandler } from "../../store/Categories/CategoriesAction";
+import CategoryItem from "../Category/CategoryItem";
 
 const Navigation = () => {
   const currentUser = useSelector(selectCurrentUser);
-  const context = useContext(UserContext);
+  const categories = useSelector(selectCategories);
   const { isCartOpen } = useContext(CartContext);
-
+  const dispatch = useDispatch();
   const signOutHandler = async () => {
     await signOutUser();
   };
+
+  useEffect(() => {
+    //recieve categories from firebase base
+    let categories = async () => {
+      const categories = await recieveCategories();
+      dispatch(recieveCategoriesHandler(categories));
+    };
+
+    categories();
+    console.log(categories);
+  }, []);
 
   return (
     <Fragment>
@@ -28,7 +43,7 @@ const Navigation = () => {
           <Logo className={style.logo} />
         </Link>
         <div className={style.links_container}>
-          {context.categories.map((category) => {
+          {categories.map((category) => {
             return <NavLink category={category} key={category.tagCode} />;
           })}
 
