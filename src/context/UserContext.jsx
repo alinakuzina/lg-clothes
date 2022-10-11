@@ -1,7 +1,6 @@
 import { useEffect, useReducer } from "react";
 import React from "react";
 import { createAction } from "../utilits/Reducer";
-
 import { createUserDocumentFromAuth, database } from "../utilits/Farebase";
 import { onAuthStateChangeListener } from "../utilits/Farebase";
 import { categoriesArray } from "../utilits/Categories";

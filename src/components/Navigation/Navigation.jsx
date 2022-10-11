@@ -1,5 +1,5 @@
 import { Outlet, Link } from "react-router-dom";
-import { Fragment, useEffect, useState, useContext } from "react";
+import { Fragment, useContext } from "react";
 import { ReactComponent as Logo } from "../../assets/logo.svg";
 import style from "./Navigation.module.scss";
 import NavLink from "./NavLink";
@@ -9,8 +9,11 @@ import { signOutUser } from "../../utilits/Farebase";
 import CartIcon from "../Cart/CartPreview/CartIcon/CartIcon";
 import CartDropdown from "../Cart/CartPreview/CartDropdown/CartDropdown";
 import { CartContext } from "../../context/CartContext";
+import { useSelector } from "react-redux";
+import { selectCurrentUser } from "../../store/User/UserSelector";
 
 const Navigation = () => {
+  const currentUser = useSelector(selectCurrentUser);
   const context = useContext(UserContext);
   const { isCartOpen } = useContext(CartContext);
 
@@ -30,13 +33,13 @@ const Navigation = () => {
           })}
 
           <div className={style.permanent_items}>
-            {!context.currentUser && (
+            {!currentUser && (
               <Link className={style.nav_link_sign} to="/authentication">
                 Sign In
               </Link>
             )}
 
-            {context.currentUser && (
+            {currentUser && (
               <span className={style.nav_link_sign} onClick={signOutHandler}>
                 Sign Out
               </span>
