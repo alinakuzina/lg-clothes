@@ -133,6 +133,5 @@ export const recieveCategories = async () => {
     let arr = doc.data();
     newCategories.push(arr);
   });
-  console.log(newCategories);
   return newCategories;
 };

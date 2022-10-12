@@ -13,8 +13,7 @@ import { selectCurrentUser } from "../../store/User/UserSelector";
 import { selectCategories } from "../../store/Categories/CategoriesSelection";
 import { recieveCategories } from "../../utilits/Farebase";
 import { useDispatch } from "react-redux";
-import { recieveCategoriesHandler } from "../../store/Categories/CategoriesAction";
-import CategoryItem from "../Category/CategoryItem";
+import { categoriesAction } from "../../store/Categories/CategoriesReducer";
 
 const Navigation = () => {
   const currentUser = useSelector(selectCurrentUser);
@@ -29,11 +28,10 @@ const Navigation = () => {
     //recieve categories from firebase base
     let categories = async () => {
       const categories = await recieveCategories();
-      dispatch(recieveCategoriesHandler(categories));
+      dispatch(categoriesAction.recieveCategories({ categories }));
     };
 
     categories();
-    console.log(categories);
   }, []);
 
   return (

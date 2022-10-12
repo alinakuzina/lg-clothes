@@ -5,7 +5,6 @@ import Authentification from "./routes/Authentification/Authentification";
 import Shop from "./routes/Shop/Shop.jsx";
 import Checkout from "./routes/Checkout/Checkout.jsx";
 import { useContext, useEffect } from "react";
-import { UserContext } from "./context/UserContext.jsx";
 import {
   onAuthStateChangeListener,
   createUserDocumentFromAuth,
