@@ -4,7 +4,7 @@ const PRODUCTS_INITIAL_STATE = {
   products: [],
 };
 
-export const ProductsSlice = createSlice({
+export const productsSlice = createSlice({
   name: "products",
   initialState: PRODUCTS_INITIAL_STATE,
   reducers: {
@@ -14,4 +14,4 @@ export const ProductsSlice = createSlice({
   },
 });
 
-export const productsActions = ProductsSlice.actions;
+export const productsActions = productsSlice.actions;

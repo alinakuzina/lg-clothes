@@ -2,12 +2,17 @@ import style from "./ProductCard.module.scss";
 import Button from "../Button/Button";
 import btnStyle from "../Button/Button.module.scss";
 import { ReactComponent as HeartLogo } from "../../assets/heart.svg";
-import { useState, useContext } from "react";
-import { CartContext } from "../../context/CartContext";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { cartActions } from "../../store/Cart/CartReducer";
 
 const ProductCard = ({ product }) => {
+  const dispatch = useDispatch();
   const [visibleSizes, setVisibleSizes] = useState(false);
-  const { addItemToCart } = useContext(CartContext);
+  const addItemToCart = (product, size) => {
+    dispatch(cartActions.addItemToCart({ productToAdd: product, size: size }));
+  };
+
   const openSizesHandler = () => {
     setVisibleSizes((prev) => !prev);
   };

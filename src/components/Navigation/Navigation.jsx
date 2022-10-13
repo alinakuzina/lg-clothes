@@ -7,18 +7,18 @@ import MobileNav from "./MobileNav";
 import { signOutUser } from "../../utilits/Farebase";
 import CartIcon from "../Cart/CartPreview/CartIcon/CartIcon";
 import CartDropdown from "../Cart/CartPreview/CartDropdown/CartDropdown";
-import { CartContext } from "../../context/CartContext";
 import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../../store/User/UserSelector";
 import { selectCategories } from "../../store/Categories/CategoriesSelector";
 import { recieveCategories } from "../../utilits/Farebase";
 import { useDispatch } from "react-redux";
 import { categoriesAction } from "../../store/Categories/CategoriesReducer";
+import { selectIsCartOpen } from "../../store/Cart/CartSelector";
 
 const Navigation = () => {
   const currentUser = useSelector(selectCurrentUser);
   const categories = useSelector(selectCategories);
-  const { isCartOpen } = useContext(CartContext);
+  const isCartOpen = useSelector(selectIsCartOpen);
   const dispatch = useDispatch();
   const signOutHandler = async () => {
     await signOutUser();
