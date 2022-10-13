@@ -8,10 +8,11 @@ import { CartContext } from "../../context/CartContext";
 const ProductCard = ({ product }) => {
   const [visibleSizes, setVisibleSizes] = useState(false);
   const { addItemToCart } = useContext(CartContext);
-
   const openSizesHandler = () => {
     setVisibleSizes((prev) => !prev);
   };
+
+  const productsSizes = [...product.variantSizes];
 
   const addCartHandler = (product, size) => {
     setVisibleSizes((prev) => !prev);
@@ -39,7 +40,7 @@ const ProductCard = ({ product }) => {
             visibleSizes ? style.visible_sizes : ""
           }`}
         >
-          {product.variantSizes
+          {productsSizes
             .sort((a, b) => a.orderFilter - b.orderFilter)
             .map((size) => (
               <div

@@ -10,7 +10,7 @@ import CartDropdown from "../Cart/CartPreview/CartDropdown/CartDropdown";
 import { CartContext } from "../../context/CartContext";
 import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../../store/User/UserSelector";
-import { selectCategories } from "../../store/Categories/CategoriesSelection";
+import { selectCategories } from "../../store/Categories/CategoriesSelector";
 import { recieveCategories } from "../../utilits/Farebase";
 import { useDispatch } from "react-redux";
 import { categoriesAction } from "../../store/Categories/CategoriesReducer";

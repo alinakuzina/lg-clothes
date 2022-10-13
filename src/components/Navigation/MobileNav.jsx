@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import style from "./MobileNav.module.scss";
 import { Fragment, useState, useContext } from "react";
 import { useSelector } from "react-redux";
-import { selectCategories } from "../../store/Categories/CategoriesSelection";
+import { selectCategories } from "../../store/Categories/CategoriesSelector";
 
 let MobileNav = (props) => {
   let [open, setOpen] = useState(false);

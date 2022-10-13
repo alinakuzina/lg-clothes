@@ -4,13 +4,13 @@ import Navigation from "./components/Navigation/Navigation";
 import Authentification from "./routes/Authentification/Authentification";
 import Shop from "./routes/Shop/Shop.jsx";
 import Checkout from "./routes/Checkout/Checkout.jsx";
-import { useContext, useEffect } from "react";
+import { useEffect } from "react";
 import {
   onAuthStateChangeListener,
   createUserDocumentFromAuth,
 } from "./utilits/Farebase";
 import { useDispatch, useSelector } from "react-redux";
-import { selectCategories } from "./store/Categories/CategoriesSelection.js";
+import { selectCategories } from "./store/Categories/CategoriesSelector.js";
 import { userActions } from "./store/User/UserReducer.js";
 const App = () => {
   const dispatch = useDispatch();

@@ -4,12 +4,16 @@ import { ProductContext } from "../../context/ProductsContext";
 import ProductCard from "../../components/ProductCard/ProductCard";
 import style from "./ShopPage.module.scss";
 import { useEffect } from "react";
-import { useSelector } from "react-redux";
-import { selectCategories } from "../../store/Categories/CategoriesSelection";
-
+import { selectCategories } from "../../store/Categories/CategoriesSelector";
+import { useDispatch, useSelector } from "react-redux";
+import { productsActions } from "../../store/Products/ProductsReducer";
+import { selectProducts } from "../../store/Products/ProductsSelector";
+import { recieveProducts } from "../../utilits/Farebase";
 const ShopPage = ({ url }) => {
-  const { products, recieveProductsHandler } = useContext(ProductContext);
+  const products = useSelector(selectProducts);
   const categories = useSelector(selectCategories);
+  console.log(products);
+  const dispatch = useDispatch();
 
   let navigate = useNavigate();
   let redirectToPage = (e) => {
@@ -18,7 +22,20 @@ const ShopPage = ({ url }) => {
   };
 
   useEffect(() => {
-    recieveProductsHandler(url);
+    let recieveProductsFromBase = async () => {
+      let newProducts = await recieveProducts(url);
+      if (newProducts.length > 0) {
+        newProducts.forEach((el) => {
+          if (el.variantSizes.length === 0) {
+            el.variantSizes.push({ filterCode: "one size", orderFilter: 1 });
+          }
+        });
+        dispatch(productsActions.recieveProducts({ products: newProducts }));
+      } else {
+        console.log("No such document!");
+      }
+    };
+    recieveProductsFromBase();
   }, [url]);
 
   let currentCategory = `${url.split("_")[0]}_new`;
