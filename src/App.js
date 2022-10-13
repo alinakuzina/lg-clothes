@@ -9,10 +9,9 @@ import {
   onAuthStateChangeListener,
   createUserDocumentFromAuth,
 } from "./utilits/Farebase";
-import { setCurrentUser } from "./store/User/UserAction.js";
 import { useDispatch, useSelector } from "react-redux";
 import { selectCategories } from "./store/Categories/CategoriesSelection.js";
-
+import { userActions } from "./store/User/UserReducer.js";
 const App = () => {
   const dispatch = useDispatch();
   const categories = useSelector(selectCategories);
@@ -31,7 +30,7 @@ const App = () => {
       if (user) {
         createUserDocumentFromAuth(user);
       }
-      dispatch(setCurrentUser(user));
+      dispatch(userActions.setCurrentUser({ user: user }));
     });
 
     return unsubscribe;
