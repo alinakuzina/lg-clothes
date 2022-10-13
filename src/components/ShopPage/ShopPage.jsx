@@ -1,6 +1,5 @@
-import React, { useContext } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
-import { ProductContext } from "../../context/ProductsContext";
 import ProductCard from "../../components/ProductCard/ProductCard";
 import style from "./ShopPage.module.scss";
 import { useEffect } from "react";
@@ -12,7 +11,6 @@ import { recieveProducts } from "../../utilits/Farebase";
 const ShopPage = ({ url }) => {
   const products = useSelector(selectProducts);
   const categories = useSelector(selectCategories);
-  console.log(products);
   const dispatch = useDispatch();
 
   let navigate = useNavigate();
