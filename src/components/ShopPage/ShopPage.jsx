@@ -34,6 +34,7 @@ const ShopPage = ({ url }) => {
       }
     };
     recieveProductsFromBase();
+    window.scrollTo(0, 0);
   }, [url]);
 
   let currentCategory = `${url.split("_")[0]}_new`;
