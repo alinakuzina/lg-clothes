@@ -1,7 +1,5 @@
 import "./CartIcon.scss";
 import { ReactComponent as ShoppingIcon } from "../../../../assets/shopping-bag-icon.svg";
-import { CartContext } from "../../../../context/CartContext";
-import { useContext } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { cartActions } from "../../../../store/Cart/CartReducer";
 import {

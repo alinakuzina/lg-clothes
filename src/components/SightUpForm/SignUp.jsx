@@ -6,7 +6,6 @@ import {
 import Button from "../Button/Button";
 import btnStyle from "../Button/Button.module.scss";
 import style from "./SignUp.module.scss";
-import { UserContext } from "../../context/UserContext";
 
 const defaultFormFields = {
   displayName: "",
@@ -22,7 +21,6 @@ const SignUpForm = (props) => {
   const [passwordLengthError, setPasswordLengthError] = useState(false);
   const [emailInvalidError, setEmailInvalidError] = useState(false);
   const [emailAlreadyInUseError, setEmailAlreadyInUseError] = useState(false);
-  const context = useContext(UserContext);
 
   const handleChange = (event) => {
     const { name, value } = event.target;

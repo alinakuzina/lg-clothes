@@ -1,6 +1,6 @@
 import CartItemInPage from "./CartItemOnPage";
 import { useContext } from "react";
-import { CartContext } from "../../../context/CartContext";
+
 import style from "./CartItemsPage.module.scss";
 import CartTotal from "./CartTotal";
 import { useSelector, useDispatch } from "react-redux";
