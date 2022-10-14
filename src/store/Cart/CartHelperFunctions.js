@@ -2,7 +2,6 @@ export const addItemToArray = (cartItems, productToAdd, size) => {
   let newCartItems;
 
   if (cartItems.length === 0) {
-    // newItemsCount = 1;
     newCartItems = [{ ...productToAdd, ectedSize: size }];
   }
 
