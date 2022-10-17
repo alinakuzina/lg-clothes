@@ -5,14 +5,20 @@ import style from "./ShopPage.module.scss";
 import { useEffect } from "react";
 import { selectCategories } from "../../store/Categories/CategoriesSelector";
 import { useDispatch, useSelector } from "react-redux";
-import { productsActions } from "../../store/Products/ProductsReducer";
-import { selectProducts } from "../../store/Products/ProductsSelector";
+import {
+  selectProducts,
+  isLoadingProducts,
+  errorProducts,
+} from "../../store/Products/ProductsSelector";
 import { fetchProductsData } from "../../store/Products/ProductsAction";
+import Loader from "../Loader/Loade";
 
 const ShopPage = ({ url }) => {
   const products = useSelector(selectProducts);
   const categories = useSelector(selectCategories);
   const dispatch = useDispatch();
+  const isLoading = useSelector(isLoadingProducts);
+  const error = useSelector(errorProducts);
 
   let navigate = useNavigate();
   let redirectToPage = (e) => {
@@ -44,15 +50,21 @@ const ShopPage = ({ url }) => {
             </div>
           ))}
       </div>
-
-      <div className={style.products_container}>
-        {products.map((product) => (
-          <ProductCard
-            key={product.code + Math.random()}
-            product={product}
-          ></ProductCard>
-        ))}
-      </div>
+      {isLoading && (
+        <div className={style.loader_container}>
+          <Loader />
+        </div>
+      )}
+      {!isLoading && (
+        <div className={style.products_container}>
+          {products.map((product) => (
+            <ProductCard
+              key={product.code + Math.random()}
+              product={product}
+            ></ProductCard>
+          ))}
+        </div>
+      )}
     </div>
   );
 };

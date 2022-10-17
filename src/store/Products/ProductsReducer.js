@@ -26,6 +26,10 @@ export const productsSlice = createSlice({
   },
   extraReducers: (builder) => {
     // Add reducers for additional action types here, and handle loading state as needed
+    builder.addCase(fetchProductsData.pending, (state, action) => {
+      state.error = false;
+      state.isLoading = true;
+    });
     builder.addCase(fetchProductsData.fulfilled, (state, action) => {
       if (action.payload.products) {
         state.error = false;
@@ -37,33 +41,7 @@ export const productsSlice = createSlice({
       state.error = true;
       state.isLoading = false;
     });
-    builder.addCase(fetchProductsData.pending, (state, action) => {
-      state.error = false;
-      state.isLoading = true;
-    });
   },
 });
 
 export const productsActions = productsSlice.actions;
-
-// export const fetchProductsData = (url) => {
-//   return async (dispatch) => {
-//     dispatch(productsActions.getProductsStart());
-//     try {
-//       let newProducts = await recieveProducts(url);
-//       if (newProducts.length > 0) {
-//         newProducts.forEach((el) => {
-//           if (el.variantSizes.length === 0) {
-//             el.variantSizes.push({ filterCode: "one size", orderFilter: 1 });
-//           }
-//         });
-//         dispatch(
-//           productsActions.fetchProductsSuccess({ products: newProducts })
-//         );
-//       }
-//     } catch (err) {
-//       console.log(err + "No such document!");
-//       dispatch(productsActions.getProductsFailed());
-//     }
-//   };
-// };
