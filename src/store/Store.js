@@ -6,6 +6,7 @@ import { productsSlice } from "./Products/ProductsReducer";
 import { cartSlice } from "./Cart/CartReducer";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
+import thunk from "redux-thunk";
 
 const rootReducer = combineReducers({
   user: userSlice.reducer,
@@ -26,7 +27,9 @@ const persistedReducer = persistReducer(persistConfig, rootReducer);
 //root-reducer
 export const store = configureStore({
   reducer: persistedReducer,
-  middleware: [logger],
+  //see login only in development
+  // middleware: [logger],
+  middleware: [process.env.NODE_ENV === "development" && logger, thunk],
 });
 
 export const persistor = persistStore(store);
