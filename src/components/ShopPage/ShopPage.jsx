@@ -56,6 +56,12 @@ const ShopPage = ({ url }) => {
           <Loader />
         </div>
       )}
+      {error && (
+        <p>
+          Something went wrong. Please check your internet connection and try
+          again.
+        </p>
+      )}
       {!isLoading && (
         <div className={style.products_container}>
           {products.map((product) => (

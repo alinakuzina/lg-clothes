@@ -9,7 +9,7 @@ import {
   onAuthStateChangeListener,
   createUserDocumentFromAuth,
 } from "./utilits/Farebase";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { userActions } from "./store/User/UserReducer.js";
 const App = () => {
   const dispatch = useDispatch();
