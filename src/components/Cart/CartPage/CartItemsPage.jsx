@@ -1,5 +1,4 @@
 import CartItemInPage from "./CartItemOnPage";
-import { useContext } from "react";
 
 import style from "./CartItemsPage.module.scss";
 import CartTotal from "./CartTotal";
@@ -7,10 +6,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { cartActions } from "../../../store/Cart/CartReducer";
 import {
   selectCartItems,
-  selectIsCartOpen,
-  selectItemsCount,
   selectTotalPrice,
 } from "../../../store/Cart/CartSelector";
+import { useEffect } from "react";
 
 const CartItemsPage = () => {
   const dispatch = useDispatch();
@@ -25,6 +23,10 @@ const CartItemsPage = () => {
   const reduceItemQuantity = (item) => {
     dispatch(cartActions.reduceItemQuantity({ item: item }));
   };
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <div className={style.cart_page_container}>

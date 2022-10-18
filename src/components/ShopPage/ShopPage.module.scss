@@ -3,7 +3,9 @@
   margin-bottom: 3rem;
 
   .loader_container {
-    margin: 0 50vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }
 

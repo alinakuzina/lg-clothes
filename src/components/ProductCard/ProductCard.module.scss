@@ -4,6 +4,10 @@
   align-items: center;
 }
 
+.hide {
+  opacity: 0;
+}
+
 .card_details_container {
   width: 100%;
   display: grid;
