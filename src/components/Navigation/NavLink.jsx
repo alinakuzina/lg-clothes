@@ -7,12 +7,13 @@ let NavLink = (props) => {
   const closeDropdownHandler = () => {
     // setIsOpenDropdown((prev) => !prev);
   };
+  const linkTag = props.category.tagCode.split("_")[0];
 
   return (
     <div className={style.dropdown}>
       <Link
         className={style.nav_link}
-        to={`${props.category.tagCode}`}
+        to={`${linkTag}/${props.category.tagCode}`}
         onClick={closeDropdownHandler}
         id={`${props.category.tagCode}`}
         key={`${props.tagCode}${Math.random()}`}
@@ -25,7 +26,7 @@ let NavLink = (props) => {
             return (
               <Link
                 className={style.nav_link_dropdown}
-                to={`${el.tagCode}`}
+                to={`${linkTag}/${el.tagCode}`}
                 id={`${el.tagCode}`}
                 key={`${props.tagCode}${Math.random()}`}
               >

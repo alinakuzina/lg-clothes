@@ -23,7 +23,8 @@ const ShopPage = ({ url }) => {
   let navigate = useNavigate();
   let redirectToPage = (e) => {
     let link = e.target.id;
-    navigate(`/${link}`);
+    let firstPartLink = link.split("_")[0];
+    navigate(`/${firstPartLink}/${link}`);
   };
 
   useEffect(() => {

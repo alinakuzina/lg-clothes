@@ -10,20 +10,9 @@ import {
   createUserDocumentFromAuth,
 } from "./utilits/Farebase";
 import { useDispatch, useSelector } from "react-redux";
-import { selectCategories } from "./store/Categories/CategoriesSelector.js";
 import { userActions } from "./store/User/UserReducer.js";
 const App = () => {
   const dispatch = useDispatch();
-  const categories = useSelector(selectCategories);
-  let subCategoriesArray = categories.map((category) =>
-    category.subCategories.map((subCat) => (
-      <Route
-        key={subCat.id + Math.random()}
-        path={subCat.tagCode}
-        element={<Shop url={subCat.tagCode} />}
-      />
-    ))
-  );
 
   useEffect(() => {
     const unsubscribe = onAuthStateChangeListener((user) => {
@@ -38,17 +27,13 @@ const App = () => {
 
   return (
     <Routes>
-      <Route path="/" element={<Navigation />}>
+      <Route exact path="/" element={<Navigation />}>
         <Route index element={<Home />} />
         <Route path="authentication" element={<Authentification />} />
-        {categories.map((category) => (
-          <Route
-            key={category.id + Math.random()}
-            path={category.tagCode}
-            element={<Shop url={category.tagCode} />}
-          />
-        ))}
-        {subCategoriesArray.flat()}
+        <Route path="men/:path" element={<Shop />} />
+        <Route path="ladies/:path" element={<Shop />} />
+        <Route path="home/:path" element={<Shop />} />
+        <Route path="kids/:path" element={<Shop />} />
         <Route path="checkout" element={<Checkout />} />
       </Route>
     </Routes>

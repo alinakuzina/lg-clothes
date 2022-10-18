@@ -1,7 +1,9 @@
+import { useParams } from "react-router-dom";
 import ShopPage from "../../components/ShopPage/ShopPage";
 
-const Shop = ({ url }) => {
-  return <ShopPage url={url} />;
+const Shop = () => {
+  const { path } = useParams();
+  return <ShopPage url={path} />;
 };
 
 export default Shop;

@@ -3,7 +3,10 @@ import { Link } from "react-router-dom";
 
 const CategoryItem = ({ category }) => {
   return (
-    <Link className={style.category_container} to={`/${category.tagCode}`}>
+    <Link
+      className={style.category_container}
+      to={`${category.tagCode.split("_")[0]}/${category.tagCode}`}
+    >
       <div className={style.category_body_container}>
         <h2>{category.title}</h2>
         <p>Shop now</p>

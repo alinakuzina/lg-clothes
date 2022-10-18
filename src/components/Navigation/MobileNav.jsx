@@ -7,7 +7,6 @@ import { selectCategories } from "../../store/Categories/CategoriesSelector";
 let MobileNav = (props) => {
   let [open, setOpen] = useState(false);
   let categories = useSelector(selectCategories);
-
   let openMabileNavHandler = () => {
     setOpen((prevState) => {
       return !prevState;
@@ -31,10 +30,12 @@ let MobileNav = (props) => {
         className={`${style.mobile_container} ${open && style.open_mobile_nav}`}
       >
         {categories.map((category) => {
+          const linkTag = category.tagCode.split("_")[0];
+
           return (
             <Link
               className={style.mobile_nav_item}
-              to={`/${category.tagCode}`}
+              to={`${linkTag}/${category.tagCode}`}
               key={`/${category.tagCode}${Math.random()}`}
               onClick={openMabileNavHandler}
             >
