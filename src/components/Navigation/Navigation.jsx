@@ -14,7 +14,7 @@ import { recieveCategories } from "../../utilits/Farebase";
 import { useDispatch } from "react-redux";
 import { categoriesAction } from "../../store/Categories/CategoriesReducer";
 import { selectIsCartOpen } from "../../store/Cart/CartSelector";
-
+import { ReactComponent as HeartLogo } from "../../assets/heart.svg";
 const Navigation = () => {
   const currentUser = useSelector(selectCurrentUser);
   const categories = useSelector(selectCategories);
@@ -46,18 +46,20 @@ const Navigation = () => {
           })}
 
           <div className={style.permanent_items}>
+            <div className={style.heart_container}>
+              <HeartLogo className={style.heart_logo} />
+            </div>
+            <CartIcon />
             {!currentUser && (
               <Link className={style.nav_link_sign} to="/authentication">
                 Sign In
               </Link>
             )}
-
             {currentUser && (
               <span className={style.nav_link_sign} onClick={signOutHandler}>
                 Sign Out
               </span>
             )}
-            <CartIcon />
           </div>
           {isCartOpen && <CartDropdown />}
         </div>
