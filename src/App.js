@@ -4,6 +4,7 @@ import Navigation from "./components/Navigation/Navigation";
 import Authentification from "./routes/Authentification/Authentification";
 import Shop from "./routes/Shop/Shop.jsx";
 import Checkout from "./routes/Checkout/Checkout.jsx";
+import Favorites from "./routes/Favorites/Favorites.jsx";
 import { useEffect } from "react";
 import {
   onAuthStateChangeListener,
@@ -35,6 +36,7 @@ const App = () => {
         <Route path="home/:path" element={<Shop />} />
         <Route path="kids/:path" element={<Shop />} />
         <Route path="checkout" element={<Checkout />} />
+        <Route path="favorites" element={<Favorites />} />
       </Route>
     </Routes>
   );

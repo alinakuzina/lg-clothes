@@ -15,6 +15,7 @@ import { useDispatch } from "react-redux";
 import { categoriesAction } from "../../store/Categories/CategoriesReducer";
 import { selectIsCartOpen } from "../../store/Cart/CartSelector";
 import { ReactComponent as HeartLogo } from "../../assets/heart.svg";
+
 const Navigation = () => {
   const currentUser = useSelector(selectCurrentUser);
   const categories = useSelector(selectCategories);
@@ -46,9 +47,9 @@ const Navigation = () => {
           })}
 
           <div className={style.permanent_items}>
-            <div className={style.heart_container}>
+            <Link className={style.heart_container} to={"/favorites"}>
               <HeartLogo className={style.heart_logo} />
-            </div>
+            </Link>
             <CartIcon />
             {!currentUser && (
               <Link className={style.nav_link_sign} to="/authentication">

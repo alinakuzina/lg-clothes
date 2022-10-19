@@ -8,6 +8,10 @@ import { cartActions } from "../../store/Cart/CartReducer";
 import { productsActions } from "../../store/Products/ProductsReducer";
 import { selectFavoritesProducts } from "../../store/Products/ProductsSelector";
 import { useSelector } from "react-redux";
+
+
+
+
 const ProductCard = ({ product }) => {
   const dispatch = useDispatch();
   const [visibleSizes, setVisibleSizes] = useState(false);
