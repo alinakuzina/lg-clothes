@@ -10,6 +10,7 @@ import SignIn from "../../components/SignIn/SignIn";
 import image from "../../assets/auth-img.jpg";
 import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../../store/User/UserSelector";
+import { useEffect } from "react";
 
 const Authentification = () => {
   const [showSignIn, setShowSignIn] = useState(true);
@@ -17,6 +18,7 @@ const Authentification = () => {
   const showSignInHandler = () => {
     setShowSignIn((prev) => !prev);
   };
+
   return (
     <div className={style.signin_container}>
       <div>

@@ -183,6 +183,7 @@ const SignUpForm = (props) => {
             That email address is already in use.
           </div>
         )}
+
         <div className={style.buttons_container}>
           <Button type="submit" classes={btnStyle.submit}>
             Create account
