@@ -5,6 +5,7 @@ const PRODUCTS_INITIAL_STATE = {
   products: [],
   isLoading: false,
   error: null,
+  favorites: [],
 };
 
 export const productsSlice = createSlice({
@@ -22,6 +23,15 @@ export const productsSlice = createSlice({
     getProductsStart(state) {
       state.error = false;
       state.isLoading = true;
+    },
+    addToFavorites(state, action) {
+      console.log(state);
+      state.favorites.push(action.payload.item);
+    },
+    removeFromFavorites(state, action) {
+      state.favorites = state.favorites.filter(
+        (el) => el.articleCodes[0] !== action.payload.item.articleCodes[0]
+      );
     },
   },
   extraReducers: (builder) => {

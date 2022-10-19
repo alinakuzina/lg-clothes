@@ -2,16 +2,40 @@ import style from "./ProductCard.module.scss";
 import Button from "../Button/Button";
 import btnStyle from "../Button/Button.module.scss";
 import { ReactComponent as HeartLogo } from "../../assets/heart.svg";
-import { Fragment, useState } from "react";
+import { Fragment, useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { cartActions } from "../../store/Cart/CartReducer";
-import Loader from "../Loader/Loade";
+import { productsActions } from "../../store/Products/ProductsReducer";
+import { selectFavoritesProducts } from "../../store/Products/ProductsSelector";
+import { useSelector } from "react-redux";
 const ProductCard = ({ product }) => {
   const dispatch = useDispatch();
   const [visibleSizes, setVisibleSizes] = useState(false);
   const [isLoadedImg, setIsLoadedImg] = useState(false);
+  const [isFavoriteItem, setIsFavoriteItem] = useState(false);
+
+  let favoritesArr = useSelector(selectFavoritesProducts);
+
+  useEffect(() => {
+    favoritesArr.forEach((el) => {
+      if (el.articleCodes[0] === product.articleCodes[0]) {
+        setIsFavoriteItem(true);
+      }
+    });
+  }, []);
+
   const addItemToCart = (product, size) => {
     dispatch(cartActions.addItemToCart({ productToAdd: product, size: size }));
+  };
+
+  const addRemovefromFavoritesHandler = () => {
+    if (isFavoriteItem) {
+      setIsFavoriteItem(false);
+      dispatch(productsActions.removeFromFavorites({ item: product }));
+    } else {
+      setIsFavoriteItem(true);
+      dispatch(productsActions.addToFavorites({ item: product }));
+    }
   };
 
   const openSizesHandler = () => {
@@ -37,7 +61,12 @@ const ProductCard = ({ product }) => {
             onLoad={() => setIsLoadedImg(true)}
           />
 
-          <HeartLogo className={style.heart_logo} />
+          <HeartLogo
+            className={`${isFavoriteItem ? style.heart_logo_full : ""} ${
+              style.heart_logo
+            }`}
+            onClick={addRemovefromFavoritesHandler}
+          />
           <Button
             onClick={openSizesHandler}
             classes={btnStyle.buttonProduct}
