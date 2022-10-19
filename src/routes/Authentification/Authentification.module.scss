@@ -1,4 +1,4 @@
-.signin-container {
+.signin_container {
   padding-top: 7rem;
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -6,7 +6,7 @@
   overflow: hidden;
 }
 
-.auth-img {
+.auth_img {
   min-width: 100%;
   max-height: 100vh;
   flex-shrink: 0;
@@ -14,25 +14,40 @@
   top: 0;
 }
 
+.greating_container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 3rem;
+  align-items: center;
+  height: 100%;
+}
+
+.main_header {
+  font-size: 1.52rem;
+  font-weight: 200;
+  margin: 0;
+  padding: 0;
+}
+
 @media screen and (max-height: 40.3em) {
-  .signin-container {
+  .signin_container {
     overflow-y: scroll;
   }
 }
 
 @media screen and (max-width: 46em) {
-  .signin-container {
+  .signin_container {
     grid-template-columns: 2fr 1fr;
   }
 }
 
 @media screen and (max-width: 39em) {
-  .signin-container {
+  .signin_container {
     grid-template-columns: 1fr;
     overflow-y: scroll;
   }
 
-  .auth-img {
+  .auth_img {
     display: none;
   }
 }

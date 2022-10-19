@@ -1,4 +1,4 @@
-import "./Authentification.scss";
+import style from "./Authentification.module.scss";
 import { useState } from "react";
 import { getRedirectResult } from "firebase/auth";
 import {
@@ -8,21 +8,34 @@ import {
 import SignUpForm from "../../components/SightUpForm/SignUp";
 import SignIn from "../../components/SignIn/SignIn";
 import image from "../../assets/auth-img.jpg";
+import { useSelector } from "react-redux";
+import { selectCurrentUser } from "../../store/User/UserSelector";
 
 const Authentification = () => {
   const [showSignIn, setShowSignIn] = useState(true);
-
+  const user = useSelector(selectCurrentUser);
   const showSignInHandler = () => {
     setShowSignIn((prev) => !prev);
   };
   return (
-    <div className="signin-container">
+    <div className={style.signin_container}>
       <div>
-        {showSignIn && <SignIn redirectSingUp={showSignInHandler} />}
-        {!showSignIn && <SignUpForm redirectSingIn={showSignInHandler} />}
+        {user && (
+          <div className={style.greating_container}>
+            <div className={style.main_header}>
+              Wellcome back {user.displayName} !
+            </div>
+            <div>We have many new items for you !</div>
+          </div>
+        )}
+
+        {showSignIn && !user && <SignIn redirectSingUp={showSignInHandler} />}
+        {!showSignIn && !user && (
+          <SignUpForm redirectSingIn={showSignInHandler} />
+        )}
       </div>
 
-      <img src={image} className="auth-img" />
+      <img src={image} className={style.auth_img} />
     </div>
   );
 };
