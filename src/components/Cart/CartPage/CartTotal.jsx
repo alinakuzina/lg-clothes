@@ -1,10 +1,15 @@
 import style from "./CartTotal.module.scss";
 import Button from "../../Button/Button";
 import btnStyle from "../../Button/Button.module.scss";
+import { useNavigate } from "react-router-dom";
 
 const CartTotal = ({ total }) => {
   let dateNow = new Date();
+  const navigate = useNavigate();
   dateNow.setDate(dateNow.getDate() + 5);
+  const payHandler = () => {
+    navigate("/payment");
+  };
 
   return (
     <div className={style.cart_total_container}>
@@ -23,7 +28,9 @@ const CartTotal = ({ total }) => {
           </div>
         </div>
       </div>
-      <Button classes={btnStyle.buyNow}>Pay now </Button>
+      <Button classes={btnStyle.buyNow} onClick={payHandler}>
+        Pay now
+      </Button>
     </div>
   );
 };

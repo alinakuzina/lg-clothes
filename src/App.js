@@ -12,6 +12,8 @@ import {
 } from "./utilits/Farebase";
 import { useDispatch } from "react-redux";
 import { userActions } from "./store/User/UserReducer.js";
+import Payment from "./routes/Payment/Payment.jsx";
+
 const App = () => {
   const dispatch = useDispatch();
 
@@ -37,6 +39,7 @@ const App = () => {
         <Route path="kids/:path" element={<Shop />} />
         <Route path="checkout" element={<Checkout />} />
         <Route path="favorites" element={<Favorites />} />
+        <Route path="payment" element={<Payment />} />
       </Route>
     </Routes>
   );
