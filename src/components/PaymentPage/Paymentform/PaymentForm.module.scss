@@ -1,74 +1,94 @@
 @mixin shrinkLabel {
-  top: -14px;
-  font-size: 12px;
+  top: -3px;
+  font-size: 10px;
   color: var(--black);
 }
 
-.form_input {
-  background: none;
-  background-color: white;
-  color: var(--black);
-  font-size: 1.2rem;
-  padding: 10px 10px 10px 5px;
-  display: block;
-  width: 100%;
-  border: none;
-  border-radius: 0;
-  border-bottom: 1px solid var(--black);
-  margin: 1.5rem 0;
-  position: relative;
-
-  &.error_line {
-    border-bottom: 2px solid var(--red);
+.form {
+  .grid_two_column {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
   }
 
-  &:focus {
-    outline: none;
+  .form_input {
+    background: none;
     background-color: white;
+    color: var(--black);
+    font-size: 1rem;
+    padding: 10px 10px 10px 5px;
+    display: block;
+    width: 100%;
+    border: none;
+    border-radius: 0;
+    border-bottom: 1px solid var(--black);
+    margin: 0.5rem 0;
+    position: relative;
+
+    &.error_line {
+      border-bottom: 2px solid var(--red);
+    }
+
+    &:focus {
+      outline: none;
+      background-color: white;
+    }
+
+    &:focus ~ .form_input_label {
+      @include shrinkLabel();
+    }
   }
 
-  &:focus ~ .form_input_label {
-    @include shrinkLabel();
+  .form_input:-webkit-autofill,
+  form_input:-webkit-autofill:hover,
+  form_input:-webkit-autofill:focus,
+  form_input:-webkit-autofill:active {
+    box-shadow: 0 0 0 30px white inset;
   }
-}
 
-.form_input:-webkit-autofill,
-form_input:-webkit-autofill:hover,
-form_input:-webkit-autofill:focus,
-form_input:-webkit-autofill:active {
-  box-shadow: 0 0 0 30px white inset;
-}
-
-.group {
-  position: relative;
-}
-
-.form_input_label {
-  color: rgba(0, 0, 0, 0.488);
-  font-size: 1.2rem;
-  font-weight: normal;
-  position: absolute;
-  pointer-events: none;
-  left: 5px;
-  top: 1rem;
-  transition: 300ms ease all;
-
-  &.shrink {
-    @include shrinkLabel();
+  .group {
+    position: relative;
   }
-}
 
-.country_select {
-  color: var(--black);
-  font-size: 1.2rem;
-  padding: 10px 10px 10px 5px;
-  border: none;
-  border-bottom: 0.01rem solid var(--black);
-  border-top: 0.01rem solid var(--black);
-  width: 40%;
-}
+  .form_input_label {
+    color: rgba(0, 0, 0, 0.488);
+    font-size: 0.8rem;
+    font-weight: normal;
+    position: absolute;
+    pointer-events: none;
+    left: 5px;
+    top: 1.1rem;
+    transition: 300ms ease all;
 
-.group_flexbox {
-  display: flex;
-  gap: 3rem;
+    &.shrink {
+      @include shrinkLabel();
+    }
+  }
+
+  .country_select {
+    color: var(--black);
+    font-size: 0.9rem;
+    padding: 10px 10px 10px 5px;
+    border: none;
+    border-bottom: 1px solid var(--black);
+    width: 110%;
+    margin: 0.5rem 0;
+  }
+
+  .main_header {
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin: 0;
+    margin-top: 2rem;
+    padding: 0;
+  }
+
+  .aditional_header {
+    font-size: 0.9rem;
+    color: var(--brown);
+    font-weight: 400;
+
+    padding: 0;
+    margin-bottom: 2rem;
+  }
 }

@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 import Button from "../Button/Button";
 import btnStyle from "../Button/Button.module.scss";
 import PaymentItem from "./PaymentItem/PaymentItem";
-import PaymentForm from "./Paymentform/PaymentForm";
+import PaymentForm from "./PaymentForm/PaymentForm";
 const PaymentPage = () => {
   let total = useSelector(selectTotalPrice);
   let items = useSelector(selectCartItems);
