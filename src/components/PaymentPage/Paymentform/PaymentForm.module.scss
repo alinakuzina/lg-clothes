@@ -11,6 +11,20 @@
     gap: 2rem;
   }
 
+  .grid_three_column {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1rem;
+    margin-top: 1rem;
+    align-items: center;
+  }
+
+  .label_date {
+    color: var(--black);
+    font-size: 0.8rem;
+    font-weight: normal;
+  }
+
   .form_input {
     background: none;
     background-color: white;
@@ -65,7 +79,7 @@
     }
   }
 
-  .country_select {
+  .select {
     color: var(--black);
     font-size: 0.9rem;
     padding: 10px 10px 10px 5px;

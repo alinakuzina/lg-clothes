@@ -1,6 +1,7 @@
 import style from "./PaymentForm.module.scss";
 import { useState } from "react";
 import { CountryDropdown } from "react-country-region-selector";
+import CreditCard from "../CreditCard/CreditCard";
 
 const PaymentForm = () => {
   let [firstName, setFirstName] = useState("");
@@ -9,6 +10,20 @@ const PaymentForm = () => {
   let [postCode, setPostCode] = useState("");
   let [city, setCity] = useState("");
   let [country, setCountry] = useState("Germany");
+  const [number, SetNumber] = useState("");
+  const [name, SetName] = useState("");
+  const [month, SetMonth] = useState("");
+  let [expiry, SetExpiry] = useState("");
+  const [cvv, SetCvv] = useState("");
+
+  const handleDate = (e) => {
+    SetMonth(e.target.value);
+    SetExpiry(e.target.value);
+  };
+  const handleExpiry = (e) => {
+    SetExpiry(month.concat(e.target.value));
+  };
+
   return (
     <form className={style.form}>
       <div className={style.main_header}>Shipping Adress</div>
@@ -109,8 +124,104 @@ const PaymentForm = () => {
         <CountryDropdown
           value={country}
           onChange={(e) => setCountry(e)}
-          classes={style.country_select}
+          classes={style.select}
         />
+      </div>
+
+      <div className={style.main_header}>Payment details</div>
+      <CreditCard />
+      <div className={style.group}>
+        <input
+          type="tel"
+          className={style.form_input}
+          value={number}
+          name="number"
+          autocomplete="cc-number"
+          maxlength="16"
+          pattern="[0-9]"
+          inputmode="numeric"
+          onChange={(e) => {
+            SetNumber(e.target.value);
+          }}
+        ></input>
+        <label
+          for="number"
+          className={`${style.form_input_label} 
+      ${number.length > 0 ? style.shrink : ""}`}
+        >
+          Card Number
+        </label>
+      </div>
+
+      <div className={style.group}>
+        <input
+          type="text"
+          className={style.form_input}
+          value={name}
+          name="name"
+          onChange={(e) => {
+            SetName(e.target.value);
+          }}
+        ></input>
+        <label
+          for="name"
+          className={`${style.form_input_label} 
+      ${name.length > 0 ? style.shrink : ""}`}
+        >
+          Card Name
+        </label>
+      </div>
+      <div className={style.grid_three_column}>
+        <label for="month" className={style.label_date}>
+          Expiration Date
+        </label>
+        <select className={style.select} name="expiry" onChange={handleDate}>
+          <option value=" ">Month</option>
+          <option value="01">Jan</option>
+          <option value="02">Feb</option>
+          <option value="03">Mar</option>
+          <option value="04">April</option>
+          <option value="05">May</option>
+          <option value="06">June</option>
+          <option value="07">July</option>
+          <option value="08">Aug</option>
+          <option value="09">Sep</option>
+          <option value="10">Oct</option>
+          <option value="11">Nov</option>
+          <option value="12">Dec</option>
+        </select>
+        <select className={style.select} name="expiry" onChange={handleExpiry}>
+          <option value=" ">Year</option>
+          <option value="22">2022</option>
+          <option value="23">2023</option>
+          <option value="24">2024</option>
+          <option value="25">2025</option>
+          <option value="26">2026</option>
+          <option value="27">2027</option>
+          <option value="28">2028</option>
+          <option value="29">2029</option>
+          <option value="30">2030</option>
+        </select>
+      </div>
+      <div className={style.group}>
+        <input
+          type="tel"
+          name="cvc"
+          maxlength="3"
+          className={style.form_input}
+          value={cvv}
+          pattern="\d*"
+          onChange={(e) => {
+            SetCvv(e.target.value);
+          }}
+        ></input>
+        <label
+          for="cvv"
+          className={`${style.form_input_label} 
+      ${cvv.length > 0 ? style.shrink : ""}`}
+        >
+          CVV
+        </label>
       </div>
     </form>
   );
