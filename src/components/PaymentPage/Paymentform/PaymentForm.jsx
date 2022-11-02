@@ -13,6 +13,7 @@ const PaymentForm = () => {
   const [number, SetNumber] = useState("");
   const [name, SetName] = useState("");
   const [month, SetMonth] = useState("");
+  const [year, SetYear] = useState("");
   let [expiry, SetExpiry] = useState("");
   const [cvv, SetCvv] = useState("");
 
@@ -21,6 +22,7 @@ const PaymentForm = () => {
     SetExpiry(e.target.value);
   };
   const handleExpiry = (e) => {
+    SetYear(e.target.value);
     SetExpiry(month.concat(e.target.value));
   };
 
@@ -129,23 +131,28 @@ const PaymentForm = () => {
       </div>
 
       <div className={style.main_header}>Payment details</div>
-      <CreditCard />
+      <CreditCard
+        name={name}
+        number={number}
+        cvv={cvv}
+        month={month}
+        year={year}
+      />
       <div className={style.group}>
         <input
           type="tel"
           className={style.form_input}
           value={number}
           name="number"
-          autocomplete="cc-number"
-          maxlength="16"
+          autoComplete="cc-number"
+          maxLength="16"
           pattern="[0-9]"
-          inputmode="numeric"
+          inputMode="numeric"
           onChange={(e) => {
             SetNumber(e.target.value);
           }}
         ></input>
         <label
-          for="number"
           className={`${style.form_input_label} 
       ${number.length > 0 ? style.shrink : ""}`}
         >
@@ -164,7 +171,6 @@ const PaymentForm = () => {
           }}
         ></input>
         <label
-          for="name"
           className={`${style.form_input_label} 
       ${name.length > 0 ? style.shrink : ""}`}
         >
@@ -172,9 +178,7 @@ const PaymentForm = () => {
         </label>
       </div>
       <div className={style.grid_three_column}>
-        <label for="month" className={style.label_date}>
-          Expiration Date
-        </label>
+        <label className={style.label_date}>Expiration Date</label>
         <select className={style.select} name="expiry" onChange={handleDate}>
           <option value=" ">Month</option>
           <option value="01">Jan</option>
@@ -207,7 +211,7 @@ const PaymentForm = () => {
         <input
           type="tel"
           name="cvc"
-          maxlength="3"
+          maxLength="3"
           className={style.form_input}
           value={cvv}
           pattern="\d*"
@@ -216,7 +220,6 @@ const PaymentForm = () => {
           }}
         ></input>
         <label
-          for="cvv"
           className={`${style.form_input_label} 
       ${cvv.length > 0 ? style.shrink : ""}`}
         >

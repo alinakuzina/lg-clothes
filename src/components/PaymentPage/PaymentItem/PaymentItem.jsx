@@ -1,7 +1,6 @@
 import style from "./PaymentItem.module.scss";
 
 const PaymentItem = ({ item }) => {
-  console.log(item);
   return (
     <div className={style.item_container}>
       <img className={style.img} src={item.images[0].url} />

@@ -24,7 +24,7 @@ const PaymentPage = () => {
         <div className={style.payment_total_container}>
           <div className={style.items_container}>
             {items.map((item) => {
-              return <PaymentItem item={item} />;
+              return <PaymentItem item={item} key={item.articleCodes} />;
             })}
           </div>
           <div>

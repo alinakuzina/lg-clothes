@@ -19,8 +19,7 @@
   display: inline-block;
   width: 320px;
   height: 190px;
-  background-image: url("https://image.ibb.co/bVnMrc/g3095.png"),
-    linear-gradient(to right bottom, #01949a, #0b3734, #128ea4);
+  background-image: linear-gradient(to right bottom, #01949a, #0b3734, #128ea4);
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -154,12 +153,12 @@
   left: 15px;
 }
 
-.card:hover .card__front {
+.card_hover .card__front {
   -webkit-transform: rotateY(180deg);
   -moz-transform: rotateY(180deg);
 }
 
-.card:hover .card__back {
+.card_hover .card__back {
   -webkit-transform: rotateY(0deg);
   -moz-transform: rotateY(0deg);
 }
