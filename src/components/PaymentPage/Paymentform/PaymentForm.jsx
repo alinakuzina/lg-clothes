@@ -2,20 +2,57 @@ import style from "./PaymentForm.module.scss";
 import { useState } from "react";
 import { CountryDropdown } from "react-country-region-selector";
 import CreditCard from "../CreditCard/CreditCard";
+import Button from "../../Button/Button";
 
 const PaymentForm = () => {
-  let [firstName, setFirstName] = useState("");
-  let [lastName, setLastName] = useState("");
-  let [street, setStreet] = useState("");
-  let [postCode, setPostCode] = useState("");
-  let [city, setCity] = useState("");
-  let [country, setCountry] = useState("Germany");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [street, setStreet] = useState("");
+  const [postCode, setPostCode] = useState("");
+  const [city, setCity] = useState("");
+  const [country, setCountry] = useState("Germany");
   const [number, SetNumber] = useState("");
   const [name, SetName] = useState("");
   const [month, SetMonth] = useState("");
   const [year, SetYear] = useState("");
-  let [expiry, SetExpiry] = useState("");
+  const [expiry, SetExpiry] = useState("");
   const [cvv, SetCvv] = useState("");
+
+  const [error, setError] = useState("");
+  const [isSubmited, setIsSubmited] = useState(false);
+
+  const submitFormHandler = (e) => {
+    e.preventDefault();
+    setError("");
+    setIsSubmited(false);
+    if (firstName.length < 0) {
+      setError("Please check your first name ");
+    } else if (lastName.length < 0) {
+      setError("Please check your last name ");
+    } else if (street.length < 0) {
+      setError("Please check your street ");
+    } else if (postCode.length < 0 || isNaN(postCode)) {
+      setError("Please check your postal code ");
+    } else if (city.length < 0) {
+      setError("Please check your city ");
+    } else if (number.length < 16 || isNaN(number)) {
+      console.log(number);
+      setError("Please check your card number ");
+    } else if (name.length < 0) {
+      console.log(name);
+      setError("Please check your name in card details ");
+    } else if (month === "Month" || month.length === 0) {
+      setError("Please check month in card details ");
+    } else if (year === "Year" || year.length === 0) {
+      setError("Please check year in card details ");
+    } else if (cvv.length < 3 || isNaN(cvv)) {
+      setError("Please check your cvv in card details ");
+    } else {
+      setIsSubmited(true);
+
+      setError("");
+    }
+  };
 
   const handleDate = (e) => {
     SetMonth(e.target.value);
@@ -27,7 +64,7 @@ const PaymentForm = () => {
   };
 
   return (
-    <form className={style.form}>
+    <form className={style.form} onSubmit={submitFormHandler}>
       <div className={style.main_header}>Shipping Adress</div>
       <div className={style.aditional_header}>
         Please enter your shipping adress
@@ -127,6 +164,7 @@ const PaymentForm = () => {
           value={country}
           onChange={(e) => setCountry(e)}
           classes={style.select}
+          required
         />
       </div>
 
@@ -146,8 +184,9 @@ const PaymentForm = () => {
           name="number"
           autoComplete="cc-number"
           maxLength="16"
-          pattern="[0-9]"
+          pattern="[0-9\s]{13,16}"
           inputMode="numeric"
+          required
           onChange={(e) => {
             SetNumber(e.target.value);
           }}
@@ -166,6 +205,7 @@ const PaymentForm = () => {
           className={style.form_input}
           value={name}
           name="name"
+          required
           onChange={(e) => {
             SetName(e.target.value);
           }}
@@ -179,7 +219,12 @@ const PaymentForm = () => {
       </div>
       <div className={style.grid_three_column}>
         <label className={style.label_date}>Expiration Date</label>
-        <select className={style.select} name="expiry" onChange={handleDate}>
+        <select
+          className={style.select}
+          required
+          name="expiry"
+          onChange={handleDate}
+        >
           <option value=" ">Month</option>
           <option value="01">Jan</option>
           <option value="02">Feb</option>
@@ -194,7 +239,12 @@ const PaymentForm = () => {
           <option value="11">Nov</option>
           <option value="12">Dec</option>
         </select>
-        <select className={style.select} name="expiry" onChange={handleExpiry}>
+        <select
+          className={style.select}
+          name="expiry"
+          onChange={handleExpiry}
+          required
+        >
           <option value=" ">Year</option>
           <option value="22">2022</option>
           <option value="23">2023</option>
@@ -215,6 +265,7 @@ const PaymentForm = () => {
           maxLength="3"
           className={style.form_input}
           value={cvv}
+          required
           pattern="\d*"
           onChange={(e) => {
             SetCvv(e.target.value);
@@ -227,6 +278,8 @@ const PaymentForm = () => {
           CVV
         </label>
       </div>
+      {error.length > 0 && <div className={style.error_message}>{error}</div>}
+      <Button type="submit">Confirm shipping and payment details</Button>
     </form>
   );
 };
