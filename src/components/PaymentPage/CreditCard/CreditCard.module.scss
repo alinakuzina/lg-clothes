@@ -162,3 +162,21 @@
   -webkit-transform: rotateY(0deg);
   -moz-transform: rotateY(0deg);
 }
+
+@keyframes sized_animation {
+  0% {
+    transform: scale(0.9);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.focus {
+  color: rgb(245, 112, 112);
+  animation-name: sized_animation;
+  animation-duration: 2s;
+}

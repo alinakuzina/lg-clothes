@@ -3,8 +3,18 @@ import { useState } from "react";
 import { CountryDropdown } from "react-country-region-selector";
 import CreditCard from "../CreditCard/CreditCard";
 import Button from "../../Button/Button";
+import { useStripe, useElements } from "@stripe/react-stripe-js";
+import {
+  CardElement,
+  CardNumberElement,
+  CardExpiryElement,
+  CardCvcElement,
+} from "@stripe/react-stripe-js";
 
 const PaymentForm = () => {
+  const stripe = useStripe();
+  const elements = useElements();
+
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [street, setStreet] = useState("");
@@ -21,8 +31,27 @@ const PaymentForm = () => {
   const [error, setError] = useState("");
   const [isSubmited, setIsSubmited] = useState(false);
 
+  const [focus, setFocus] = useState("");
+
+  const expiresFocushandler = () => {
+    setFocus("expires");
+  };
+
+  const numberFocushandler = () => {
+    setFocus("number");
+  };
+
+  const cvvFocushandler = () => {
+    setFocus("cvv");
+  };
+
   const submitFormHandler = (e) => {
     e.preventDefault();
+
+    if (!stripe || !elements) {
+      return;
+    }
+
     setError("");
     setIsSubmited(false);
     if (firstName.length < 0) {
@@ -63,9 +92,46 @@ const PaymentForm = () => {
     SetExpiry(month.concat(e.target.value));
   };
 
+  const paymentHandler = async (e) => {
+    e.preventDefault();
+
+    if (!stripe || !elements) {
+      return;
+    }
+
+    const response = await fetch("/.netlify/functions/create-payment-intent", {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ amount: 10000 }),
+    }).then((res) => {
+      return res.json();
+    });
+
+    const clientSecret = response.paymentIntent.client_secret;
+
+    const paymentResult = await stripe.confirmCardPayment(clientSecret, {
+      payment_method: {
+        card: elements.getElement(CardElement),
+        billing_details: { name: "test name" },
+      },
+    });
+
+    if (paymentResult.error) {
+      alert(paymentResult.error.message);
+    } else {
+      if (paymentResult.paymentIntent.status === "succeeded") {
+        alert("payment succssesful");
+      }
+    }
+
+    console.log(response.paymentIntent.client_secret);
+  };
+
   return (
-    <form className={style.form} onSubmit={submitFormHandler}>
-      <div className={style.main_header}>Shipping Adress</div>
+    <form className={style.form} onSubmit={paymentHandler}>
+      {/* <div className={style.main_header}>Shipping Adress</div>
       <div className={style.aditional_header}>
         Please enter your shipping adress
       </div>
@@ -278,8 +344,16 @@ const PaymentForm = () => {
           CVV
         </label>
       </div>
-      {error.length > 0 && <div className={style.error_message}>{error}</div>}
-      <Button type="submit">Confirm shipping and payment details</Button>
+      {error.length > 0 && <div className={style.error_message}>{error}</div>} */}
+
+      <CreditCard focus={focus} />
+
+      <CardNumberElement onFocus={numberFocushandler} />
+      <CardExpiryElement onFocus={expiresFocushandler} />
+      <CardCvcElement onFocus={cvvFocushandler} />
+      <Button type="inverted">Pay now</Button>
+
+      {/* <Button type="submit">Confirm shipping and payment details</Button> */}
     </form>
   );
 };
