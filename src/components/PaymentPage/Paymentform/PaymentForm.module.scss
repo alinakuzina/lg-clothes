@@ -118,4 +118,24 @@
     color: var(--red);
     width: 100%;
   }
+
+  .card_details_container {
+    display: grid;
+    grid-template-columns: 3fr 1fr 1fr;
+    margin-bottom: 1rem;
+  }
+}
+
+.succsses_message_container {
+  display: flex;
+  height: 50vh;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+  color: var(--green-dark);
+
+  p {
+    padding: 1rem 2rem;
+    border: 1px solid var(--green-dark);
+  }
 }
