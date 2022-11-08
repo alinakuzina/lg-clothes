@@ -67,7 +67,6 @@ export const createUserDocumentFromAuth = async (
   const userDocRef = doc(database, "users", userAuth.uid);
   //recieve from firebase if this user already exist in base and all info
   const userSnapshot = await getDoc(userDocRef);
-  console.log(userSnapshot);
   //check if exist
   //if does not exiist - create new userData
   //return userDocRef

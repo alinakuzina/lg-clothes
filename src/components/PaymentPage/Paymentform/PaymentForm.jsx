@@ -11,6 +11,7 @@ import {
   CardExpiryElement,
   CardCvcElement,
 } from "@stripe/react-stripe-js";
+import { selectTotalPrice } from "../../../store/Cart/CartSelector";
 
 import { selectCurrentUser } from "../../../store/User/UserSelector";
 import { useSelector } from "react-redux";
@@ -19,6 +20,8 @@ const PaymentForm = () => {
   const stripe = useStripe();
   const elements = useElements();
   const currentUser = useSelector(selectCurrentUser);
+  const totalPriceTemp = useSelector(selectTotalPrice);
+  const totalPrice = totalPriceTemp.toString().replace(".", "");
   const navigate = useNavigate();
 
   const [firstName, setFirstName] = useState("");
@@ -52,7 +55,6 @@ const PaymentForm = () => {
   };
 
   const redirectToLoginHandler = () => {
-    console.log("click");
     navigate("/authentication");
   };
 
@@ -88,7 +90,7 @@ const PaymentForm = () => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ amount: 10000 }),
+      body: JSON.stringify({ amount: totalPrice }),
     }).then((res) => {
       return res.json();
     });
@@ -98,7 +100,10 @@ const PaymentForm = () => {
     const paymentResult = await stripe.confirmCardPayment(clientSecret, {
       payment_method: {
         card: elements.getElement(CardNumberElement),
-        billing_details: { name: "test name" },
+        billing_details: {
+          name: currentUser.displayName,
+          email: currentUser.email,
+        },
       },
     });
 
