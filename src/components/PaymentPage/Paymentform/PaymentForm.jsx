@@ -64,10 +64,6 @@ const PaymentForm = () => {
     setFocus("cvv");
   };
 
-  const redirectToLoginHandler = () => {
-    navigate("/authentication");
-  };
-
   const paymentHandler = async (e) => {
     e.preventDefault();
     setError("");
@@ -140,14 +136,7 @@ const PaymentForm = () => {
 
   return (
     <React.Fragment>
-      {!isSubmited && !currentUser && (
-        <div className={style.succsses_message_container}>
-          <Button onClick={redirectToLoginHandler}>
-            Login to place an order
-          </Button>
-        </div>
-      )}
-      {!isSubmited && currentUser && (
+      {!isSubmited && (
         <form id="paymentForm" className={style.form} onSubmit={paymentHandler}>
           <div className={style.main_header}>Shipping Adress</div>
           <div className={style.aditional_header}>
