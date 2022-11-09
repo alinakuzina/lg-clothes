@@ -42,7 +42,8 @@ const PaymentPage = () => {
               </div>
             </div>
           </div>
-          <Button classes={btnStyle.buyNow}>Pay now</Button>
+
+          {/* <Button classes={btnStyle.buyNow}>Pay now</Button> */}
         </div>
       </div>
     </div>

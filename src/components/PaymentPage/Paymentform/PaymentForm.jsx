@@ -5,24 +5,33 @@ import { CountryDropdown } from "react-country-region-selector";
 import CreditCard from "../CreditCard/CreditCard";
 import Button from "../../Button/Button";
 import { useStripe, useElements } from "@stripe/react-stripe-js";
+import { userActions } from "../../../store/User/UserReducer";
 import {
   CardElement,
   CardNumberElement,
   CardExpiryElement,
   CardCvcElement,
 } from "@stripe/react-stripe-js";
-import { selectTotalPrice } from "../../../store/Cart/CartSelector";
-
+import {
+  selectTotalPrice,
+  selectCartItems,
+} from "../../../store/Cart/CartSelector";
+import btnStyle from "../../Button/Button.module.scss";
 import { selectCurrentUser } from "../../../store/User/UserSelector";
 import { useSelector } from "react-redux";
 
+import { useDispatch } from "react-redux";
+
 const PaymentForm = () => {
+  const dispatch = useDispatch();
+
   const stripe = useStripe();
   const elements = useElements();
   const currentUser = useSelector(selectCurrentUser);
   const totalPriceTemp = useSelector(selectTotalPrice);
   const totalPrice = totalPriceTemp.toString().replace(".", "");
   const navigate = useNavigate();
+  const items = useSelector(selectCartItems);
 
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -30,17 +39,18 @@ const PaymentForm = () => {
   const [postCode, setPostCode] = useState("");
   const [city, setCity] = useState("");
   const [country, setCountry] = useState("Germany");
-  const [number, SetNumber] = useState("");
-  const [name, SetName] = useState("");
-  const [month, SetMonth] = useState("");
-  const [year, SetYear] = useState("");
-  const [expiry, SetExpiry] = useState("");
-  const [cvv, SetCvv] = useState("");
 
   const [error, setError] = useState("");
   const [isSubmited, setIsSubmited] = useState(false);
 
   const [focus, setFocus] = useState("");
+
+  let today = new Date();
+  const dd = String(today.getDate()).padStart(2, "0");
+  const mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+  const yyyy = today.getFullYear();
+
+  today = dd + "/" + mm + "/" + yyyy;
 
   const expiresFocushandler = () => {
     setFocus("expires");
@@ -112,6 +122,16 @@ const PaymentForm = () => {
     } else {
       if (paymentResult.paymentIntent.status === "succeeded") {
         setIsSubmited(true);
+
+        dispatch(
+          userActions.addOrder({
+            order: {
+              items: items,
+              totalPrice: totalPriceTemp,
+              date: today,
+            },
+          })
+        );
       }
     }
 
@@ -128,7 +148,7 @@ const PaymentForm = () => {
         </div>
       )}
       {!isSubmited && currentUser && (
-        <form className={style.form} onSubmit={paymentHandler}>
+        <form id="paymentForm" className={style.form} onSubmit={paymentHandler}>
           <div className={style.main_header}>Shipping Adress</div>
           <div className={style.aditional_header}>
             Please enter your shipping adress
@@ -236,14 +256,16 @@ const PaymentForm = () => {
 
           <CreditCard focus={focus} />
           <div className={style.card_details_container}>
-            <CardNumberElement required onFocus={numberFocushandler} />
-            <CardExpiryElement required onFocus={expiresFocushandler} />
-            <CardCvcElement required onFocus={cvvFocushandler} />
+            <CardNumberElement onFocus={numberFocushandler} />
+            <CardExpiryElement onFocus={expiresFocushandler} />
+            <CardCvcElement onFocus={cvvFocushandler} />
           </div>
           {error.length > 0 && (
             <div className={style.error_message}>{error}</div>
           )}
-          <Button type="inverted">Pay now</Button>
+          <Button classes={btnStyle.buyNow} type="inverted">
+            Pay now
+          </Button>
         </form>
       )}
       {isSubmited && (

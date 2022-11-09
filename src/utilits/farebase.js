@@ -8,12 +8,14 @@ import {
   FacebookAuthProvider,
   signOut,
   onAuthStateChanged,
+  updateCurrentUser,
 } from "firebase/auth";
 import {
   getFirestore,
   doc,
   getDoc,
   setDoc,
+  updateDoc,
   refEqual,
   collection,
   getDocs,
@@ -80,6 +82,7 @@ export const createUserDocumentFromAuth = async (
         displayName,
         email,
         createAt,
+        orders: [],
         ...additionalInfo,
       });
     } catch (error) {
@@ -134,4 +137,20 @@ export const recieveCategories = async () => {
     newCategories.push(arr);
   });
   return newCategories;
+};
+
+export const addNewOrderToBase = async (userId, order) => {
+  const userDocRef = doc(database, "users", userId);
+  //recieve from firebase if this user already exist in base and all info
+  const userSnapshot = await getDoc(userDocRef);
+  const orders = [...userSnapshot.data().orders, order];
+
+  try {
+    await updateDoc(userDocRef, {
+      ...userSnapshot.data(),
+      orders: orders,
+    });
+  } catch (error) {
+    console.log(error, "add order to database");
+  }
 };
