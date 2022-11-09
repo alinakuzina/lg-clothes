@@ -255,11 +255,13 @@ const PaymentForm = () => {
           <div className={style.main_header}>Payment details</div>
 
           <CreditCard focus={focus} />
+
           <div className={style.card_details_container}>
             <CardNumberElement onFocus={numberFocushandler} />
             <CardExpiryElement onFocus={expiresFocushandler} />
             <CardCvcElement onFocus={cvvFocushandler} />
           </div>
+
           {error.length > 0 && (
             <div className={style.error_message}>{error}</div>
           )}
