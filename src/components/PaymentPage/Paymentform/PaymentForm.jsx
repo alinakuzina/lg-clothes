@@ -1,13 +1,12 @@
 import style from "./PaymentForm.module.scss";
 import { useNavigate } from "react-router-dom";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { CountryDropdown } from "react-country-region-selector";
 import CreditCard from "../CreditCard/CreditCard";
 import Button from "../../Button/Button";
 import { useStripe, useElements } from "@stripe/react-stripe-js";
 import { userActions } from "../../../store/User/UserReducer";
 import {
-  CardElement,
   CardNumberElement,
   CardExpiryElement,
   CardCvcElement,
@@ -18,8 +17,8 @@ import {
 } from "../../../store/Cart/CartSelector";
 import btnStyle from "../../Button/Button.module.scss";
 import { selectCurrentUser } from "../../../store/User/UserSelector";
+import { cartActions } from "../../../store/Cart/CartReducer";
 import { useSelector } from "react-redux";
-
 import { useDispatch } from "react-redux";
 
 const PaymentForm = () => {
@@ -42,7 +41,6 @@ const PaymentForm = () => {
 
   const [error, setError] = useState("");
   const [isSubmited, setIsSubmited] = useState(false);
-
   const [focus, setFocus] = useState("");
 
   let today = new Date();
@@ -118,7 +116,7 @@ const PaymentForm = () => {
     } else {
       if (paymentResult.paymentIntent.status === "succeeded") {
         setIsSubmited(true);
-
+        dispatch(cartActions.clearCart());
         dispatch(
           userActions.addOrder({
             order: {
@@ -136,7 +134,7 @@ const PaymentForm = () => {
 
   return (
     <React.Fragment>
-      {!isSubmited && (
+      {!isSubmited && stripe && elements && (
         <form id="paymentForm" className={style.form} onSubmit={paymentHandler}>
           <div className={style.main_header}>Shipping Adress</div>
           <div className={style.aditional_header}>
@@ -246,9 +244,10 @@ const PaymentForm = () => {
           <CreditCard focus={focus} />
 
           <div className={style.card_details_container}>
-            <CardNumberElement onFocus={numberFocushandler} />
-            <CardExpiryElement onFocus={expiresFocushandler} />
-            <CardCvcElement onFocus={cvvFocushandler} />
+            <CardNumberElement id="card" onFocus={numberFocushandler} />
+
+            <CardExpiryElement id="expires" onFocus={expiresFocushandler} />
+            <CardCvcElement id="cvv" onFocus={cvvFocushandler} />
           </div>
 
           {error.length > 0 && (

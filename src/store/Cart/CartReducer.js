@@ -60,6 +60,12 @@ export const cartSlice = createSlice({
         action.payload.item
       );
     },
+    clearCart(state) {
+      state.isCartOpen = false;
+      state.cartItems = [];
+      state.itemsCount = 0;
+      state.totalPrice = "3.50";
+    },
   },
 });
 

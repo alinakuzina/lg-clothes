@@ -13,6 +13,8 @@ const CartTotal = ({ total }) => {
     navigate("/payment");
   };
 
+  console.log(total);
+
   const redirectToLoginHandler = () => {
     navigate("/authentication");
   };
@@ -34,12 +36,12 @@ const CartTotal = ({ total }) => {
           </div>
         </div>
       </div>
-      {user && (
+      {user && total !== "3.50" && (
         <Button classes={btnStyle.buyNow} onClick={payHandler}>
           Pay now
         </Button>
       )}
-      {!user && (
+      {!user && total !== "3.50" && (
         <Button classes={btnStyle.buyNow} onClick={redirectToLoginHandler}>
           Login to place an order
         </Button>

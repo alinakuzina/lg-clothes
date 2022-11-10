@@ -28,8 +28,8 @@ const persistedReducer = persistReducer(persistConfig, rootReducer);
 export const store = configureStore({
   reducer: persistedReducer,
   //see login only in development
-  // middleware: [logger],
-  middleware: [process.env.NODE_ENV === "development" && logger, thunk],
+  middleware: [logger, thunk],
+  // middleware: [process.env.NODE_ENV === "development" && logger, thunk],
 });
 
 export const persistor = persistStore(store);
