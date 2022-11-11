@@ -1,4 +1,8 @@
-import { configureStore, combineReducers } from "@reduxjs/toolkit";
+import {
+  configureStore,
+  combineReducers,
+  getDefaultMiddleware,
+} from "@reduxjs/toolkit";
 import logger from "redux-logger";
 import { userSlice } from "./User/UserReducer";
 import { categoriesSlice } from "./Categories/CategoriesReducer";
@@ -28,7 +32,8 @@ const persistedReducer = persistReducer(persistConfig, rootReducer);
 export const store = configureStore({
   reducer: persistedReducer,
   //see login only in development
-  middleware: [logger, thunk],
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({ thunk: true, serializableCheck: false }),
   // middleware: [process.env.NODE_ENV === "development" && logger, thunk],
 });
 

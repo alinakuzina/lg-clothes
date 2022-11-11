@@ -57,14 +57,14 @@
     align-items: center;
     gap: 0.5rem;
 
-    .heart_container {
+    .icon_container {
       height: 100%;
       width: 3rem;
       display: flex;
       justify-content: center;
       align-items: center;
 
-      .heart_logo {
+      .icon_logo {
         cursor: pointer;
         transition: all 0.3s;
         height: 2.5rem;

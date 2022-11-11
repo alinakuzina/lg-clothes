@@ -20,32 +20,35 @@ const PaymentPage = () => {
       <div className={style.form_container}>
         <PaymentForm />
       </div>
-      <div className={style.total_container}>
-        <div className={style.payment_total_container}>
-          <div className={style.items_container}>
-            {items.map((item) => {
-              return <PaymentItem item={item} key={item.articleCodes} />;
-            })}
-          </div>
-          <div>
-            <div className={style.payment_total_info}>
-              <div>
-                <b>Delivery:</b> $ 3.50
-              </div>
+      {total !== "3.50" && (
+        <div className={style.total_container}>
+          <div className={style.payment_total_container}>
+            <div className={style.items_container}>
+              {items.map((item) => {
+                return <PaymentItem item={item} key={item.articleCodes} />;
+              })}
+            </div>
+            <div>
+              <div className={style.payment_total_info}>
+                <div>
+                  <b>Delivery:</b> $ 3.50
+                </div>
 
-              <div>
-                <b>Indicative delivery date :</b> {dateNow.toLocaleDateString()}{" "}
-              </div>
-              <div className={style.payment_line}></div>
-              <div>
-                <b>Total Price:</b> ${total}
+                <div>
+                  <b>Indicative delivery date :</b>{" "}
+                  {dateNow.toLocaleDateString()}{" "}
+                </div>
+                <div className={style.payment_line}></div>
+                <div>
+                  <b>Total Price:</b> ${total}
+                </div>
               </div>
             </div>
-          </div>
 
-          {/* <Button classes={btnStyle.buyNow}>Pay now</Button> */}
+            {/* <Button classes={btnStyle.buyNow}>Pay now</Button> */}
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };

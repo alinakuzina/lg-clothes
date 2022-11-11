@@ -13,8 +13,6 @@ const CartTotal = ({ total }) => {
     navigate("/payment");
   };
 
-  console.log(total);
-
   const redirectToLoginHandler = () => {
     navigate("/authentication");
   };

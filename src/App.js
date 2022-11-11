@@ -13,7 +13,7 @@ import {
 import { useDispatch } from "react-redux";
 import { userActions } from "./store/User/UserReducer.js";
 import Payment from "./routes/Payment/Payment.jsx";
-
+import ProfilePage from "./routes/Profile/ProfilePage.jsx";
 const App = () => {
   const dispatch = useDispatch();
 
@@ -33,6 +33,7 @@ const App = () => {
       <Route exact path="/" element={<Navigation />}>
         <Route index element={<Home />} />
         <Route path="authentication" element={<Authentification />} />
+        <Route path="profile" element={<ProfilePage />} />
         <Route path="men/:path" element={<Shop />} />
         <Route path="ladies/:path" element={<Shop />} />
         <Route path="home/:path" element={<Shop />} />

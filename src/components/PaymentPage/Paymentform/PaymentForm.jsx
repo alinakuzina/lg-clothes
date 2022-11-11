@@ -116,7 +116,7 @@ const PaymentForm = () => {
     } else {
       if (paymentResult.paymentIntent.status === "succeeded") {
         setIsSubmited(true);
-        dispatch(cartActions.clearCart());
+
         dispatch(
           userActions.addOrder({
             order: {
@@ -126,6 +126,7 @@ const PaymentForm = () => {
             },
           })
         );
+        dispatch(cartActions.clearCart());
       }
     }
 

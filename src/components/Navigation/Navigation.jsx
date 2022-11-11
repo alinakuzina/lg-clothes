@@ -15,6 +15,7 @@ import { useDispatch } from "react-redux";
 import { categoriesAction } from "../../store/Categories/CategoriesReducer";
 import { selectIsCartOpen } from "../../store/Cart/CartSelector";
 import { ReactComponent as HeartLogo } from "../../assets/heart.svg";
+import { ReactComponent as UserIcon } from "../../assets/user-icon.svg";
 
 const Navigation = () => {
   const currentUser = useSelector(selectCurrentUser);
@@ -47,8 +48,8 @@ const Navigation = () => {
           })}
 
           <div className={style.permanent_items}>
-            <Link className={style.heart_container} to={"/favorites"}>
-              <HeartLogo className={style.heart_logo} />
+            <Link className={style.icon_container} to={"/favorites"}>
+              <HeartLogo className={style.icon_logo} />
             </Link>
             <CartIcon />
             {!currentUser && (
@@ -57,9 +58,12 @@ const Navigation = () => {
               </Link>
             )}
             {currentUser && (
-              <span className={style.nav_link_sign} onClick={signOutHandler}>
-                Sign Out
-              </span>
+              // <span className={style.nav_link_sign} onClick={signOutHandler}>
+              //   Sign Out
+              // </span>
+              <Link className={style.icon_container} to={"/favorites"}>
+                <UserIcon className={style.icon_logo} />
+              </Link>
             )}
           </div>
           {isCartOpen && <CartDropdown />}
