@@ -123,6 +123,7 @@ const PaymentForm = () => {
               items: items,
               totalPrice: totalPriceTemp,
               date: today,
+              adress: { firstName, lastName, street, postCode, city, country },
             },
           })
         );

@@ -154,3 +154,14 @@ export const addNewOrderToBase = async (userId, order) => {
     console.log(error, "add order to database");
   }
 };
+
+
+//const Recieve user orders
+
+export const recieveUserOrders = async(userId)=>{
+  const userDocRef = doc(database, "users", userId);
+  //recieve from firebase if this user already exist in base and all info
+  const userSnapshot = await getDoc(userDocRef);
+  const orders = userSnapshot.data().orders;
+  return orders;
+}

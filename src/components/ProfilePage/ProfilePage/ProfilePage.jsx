@@ -4,11 +4,21 @@ import {
   selectCurrentUser,
   selectUserOrders,
 } from "../../../store/User/UserSelector";
-
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import Order from "./Order/Order";
 const ProfilePage = () => {
+  const navigate = useNavigate();
   const user = useSelector(selectCurrentUser);
+
+  useEffect(() => {
+    if (!user) {
+      return navigate("/");
+    }
+  }, [user]);
+
   const orders = useSelector(selectUserOrders);
-  console.log(user);
+  console.log(orders);
   return (
     <div className={style.profile_page_container}>
       <div>
@@ -16,6 +26,9 @@ const ProfilePage = () => {
       </div>
       <div>
         <h2>Your orders:</h2>
+        {orders.map((el) => (
+          <Order order={el} key={Math.random() + 245} />
+        ))}
       </div>
     </div>
   );

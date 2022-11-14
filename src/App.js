@@ -9,20 +9,27 @@ import { useEffect } from "react";
 import {
   onAuthStateChangeListener,
   createUserDocumentFromAuth,
+  recieveUserOrders,
 } from "./utilits/Farebase";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { userActions } from "./store/User/UserReducer.js";
 import Payment from "./routes/Payment/Payment.jsx";
 import Profile from "./routes/Profile/Profile.jsx";
+import { selectCurrentUser } from "./store/User/UserSelector.js";
+
 const App = () => {
   const dispatch = useDispatch();
 
+  const user = useSelector(selectCurrentUser);
+
   useEffect(() => {
-    const unsubscribe = onAuthStateChangeListener((user) => {
+    const unsubscribe = onAuthStateChangeListener(async (user) => {
       if (user) {
         createUserDocumentFromAuth(user);
+        const orders = await recieveUserOrders(user.uid);
+
+        dispatch(userActions.setCurrentUser({ user: user, orders: orders }));
       }
-      dispatch(userActions.setCurrentUser({ user: user }));
     });
 
     return unsubscribe;
@@ -33,7 +40,7 @@ const App = () => {
       <Route exact path="/" element={<Navigation />}>
         <Route index element={<Home />} />
         <Route path="authentication" element={<Authentification />} />
-        <Route path="profile" element={<Profile />} />
+        {user && <Route path="profile" element={<Profile />} />}
         <Route path="men/:path" element={<Shop />} />
         <Route path="ladies/:path" element={<Shop />} />
         <Route path="home/:path" element={<Shop />} />

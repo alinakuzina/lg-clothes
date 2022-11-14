@@ -15,6 +15,9 @@ export const userSlice = createSlice({
       if (state.orders.length) {
         state.orders = action.payload.orders;
       }
+      if (action.payload.orders.length > 0) {
+        state.orders = action.payload.orders;
+      }
     },
     addOrder(state, action) {
       state.orders.push(action.payload.order);

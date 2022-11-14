@@ -32,7 +32,6 @@ const Navigation = () => {
       const categories = await recieveCategories();
       dispatch(categoriesAction.recieveCategories({ categories }));
     };
-
     categories();
   }, []);
 
