@@ -26,8 +26,8 @@ const ProfilePage = () => {
       </div>
       <div>
         <h2>Your orders:</h2>
-        {orders.map((el) => (
-          <Order order={el} key={Math.random() + 245} />
+        {orders.map((el, index) => (
+          <Order order={el} key={index + el.items[0].code} />
         ))}
       </div>
     </div>
