@@ -61,7 +61,7 @@ const Navigation = () => {
               // <span className={style.nav_link_sign} onClick={signOutHandler}>
               //   Sign Out
               // </span>
-              <Link className={style.icon_container} to={"/favorites"}>
+              <Link className={style.icon_container} to={"/profile"}>
                 <UserIcon className={style.icon_logo} />
               </Link>
             )}

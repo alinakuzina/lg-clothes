@@ -6,6 +6,7 @@
   cursor: pointer;
   transition: all 0.3s;
   width: 100%;
+  color: var(--black);
 
   &.submit {
     background-color: var(--black);
