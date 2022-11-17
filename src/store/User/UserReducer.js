@@ -24,6 +24,10 @@ export const userSlice = createSlice({
       console.log([...state.orders, action.payload.order]);
       addNewOrderToBase(state.currentUser.uid, action.payload.order);
     },
+    signOut(state, action) {
+      state.currentUser = null;
+      state.orders = [];
+    },
   },
 });
 

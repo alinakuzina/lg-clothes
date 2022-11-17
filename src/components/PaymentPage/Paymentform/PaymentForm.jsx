@@ -246,6 +246,7 @@ const PaymentForm = () => {
           <CreditCard focus={focus} />
 
           <div className={style.card_details_container}>
+            <p>Please use TEST CARD: 4242424242424242 / 22/28 / 1111 </p>
             <CardNumberElement id="card" onFocus={numberFocushandler} />
 
             <CardExpiryElement id="expires" onFocus={expiresFocushandler} />

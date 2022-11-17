@@ -16,7 +16,7 @@ import { categoriesAction } from "../../store/Categories/CategoriesReducer";
 import { selectIsCartOpen } from "../../store/Cart/CartSelector";
 import { ReactComponent as HeartLogo } from "../../assets/heart.svg";
 import { ReactComponent as UserIcon } from "../../assets/user-icon.svg";
-
+import { userActions } from "../../store/User/UserReducer";
 const Navigation = () => {
   const currentUser = useSelector(selectCurrentUser);
   const categories = useSelector(selectCategories);
@@ -26,8 +26,9 @@ const Navigation = () => {
   const navigate = useNavigate();
 
   const signOutHandler = async () => {
-    await signOutUser();
     navigate("/");
+    await signOutUser();
+    dispatch(userActions.signOut());
   };
 
   useEffect(() => {

@@ -6,6 +6,9 @@ import {
 import Button from "../Button/Button";
 import btnStyle from "../Button/Button.module.scss";
 import style from "./SignUp.module.scss";
+import { useSelector } from "react-redux";
+import { selectCurrentUser } from "../../store/User/UserSelector";
+import { useEffect } from "react";
 
 const defaultFormFields = {
   displayName: "",
@@ -21,6 +24,11 @@ const SignUpForm = (props) => {
   const [passwordLengthError, setPasswordLengthError] = useState(false);
   const [emailInvalidError, setEmailInvalidError] = useState(false);
   const [emailAlreadyInUseError, setEmailAlreadyInUseError] = useState(false);
+  const user = useSelector(selectCurrentUser);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [user]);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
