@@ -25,3 +25,33 @@
     bottom: 12px;
   }
 }
+
+@media only screen and (max-width: 39em) {
+  .cart-icon-container {
+    width: 2.5rem;
+    height: 3rem;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 200;
+    transition: all 0.3s;
+
+    &:hover {
+      transform: scale(1.2);
+    }
+
+    .shopping-icon {
+      width: 2.2rem;
+      height: 2.2rem;
+    }
+
+    .item-count {
+      position: absolute;
+      font-size: 10px;
+      font-weight: bold;
+      bottom: 12px;
+    }
+  }
+}

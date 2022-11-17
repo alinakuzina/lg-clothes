@@ -1,4 +1,4 @@
-import { Outlet, Link } from "react-router-dom";
+import { Outlet, Link, useLocation, useNavigate } from "react-router-dom";
 import { Fragment, useContext, useEffect } from "react";
 import { ReactComponent as Logo } from "../../assets/logo.svg";
 import style from "./Navigation.module.scss";
@@ -22,8 +22,12 @@ const Navigation = () => {
   const categories = useSelector(selectCategories);
   const isCartOpen = useSelector(selectIsCartOpen);
   const dispatch = useDispatch();
+  const location = useLocation();
+  const navigate = useNavigate();
+
   const signOutHandler = async () => {
     await signOutUser();
+    navigate("/");
   };
 
   useEffect(() => {
@@ -56,10 +60,12 @@ const Navigation = () => {
                 Sign In
               </Link>
             )}
-            {currentUser && (
-              // <span className={style.nav_link_sign} onClick={signOutHandler}>
-              //   Sign Out
-              // </span>
+            {currentUser && location.pathname === "/profile" && (
+              <span className={style.nav_link_sign} onClick={signOutHandler}>
+                Sign Out
+              </span>
+            )}
+            {currentUser && location.pathname !== "/profile" && (
               <Link className={style.icon_container} to={"/profile"}>
                 <UserIcon className={style.icon_logo} />
               </Link>

@@ -10,8 +10,9 @@ const Order = ({ order }) => {
     <div className={style.order_container}>
       <div>
         <p>
-          <b>Date:</b> {order.date}
+          <b>Date:</b>
         </p>
+        <p>{order.date} </p>
       </div>
       <div>
         <p>
@@ -37,7 +38,9 @@ const Order = ({ order }) => {
                 );
               })}
 
-          <Plus className={style.plus} onClick={showMoreHandler} />
+          {order.items.length > 3 && (
+            <Plus className={style.plus} onClick={showMoreHandler} />
+          )}
         </div>
       </div>
       <div className={style.adress}>
@@ -52,6 +55,9 @@ const Order = ({ order }) => {
         <p>{order.adress.country}</p>
       </div>
       <div className={style.price}>
+        <p>
+          <b>Total price:</b>
+        </p>
         <b>${order.totalPrice}</b>
       </div>
     </div>

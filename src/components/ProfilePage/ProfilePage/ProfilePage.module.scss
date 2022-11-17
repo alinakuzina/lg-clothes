@@ -1,4 +1,32 @@
 .profile_page_container {
   margin-top: 6rem;
   margin-bottom: 3rem;
+  color: var(--black);
+
+  & h1 {
+    text-align: center;
+  }
+
+  .without_orders_container {
+    color: var(--green-dark);
+    display: flex;
+    margin: 20vh auto;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .link {
+      color: white;
+      font-size: 1rem;
+      padding: 1rem 2rem;
+      border: 1px solid var(--green-dark);
+      background-color: var(--green-light);
+      transition: all 0.3s;
+
+      &:hover {
+        filter: brightness(1.1);
+        transform: scale(1.1);
+      }
+    }
+  }
 }

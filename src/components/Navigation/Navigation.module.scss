@@ -79,13 +79,33 @@
 }
 
 @media only screen and (max-height: 50em) and (max-width: 53em) {
-  .permanent_items {
-    margin-right: 4rem;
+  .navigation {
+    .permanent_items {
+      gap: 0rem;
+      margin-right: 4rem;
+    }
   }
 }
 
 @media only screen and (max-width: 39em) {
-  .permanent_items {
-    margin-right: 4rem;
+  .navigation {
+    .logo_container {
+      margin-right: 0.2rem;
+
+      .logo {
+        width: 5rem;
+      }
+    }
+
+    .permanent_items {
+      margin-right: 2.5rem;
+
+      .nav_link_sign {
+        padding: 1rem 0.4rem;
+        cursor: pointer;
+        font-size: 0.7rem;
+        text-align: center;
+      }
+    }
   }
 }

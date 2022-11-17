@@ -5,8 +5,10 @@ import {
   selectUserOrders,
 } from "../../../store/User/UserSelector";
 import React, { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import Order from "./Order/Order";
+import Button from "../../Button/Button";
+
 const ProfilePage = () => {
   const navigate = useNavigate();
   const user = useSelector(selectCurrentUser);
@@ -24,12 +26,22 @@ const ProfilePage = () => {
       <div>
         <h1>Hello {user.displayName}!</h1>
       </div>
-      <div>
-        <h2>Your orders:</h2>
-        {orders.map((el, index) => (
-          <Order order={el} key={index + el.items[0].code} />
-        ))}
-      </div>
+      {orders.length === 0 && (
+        <div className={style.without_orders_container}>
+          <h2>Here will be your orders. </h2>
+          <Link className={style.link} to="/home/home_new">
+            Lets shop!
+          </Link>
+        </div>
+      )}
+      {orders.length > 0 && (
+        <div>
+          <h2>Your orders:</h2>
+          {orders.map((el, index) => (
+            <Order order={el} key={index + el.items[0].code} />
+          ))}
+        </div>
+      )}
     </div>
   );
 };

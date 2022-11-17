@@ -9,7 +9,7 @@
   margin-bottom: 3rem;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  overflow-y: scroll;
+  overflow-y: auto;
 
   .form_container {
     width: 80%;
@@ -39,7 +39,7 @@
 
     .items_container {
       max-height: 20vh;
-      overflow-y: scroll;
+      overflow-y: auto;
     }
   }
 }
