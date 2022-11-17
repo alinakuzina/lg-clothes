@@ -244,9 +244,11 @@ const PaymentForm = () => {
           <div className={style.main_header}>Payment details</div>
 
           <CreditCard focus={focus} />
-
+          <div className={style.error_message}>
+            <p>Please use TEST CARD: </p>
+            <p>4242 4242 4242 4242 - 22/28 - 111</p>
+          </div>
           <div className={style.card_details_container}>
-            <p>Please use TEST CARD: 4242424242424242 / 22/28 / 1111 </p>
             <CardNumberElement id="card" onFocus={numberFocushandler} />
 
             <CardExpiryElement id="expires" onFocus={expiresFocushandler} />
