@@ -242,12 +242,12 @@ const PaymentForm = () => {
           </div>
 
           <div className={style.main_header}>Payment details</div>
-
-          <CreditCard focus={focus} />
           <div className={style.error_message}>
-            <p>Please use TEST CARD: </p>
+            <p>USE ONLY TEST CARD DETAILS: </p>
             <p>4242 4242 4242 4242 - 22/28 - 111</p>
           </div>
+          <CreditCard focus={focus} />
+
           <div className={style.card_details_container}>
             <CardNumberElement id="card" onFocus={numberFocushandler} />
 
